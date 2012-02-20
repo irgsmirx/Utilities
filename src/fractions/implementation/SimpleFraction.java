@@ -2,10 +2,10 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package money.implementation;
+package fractions.implementation;
 
-import money.interfaces.IFraction;
-import money.interfaces.ISimpleFraction;
+import fractions.interfaces.IFraction;
+import fractions.interfaces.ISimpleFraction;
 
 /**
  *

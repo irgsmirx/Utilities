@@ -4,6 +4,8 @@
  */
 package money.interfaces;
 
+import fractions.interfaces.IFraction;
+
 /**
  *
  * @author Administrator
@@ -15,5 +17,8 @@ public interface IExchangeRate {
     
     ICurrency getTargetCurrency();
     void setTargetCurrency(ICurrency value);
+    
+    IFraction getRate();
+    void setRate(IFraction value);
     
 }
