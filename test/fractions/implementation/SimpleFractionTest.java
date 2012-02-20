@@ -165,6 +165,18 @@ public class SimpleFractionTest {
         assertEquals(expResult, result);
     }
 
+        /**
+     * Test of toString method, of class SimpleFraction.
+     */
+    @Test
+    public void testToMixedString() {
+        System.out.println("toMixedString");
+        SimpleFraction instance = new SimpleFraction(7, 3);
+        String expResult = "2 1/3";
+        String result = instance.toMixedString();
+        assertEquals(expResult, result);
+    }
+    
     /**
      * Test of add method, of class SimpleFraction.
      */

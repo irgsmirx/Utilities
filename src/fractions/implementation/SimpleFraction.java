@@ -14,12 +14,22 @@ import fractions.interfaces.ISimpleFraction;
 public final class SimpleFraction extends AbstractFraction implements ISimpleFraction {
 
     public static ISimpleFraction ONE = new SimpleFraction(1, 1);
+    public static ISimpleFraction HALF = new SimpleFraction(1, 2);
+    public static ISimpleFraction THIRD = new SimpleFraction(1, 3);
+    public static ISimpleFraction TWO_THIRDS = new SimpleFraction(2, 3);
+    public static ISimpleFraction QUARTER = new SimpleFraction(1, 4);
+    public static ISimpleFraction THREE_QUARTERS = new SimpleFraction(3, 4);
     
     protected int numerator;
     protected int denominator;
     
     public SimpleFraction(int numerator, int denominator) {
         setNumerator(numerator);
+        setDenominator(denominator);
+    }
+    
+    public SimpleFraction(int wholeIntegers, int numerator, int denominator) {
+        setNumerator(wholeIntegers * denominator + numerator);
         setDenominator(denominator);
     }
     
@@ -85,6 +95,10 @@ public final class SimpleFraction extends AbstractFraction implements ISimpleFra
         return numerator + "/" + denominator;
     }
 
+    public String toMixedString() {
+        return (numerator / denominator) + " " + (numerator % denominator) + "/" + denominator;
+    }
+    
     @Override
     public IFraction add(IFraction value) {
         if (value instanceof ISimpleFraction) {

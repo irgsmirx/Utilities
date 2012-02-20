@@ -53,12 +53,12 @@ public final class MixedNumber extends AbstractFraction implements IMixedNumer {
 
     @Override
     public IFraction reciprocal() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return new SimpleFraction(integerPart * fractionPart.getDenominator() + fractionPart.getNumerator(), fractionPart.getDenominator()).reciprocal();
     }
     
     @Override
     public IFraction reduce() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return new SimpleFraction(integerPart * fractionPart.getDenominator() + fractionPart.getNumerator(), fractionPart.getDenominator()).reduce();
     }
     
     @Override
