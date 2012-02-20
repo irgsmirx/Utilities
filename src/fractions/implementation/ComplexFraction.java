@@ -6,6 +6,7 @@ package fractions.implementation;
 
 import fractions.interfaces.IComplexFraction;
 import fractions.interfaces.IFraction;
+import java.util.Objects;
 
 /**
  *
@@ -18,7 +19,7 @@ public final class ComplexFraction extends AbstractFraction implements IComplexF
 
     public ComplexFraction(IFraction numerator, IFraction denominator) {
         setNumerator(numerator);
-        setDenominator(numerator);
+        setDenominator(denominator);
     }
     
     @Override
@@ -84,6 +85,35 @@ public final class ComplexFraction extends AbstractFraction implements IComplexF
     @Override
     public IFraction multiply(int value) {
         throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public int compareTo(IFraction o) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final ComplexFraction other = (ComplexFraction) obj;
+        if (!Objects.equals(this.numerator, other.numerator)) {
+            return false;
+        }
+        if (!Objects.equals(this.denominator, other.denominator)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        return hash;
     }
     
 }

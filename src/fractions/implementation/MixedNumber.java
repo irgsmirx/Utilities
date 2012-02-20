@@ -7,6 +7,7 @@ package fractions.implementation;
 import fractions.interfaces.IFraction;
 import fractions.interfaces.IMixedNumer;
 import fractions.interfaces.ISimpleFraction;
+import java.util.Objects;
 
 /**
  *
@@ -93,6 +94,35 @@ public final class MixedNumber extends AbstractFraction implements IMixedNumer {
     @Override
     public IFraction multiply(int value) {
         throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public int compareTo(IFraction o) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final MixedNumber other = (MixedNumber) obj;
+        if (this.integerPart != other.integerPart) {
+            return false;
+        }
+        if (!Objects.equals(this.fractionPart, other.fractionPart)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        return hash;
     }
     
 }

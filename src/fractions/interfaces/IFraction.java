@@ -8,7 +8,7 @@ package fractions.interfaces;
  *
  * @author Administrator
  */
-public interface IFraction {
+public interface IFraction extends Comparable<IFraction> {
    
     IFraction reduce();
     IFraction reciprocal();
