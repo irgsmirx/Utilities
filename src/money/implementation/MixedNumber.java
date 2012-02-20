@@ -4,48 +4,57 @@
  */
 package money.implementation;
 
-import money.interfaces.IComplexFraction;
 import money.interfaces.IFraction;
+import money.interfaces.IMixedNumer;
+import money.interfaces.ISimpleFraction;
 
 /**
  *
  * @author Administrator
  */
-public final class ComplexFraction extends AbstractFraction implements IComplexFraction {
+public final class MixedNumber extends AbstractFraction implements IMixedNumer {
 
-    protected IFraction numerator;
-    protected IFraction denominator;
+    protected int integerPart;
+    protected ISimpleFraction fractionPart;
 
-    public ComplexFraction(IFraction numerator, IFraction denominator) {
-        setNumerator(numerator);
-        setDenominator(numerator);
+    public MixedNumber(int integerPart, int numerator, int denominator) {
+        this(integerPart, new SimpleFraction(numerator, denominator));
+    }
+    
+    public MixedNumber(int integerPart, ISimpleFraction fractionPart) {
+        setIntegerPart(integerPart);
+        setFractionPart(fractionPart);
     }
     
     @Override
-    public IFraction getNumerator() {
-        return numerator;
+    public int getIntegerPart() {
+        return integerPart;
     }
 
     @Override
-    public void setNumerator(IFraction value) {
-        this.numerator = value;
+    public void setIntegerPart(int value) {
+        this.integerPart = value;
     }
 
     @Override
-    public IFraction getDenominator() {
-        return denominator;
+    public ISimpleFraction getFractionPart() {
+        return fractionPart;
     }
 
     @Override
-    public void setDenominator(IFraction value) {
-        this.denominator = value;
-    }
+    public void setFractionPart(ISimpleFraction value) {
+        if (value.isImproper()) {
+            throw new IllegalArgumentException();
+        }
         
+        this.fractionPart = value;
+    }
+
     @Override
     public IFraction reciprocal() {
-        return new ComplexFraction(denominator, numerator);
+        throw new UnsupportedOperationException("Not supported yet.");
     }
-
+    
     @Override
     public IFraction reduce() {
         throw new UnsupportedOperationException("Not supported yet.");
@@ -53,17 +62,17 @@ public final class ComplexFraction extends AbstractFraction implements IComplexF
     
     @Override
     public float floatValue() {
-        return numerator.floatValue() / denominator.floatValue();
+        return (float)integerPart + fractionPart.floatValue();
     }
 
     @Override
     public double doubleValue() {
-        return numerator.doubleValue() / denominator.doubleValue();
+        return (double)integerPart + fractionPart.doubleValue();
     }
     
     @Override
     public String toString() {
-        return "(" + numerator.toString() + ") / (" + denominator.toString() + ")";
+        return integerPart + " " + fractionPart.toString();
     }
 
     @Override

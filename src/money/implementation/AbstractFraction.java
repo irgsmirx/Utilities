@@ -129,5 +129,10 @@ public abstract class AbstractFraction implements IFraction {
         
         return greatestCommonDivisor;
     }
+
+    
+    public int leastCommonMultipleEuclid(int a, int b) {
+        return Math.abs(a) / greatestCommonDivisorEuclid(a, b) * Math.abs(b);
+    }
     
 }

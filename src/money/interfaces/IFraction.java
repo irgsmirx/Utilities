@@ -9,7 +9,16 @@ package money.interfaces;
  * @author Administrator
  */
 public interface IFraction {
-    
+   
     IFraction reduce();
+    IFraction reciprocal();
+    
+    float floatValue();
+    double doubleValue();
+    
+    IFraction add(IFraction value);
+    IFraction subtract(IFraction value);
+    IFraction multiply(IFraction value);
+    IFraction multiply(int value);
     
 }
