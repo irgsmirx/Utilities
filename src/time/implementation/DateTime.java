@@ -10,7 +10,7 @@ import java.util.Date;
  *
  * @author tobias
  */
-public class DateTime {
+public class DateTime implements Comparable<DateTime> {
 	
 	private static final long MAX_VALUE_TICKS = 3155378975999999999L;
 	
@@ -204,8 +204,13 @@ public class DateTime {
 		
 	}
 
-	public void addSecondss(int value) {
+	public void addSeconds(int value) {
 		
 	}
+
+  @Override
+  public int compareTo(DateTime o) {
+    return ticks.compareTo(o.ticks);
+  }
 
 }
