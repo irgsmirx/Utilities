@@ -4,11 +4,11 @@
  */
 package common.implementation;
 
-import common.interfaces.IQueue;
 import junit.framework.Assert;
-import newparsing.interfaces.IToken;
-import newparsing.interfaces.ITokenQueue;
 import org.junit.Test;
+import utilities.common.implementation.Queue;
+import utilities.common.implementation.QueueException;
+import utilities.common.interfaces.IQueue;
 
 /**
  *
@@ -28,45 +28,45 @@ public class QueueTest {
   }
   
   @Test
-  public void NumberOfTokens_ShouldReturnZero_IfNoTokenWasEnqueued() {
-    Assert.assertEquals(0, queue.numberOfTokens());
+  public void NumberOfElements_ShouldReturnZero_IfNoElementWasEnqueued() {
+    Assert.assertEquals(0, queue.numberOfElements());
   }
   
-  @Test(expected = TokenQueueException.class)
-  public void Dequeue_ShouldThrowIndexOutOfBoundsException_IfNoTokenWasEnqueued() {
+  @Test(expected = QueueException.class)
+  public void Dequeue_ShouldThrowIndexOutOfBoundsException_IfNoElementWasEnqueued() {
     String token = queue.dequeue();
   }
   
   @Test
-  public void NumerOfTokens_ShouldReturnOne_IfOneTokenWasEnqueued() {
+  public void NumerOfElements_ShouldReturnOne_IfOneTokenWasEnqueued() {
     String token = "a";
     queue.enqueue(token);
     
-    Assert.assertEquals(1, queue.numberOfTokens());
+    Assert.assertEquals(1, queue.numberOfElements());
   }
   
   @Test
-  public void Dequeue_ShouldReturnEnqueuedToken_IfOnlyOneTokenWasEnqueued() {
-    String token = new Token(null, null);
+  public void Dequeue_ShouldReturnEnqueuedElement_IfOnlyOneElementWasEnqueued() {
+    String token = "a";
     queue.enqueue(token);
     
     Assert.assertEquals(token, queue.dequeue());
   }
   
   @Test 
-  public void NumberOfTokens_ShouldBeReducedByOne_IfQueueWasNotEmptyAndOneElementIsDequeued() {
-    String token = new Token(null, null);
+  public void NumberOfElements_ShouldBeReducedByOne_IfQueueWasNotEmptyAndOneElementIsDequeued() {
+    String token = "a";
     queue.enqueue(token);
     
-    int numberOfTokens = queue.numberOfTokens();
+    int numberOfTokens = queue.numberOfElements();
     
     queue.dequeue();
     
-    Assert.assertEquals(numberOfTokens - 1, queue.numberOfTokens());
+    Assert.assertEquals(numberOfTokens - 1, queue.numberOfElements());
   }
   
   @Test
-  public void GetLength_ShouldReturnTwo_IfInitializedWithOneAndTwoTokensEnqueued() {
+  public void GetLength_ShouldReturnTwo_IfInitializedWithOneAndTwoElementsEnqueued() {
     String token = "a";
     queue.enqueue(token);
 
@@ -77,17 +77,17 @@ public class QueueTest {
   }
   
   @Test
-  public void Clear_ShouldSetNumberOfTokensToZero() {
+  public void Clear_ShouldSetNumberOfElementsToZero() {
     String token = "a";
     queue.enqueue(token);
     
     queue.clear();
     
-    Assert.assertEquals(0, queue.numberOfTokens());
+    Assert.assertEquals(0, queue.numberOfElements());
   }
   
   @Test
-  public void GetAt_ShouldReturnTheNthTokenInTheQueue() {
+  public void GetAt_ShouldReturnTheNthElementInTheQueue() {
     String token = "a";
     String token2 = "b";
 
@@ -111,9 +111,9 @@ public class QueueTest {
   }
 
   @Test
-	public void GetLength_ShouldNotIncreaseAboveTwo_IfTwoTokensAreEnqueuedDequeuedAndAgainEnqueued() {
-    IToken token = new Token(new TokenType("Characters a to z", "[a-z]+"), null);
-    IToken token2 = new Token(new TokenType("Digits 0 to 9", "[0-9]+"), null);
+	public void GetLength_ShouldNotIncreaseAboveTwo_IfTwoElementsAreEnqueuedDequeuedAndAgainEnqueued() {
+    String token = "a";
+    String token2 = "b";
 
 		queue.enqueue(token);
     queue.enqueue(token2);
@@ -130,7 +130,7 @@ public class QueueTest {
 	}
 	
 	@Test
-	public void Dequeue_ShouldReturnTheFirstEnqueuedToken_IfTwoTokensAreEnqueuedDequeuedAndAgainEnqueued() {
+	public void Dequeue_ShouldReturnTheFirstEnqueuedElement_IfTwoElementsAreEnqueuedDequeuedAndAgainEnqueued() {
     String token = "a";
     String token2 = "b";
 

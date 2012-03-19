@@ -4,9 +4,10 @@
  */
 package fractions.implementation;
 
-import fractions.interfaces.IFraction;
 import static org.junit.Assert.*;
 import org.junit.*;
+import utilities.fractions.implementation.SimpleFraction;
+import utilities.fractions.interfaces.IFraction;
 
 /**
  *
@@ -54,7 +55,7 @@ public class SimpleFractionTest {
         int value = 5;
         SimpleFraction instance = new SimpleFraction(1, 2);
         instance.setNumerator(value);
-        assertEquals(instance.numerator, 5);
+        assertEquals(instance.getNumerator(), 5);
     }
 
     /**
