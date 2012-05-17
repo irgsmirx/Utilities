@@ -22,7 +22,7 @@ public class Statements {
     return new IncrementStatement(target);
   }
   
-  public static IDecrementStatement Increment(IParameterExpression target) {
+  public static IDecrementStatement Decrement(IParameterExpression target) {
     return new DecrementStatement(target);
   }
   
