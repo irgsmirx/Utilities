@@ -6,11 +6,8 @@ package utilities.expressions.interfaces;
 
 /**
  *
- * @author tobias
+ * @author Tobias Ramforth <tobias.ramforth at tu-dortmund.de>
  */
-public interface IUnaryExpression extends IExpression {
-	
-  IExpression getChild();
-  void setChild(IExpression value);
+public interface IGreaterThanExpression extends IComparisonExpression {
   
 }

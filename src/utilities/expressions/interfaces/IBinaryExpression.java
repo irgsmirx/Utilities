@@ -8,6 +8,12 @@ package utilities.expressions.interfaces;
  *
  * @author tobias
  */
-public interface IBinaryExpression {
+public interface IBinaryExpression extends IExpression {
 	
+  IExpression getLeftChild();
+  void setLeftChild(IExpression value);
+  
+  IExpression getRightChild();
+  void setRightChild(IExpression value);
+  
 }

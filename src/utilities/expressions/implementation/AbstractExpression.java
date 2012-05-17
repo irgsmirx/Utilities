@@ -1,0 +1,15 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package utilities.expressions.implementation;
+
+import utilities.expressions.interfaces.IExpression;
+
+/**
+ *
+ * @author Tobias Ramforth <tobias.ramforth at tu-dortmund.de>
+ */
+public abstract class AbstractExpression implements IExpression {
+  
+}
