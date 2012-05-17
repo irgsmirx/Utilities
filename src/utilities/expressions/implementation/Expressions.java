@@ -32,4 +32,44 @@ public class Expressions {
     return new NotExpression(child);
   }
   
+
+  public static INegateExpression Negate(IExpression child) {
+    return new NegateExpression(child);
+  }
+  
+  public static IAddExpression Add(IExpression left, IExpression right) {
+    return new AddExpression(left, right);
+  }
+  
+  public static ISubtractExpression Subtract(IExpression left, IExpression right) {
+    return new SubtractExpression(left, right);
+  }
+  
+  public static IDivideExpression Divide(IExpression left, IExpression right) {
+    return new DivideExpression(left, right);
+  }
+  
+  public static IMultiplyExpression Multiply(IExpression left, IExpression right) {
+    return new MultiplyExpression(left, right);
+  }
+  
+  public static IModuloExpression Modulo(IExpression left, IExpression right) {
+    return new ModuloExpression(left, right);
+  }
+  
+  public static IPowerExpression Power(IExpression left, IExpression right) {
+    return new PowerExpression(left, right);
+  }
+  
+  
+  public static IParenthesizedExpression Parenthesized(IExpression child) {
+    return new ParenthesizedExpression(child);
+  }
+  
+  
+  
+  public static IPropertyExpression Property(IExpression target, String propertyName) {
+    return new PropertyExpression(target, propertyName);
+  }
+    
 }

@@ -8,6 +8,9 @@ package utilities.statements.interfaces;
  *
  * @author Tobias Ramforth <tobias.ramforth at tu-dortmund.de>
  */
-public interface IBlock extends IStatement {
+public interface IVariableStatement extends IStatement {
+  
+  String getName();
+  void setName(String value);
   
 }

@@ -6,8 +6,8 @@ package utilities.statements.interfaces;
 
 /**
  *
- * @author tobias
+ * @author Tobias Ramforth <tobias.ramforth at tu-dortmund.de>
  */
-public interface IAssignment extends IStatement {
-	
+public interface IReturnStatement extends IStatement {
+  
 }
