@@ -71,5 +71,28 @@ public class Expressions {
   public static IPropertyExpression Property(IExpression target, String propertyName) {
     return new PropertyExpression(target, propertyName);
   }
+  
+  
+  
+  public static IEqualExpression Equal(IExpression left, IExpression right) {
+    return new EqualExpression(left, right);
+  }
+  
+  public static ILessThanExpression LessThan(IExpression left, IExpression right) {
+    return new LessThanExpression(left, right);
+  }
+    
+  public static ILessOrEqualExpression LessOrEqual(IExpression left, IExpression right) {
+    return new LessOrEqualExpression(left, right);
+  }
+
+  public static IGreaterThanExpression GreaterThan(IExpression left, IExpression right) {
+    return new GreaterThanExpression(left, right);
+  }
+
+  public static IGreaterOrEqualExpression GreaterOrEqual(IExpression left, IExpression right) {
+    return new GreaterOrEqualExpression(left, right);
+  }
+
     
 }
