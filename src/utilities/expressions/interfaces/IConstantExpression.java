@@ -10,4 +10,7 @@ package utilities.expressions.interfaces;
  */
 public interface IConstantExpression {
   
+  Object getValue();
+  void setValue(Object value);
+  
 }
