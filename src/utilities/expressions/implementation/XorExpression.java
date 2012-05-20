@@ -11,7 +11,7 @@ import utilities.expressions.interfaces.IXorExpression;
  *
  * @author Tobias Ramforth <tobias.ramforth at tu-dortmund.de>
  */
-public class XorExpression extends AbstractComparisonExpression implements IXorExpression {
+public class XorExpression extends AbstractConditionalExpression implements IXorExpression {
 
   public XorExpression(IExpression leftChild, IExpression rightChild) {
     super(leftChild, rightChild);

@@ -4,16 +4,16 @@
  */
 package utilities.expressions.implementation;
 
-import utilities.expressions.interfaces.IComparisonExpression;
+import utilities.expressions.interfaces.IEqualExpression;
 import utilities.expressions.interfaces.IExpression;
 
 /**
  *
  * @author Tobias Ramforth <tobias.ramforth at tu-dortmund.de>
  */
-public class AbstractComparisonExpression extends AbstractBinaryExpression implements IComparisonExpression {
+public class EqualExpression extends AbstractConditionalExpression implements IEqualExpression {
 
-  public AbstractComparisonExpression(IExpression leftChild, IExpression rightChild) {
+  public EqualExpression(IExpression leftChild, IExpression rightChild) {
     super(leftChild, rightChild);
   }
   

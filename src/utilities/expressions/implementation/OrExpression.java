@@ -11,7 +11,7 @@ import utilities.expressions.interfaces.IOrExpression;
  *
  * @author Tobias Ramforth <tobias.ramforth at tu-dortmund.de>
  */
-public class OrExpression extends AbstractComparisonExpression implements IOrExpression {
+public class OrExpression extends AbstractConditionalExpression implements IOrExpression {
 
   public OrExpression(IExpression leftChild, IExpression rightChild) {
     super(leftChild, rightChild);

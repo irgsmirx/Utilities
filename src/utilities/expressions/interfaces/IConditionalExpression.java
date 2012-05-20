@@ -8,6 +8,6 @@ package utilities.expressions.interfaces;
  *
  * @author Tobias Ramforth <tobias.ramforth at tu-dortmund.de>
  */
-public interface IComparisonExpression extends IBinaryExpression {
+public interface IConditionalExpression extends IBinaryExpression {
   
 }

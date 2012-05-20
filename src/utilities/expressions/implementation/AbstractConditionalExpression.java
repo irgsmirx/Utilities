@@ -4,16 +4,16 @@
  */
 package utilities.expressions.implementation;
 
+import utilities.expressions.interfaces.IConditionalExpression;
 import utilities.expressions.interfaces.IExpression;
-import utilities.expressions.interfaces.INorExpression;
 
 /**
  *
  * @author Tobias Ramforth <tobias.ramforth at tu-dortmund.de>
  */
-public class NorExpression extends AbstractConditionalExpression implements INorExpression {
+public class AbstractConditionalExpression extends AbstractBinaryExpression implements IConditionalExpression {
 
-  public NorExpression(IExpression leftChild, IExpression rightChild) {
+  public AbstractConditionalExpression(IExpression leftChild, IExpression rightChild) {
     super(leftChild, rightChild);
   }
   

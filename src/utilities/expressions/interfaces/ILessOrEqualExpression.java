@@ -8,6 +8,6 @@ package utilities.expressions.interfaces;
  *
  * @author Tobias Ramforth <tobias.ramforth at tu-dortmund.de>
  */
-public interface ILessOrEqualExpression extends IComparisonExpression {
+public interface ILessOrEqualExpression extends IConditionalExpression {
   
 }
