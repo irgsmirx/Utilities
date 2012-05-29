@@ -94,5 +94,9 @@ public class Expressions {
     return new GreaterOrEqualExpression(left, right);
   }
 
-    
+  
+	public static IConstantExpression Constant(Object value) {
+		return new ConstantExpression(value);
+	}
+	
 }
