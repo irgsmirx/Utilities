@@ -20,6 +20,10 @@ public class IniFileSection implements IIniFileSection {
   
   public IniFileSection() {
   }
+
+  public IniFileSection(String name) {
+    this.name = name;
+  }
   
   @Override
   public String getName() {

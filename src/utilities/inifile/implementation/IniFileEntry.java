@@ -12,24 +12,32 @@ import utilities.inifile.interfaces.IIniFileEntry;
  */
 public class IniFileEntry implements IIniFileEntry {
 
+  private String key;
+  private String value;
+  
+  public IniFileEntry(String key, String value) {
+    this.key = key;
+    this.value = value;
+  }
+  
   @Override
   public String getKey() {
-    throw new UnsupportedOperationException("Not supported yet.");
+    return key;
   }
 
   @Override
   public void setKey(String value) {
-    throw new UnsupportedOperationException("Not supported yet.");
+    this.key = value;
   }
 
   @Override
   public String getValue() {
-    throw new UnsupportedOperationException("Not supported yet.");
+    return value;
   }
 
   @Override
   public void setValue(String value) {
-    throw new UnsupportedOperationException("Not supported yet.");
+    this.value = value;
   }
   
 }
