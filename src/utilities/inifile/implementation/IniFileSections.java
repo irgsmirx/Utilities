@@ -5,6 +5,8 @@
 package utilities.inifile.implementation;
 
 import java.util.Iterator;
+import java.util.Map;
+import java.util.TreeMap;
 import utilities.inifile.interfaces.IIniFileSection;
 import utilities.inifile.interfaces.IIniFileSections;
 
@@ -14,9 +16,41 @@ import utilities.inifile.interfaces.IIniFileSections;
  */
 public class IniFileSections implements IIniFileSections {
 
+  protected final Map<String, IIniFileSection> sectionMap = new TreeMap<>();
+  
   @Override
   public Iterator<IIniFileSection> iterator() {
-    throw new UnsupportedOperationException("Not supported yet.");
+    return sectionMap.values().iterator();
+  }
+
+  @Override
+  public void add(IIniFileSection value) {
+    sectionMap.put(value.getName(), value);
+  }
+
+  @Override
+  public void remove(IIniFileSection value) {
+    sectionMap.remove(value.getName());
+  }
+
+  @Override
+  public void remove(String value) {
+    sectionMap.remove(value);
+  }
+
+  @Override
+  public void clear() {
+    sectionMap.clear();
+  }
+
+  @Override
+  public boolean contains(IIniFileSection value) {
+    return sectionMap.containsKey(value.getName());
+  }
+
+  @Override
+  public boolean contains(String value) {
+    return sectionMap.containsKey(value);
   }
   
 }

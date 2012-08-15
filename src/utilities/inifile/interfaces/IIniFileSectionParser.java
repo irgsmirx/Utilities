@@ -4,15 +4,14 @@
  */
 package utilities.inifile.interfaces;
 
+import java.io.InputStream;
+
 /**
  *
  * @author Tobias Ramforth <tobias.ramforth at tu-dortmund.de>
  */
-public interface IIniFileSection extends Iterable<IIniFileEntry> {
- 
-  String getName();
-  void setName(String value);
+public interface IIniFileSectionParser {
   
-  IIniFileEntries getEntries();
-  
+  IIniFileSection parse(InputStream inputStream);
+
 }

@@ -14,14 +14,20 @@ import utilities.inifile.interfaces.IIniFileSections;
  */
 public class IniFile implements IIniFile {
 
+  protected final IIniFileSection rootSection = new IniFileSection();
+  protected final IIniFileSections sections = new IniFileSections();
+  
+  public IniFile() {
+  }
+  
   @Override
-  public IIniFileSection getRootSection() {
-    throw new UnsupportedOperationException("Not supported yet.");
+  public final IIniFileSection getRootSection() {
+    return rootSection;
   }
 
   @Override
-  public IIniFileSections getSections() {
-    throw new UnsupportedOperationException("Not supported yet.");
+  public final IIniFileSections getSections() {
+    return sections;
   }
   
 }

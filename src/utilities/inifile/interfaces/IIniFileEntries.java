@@ -10,4 +10,11 @@ package utilities.inifile.interfaces;
  */
 public interface IIniFileEntries extends Iterable<IIniFileEntry> {
   
+  void add(IIniFileEntry value);
+  void remove(IIniFileEntry value);
+  void remove(String value);
+  void clear();
+  boolean contains(IIniFileEntry value);
+  boolean contains(String value);
+  
 }

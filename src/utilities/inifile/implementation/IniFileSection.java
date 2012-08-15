@@ -15,14 +15,30 @@ import utilities.inifile.interfaces.IIniFileSection;
  */
 public class IniFileSection implements IIniFileSection {
 
+  private String name;
+  protected final IIniFileEntries entries = new IniFileEntries();
+  
+  public IniFileSection() {
+  }
+  
   @Override
-  public IIniFileEntries getEntries() {
-    throw new UnsupportedOperationException("Not supported yet.");
+  public String getName() {
+    return name;
+  }
+  
+  @Override
+  public void setName(String value) {
+    this.name = value;
+  }
+  
+  @Override
+  public final IIniFileEntries getEntries() {
+    return entries;
   }
 
   @Override
-  public Iterator<IIniFileEntry> iterator() {
-    throw new UnsupportedOperationException("Not supported yet.");
+  public final Iterator<IIniFileEntry> iterator() {
+    return entries.iterator();
   }
   
 }
