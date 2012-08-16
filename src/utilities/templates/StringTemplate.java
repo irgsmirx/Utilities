@@ -7,6 +7,7 @@ package utilities.templates;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.StringReader;
+import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.util.List;
 import java.util.Map;
@@ -94,12 +95,10 @@ public class StringTemplate extends AbstractTemplate {
                     try {
                       int indexValue = Integer.parseInt(propertyName);
 
-                      if (currentValue instanceof Object[]) {
-                        currentValue = ((Object[])currentValue)[indexValue];
+                      if (currentValue.getClass().isArray()) {
+                        currentValue = Array.get(currentValue, indexValue);
                       } else if (currentValue instanceof List<?>) {
                         currentValue = ((List<?>)currentValue).get(indexValue);
-                        Map<Integer, String> a;
-                        a = new TreeMap<>();
                       } else if (currentValue instanceof Map<?, ?>) {
                         currentValue = ((Map<?, ?>)currentValue).get(indexValue);
                       }
