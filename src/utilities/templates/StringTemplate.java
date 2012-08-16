@@ -2,10 +2,17 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package templates;
+package utilities.templates;
 
+import java.io.IOException;
 import java.io.OutputStream;
 import java.io.StringReader;
+import java.lang.reflect.Field;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -33,92 +40,106 @@ public class StringTemplate extends AbstractTemplate {
         boolean inPlaceholder = false;
         boolean inIndexer = false;
 
-        PropertyInfo currentPropertyInfo = null;
+        Field currentField = null;
         String currentPlaceholderKey = null;
         Object currentValue = null;
 
         StringReader stringReader = new StringReader(template);
         int templateCharacter = -1;
-        while ((templateCharacter = stringReader.read()) != -1) {
-          if (templateCharacter == placeholderBeginTag) {
-              if (inPlaceholder) {
-                sb.append(templateCharacter);
-              } else {
-                inPlaceholder = true;
-              }
-          } else if (templateCharacter == placeholderEndTag) {
-              if (sb.length() > 0) {
-                String propertyName = sb.toString();
-                currentPropertyInfo = currentValue.GetType().GetProperty(propertyName);
-                Object propertyValue = currentPropertyInfo.GetGetMethod().Invoke(currentValue, null);
-                if (propertyValue == null) {
-                  propertyLabel.Text = "{" + propertyName + "}";
+        try {
+          while ((templateCharacter = stringReader.read()) != -1) {
+            if (templateCharacter == placeholderBeginTag) {
+                if (inPlaceholder) {
+                  sb.append(templateCharacter);
                 } else {
-                  String stringValue = propertyValue.toString().trim();
-                  if (stringValue.Length == 0) {
-                    propertyLabel.Text = "__";
-                  } else {
-                    propertyLabel.Text = stringValue;
-                  }
+                  inPlaceholder = true;
                 }
-                sb.setLength(0);
-              }
-              inPlaceholder = false;
-              inIndexer = false;
-          } else if (templateCharacter == '[') {
+            } else if (templateCharacter == placeholderEndTag) {
+                if (sb.length() > 0) {
+                  String propertyName = sb.toString();
+                  if (currentValue == null) {
+                    currentValue = placeholderMap.get(propertyName);
+                    renderBuilder.append(currentValue);
+                  } else {
+                    Field field = ReflectionUtilities.findFieldIn(currentValue.getClass(), propertyName);
+                    Object fieldValue = ReflectionUtilities.getFieldValueFrom(field, currentValue);
+                    currentPlaceholderKey = null;
+                    currentValue = null;
+                    if (fieldValue == null) {
+                      sb.append("NULL");
+                    } else {
+                      sb.append(fieldValue);
+                    }
+                  }
+                  
+                  sb.setLength(0);
+                }
+                inPlaceholder = false;
+                inIndexer = false;
+            } else if (templateCharacter == '[') {
+              String propertyName = sb.toString();  
               if (inPlaceholder) {
-                currentPropertyInfo = currentValue.GetType().GetProperty(sb.toString());
-                currentValue = currentPropertyInfo.GetValue(currentValue, null);
+                currentField = ReflectionUtilities.findFieldIn(currentValue.getClass(), propertyName);
+                currentValue = ReflectionUtilities.getFieldValueFrom(currentField, currentValue);
                 sb.setLength(0);
 
                 inIndexer = true;
               } else {
                 sb.append(templateCharacter);
               }
-          } else if (templateCharacter == ']') {
-              if (inPlaceholder) {
-                if (inIndexer) {
-                  ParameterInfo[] indexParameters = currentPropertyInfo.GetIndexParameters();
+            } else if (templateCharacter == ']') {
+                if (inPlaceholder) {
+                  if (inIndexer) {
+                    String propertyName = sb.toString();  
+                    try {
+                      int indexValue = Integer.parseInt(propertyName);
 
-                  try {
-                    Int64 intIndexValue = Int64.Parse(sb.toString());
-                    foreach (ParameterInfo indexParameter in indexParameters) {
-                      if (indexParameter.ParameterType == typeof(Int64) 
-                        || indexParameter.ParameterType == typeof(Int32)
-                        || indexParameter.ParameterType == typeof(Int16)) {
-                        currentValue = currentPropertyInfo.GetValue(currentValue, new Object[] { intIndexValue } );
-                        break;
+                      if (currentValue instanceof Object[]) {
+                        currentValue = ((Object[])currentValue)[indexValue];
+                      } else if (currentValue instanceof List<?>) {
+                        currentValue = ((List<?>)currentValue).get(indexValue);
+                        Map<Integer, String> a;
+                        a = new TreeMap<>();
+                      } else if (currentValue instanceof Map<?, ?>) {
+                        currentValue = ((Map<?, ?>)currentValue).get(indexValue);
+                      }
+                    } catch (NumberFormatException nfex) {
+                      if (currentValue instanceof Map<?, ?>) {
+                        currentValue = ((Map<?, ?>)currentValue).get(propertyName);
                       }
                     }
-                  } catch (Exception ex) {
-                    currentValue = currentPropertyInfo.GetValue(currentValue, new Object[] { sb.toString() });
-                  }
-                  
-                  sb.setLength(0);
+                    
+                    sb.setLength(0);
 
-                  inIndexer = false;
-                }
-              } else {
-                sb.append(templateCharacter);
-              }
-          } else if (templateCharacter == '.') {
-              if (inPlaceholder) {
-                if (sb.length() > 0) {
-                  if (currentPlaceholderKey == null) {
-                      currentPlaceholderKey = sb.toString();
-                      currentValue = placeholderMap.containsKey(currentPlaceholderKey);
-                  } else {
-                    currentPropertyInfo = currentValue.GetType().GetProperty(sb.toString());
-                    currentValue = currentPropertyInfo.GetValue(currentValue, null);
+                    inIndexer = false;
                   }
-                  sb.setLength(0);
+                } else {
+                  sb.append(templateCharacter);
                 }
-              } else {
+            } else if (templateCharacter == '.') {
+                if (inPlaceholder) {
+                  if (sb.length() > 0) {
+                    String propertyName = sb.toString();
+                    if (currentValue == null) {
+                        currentValue = placeholderMap.containsKey(currentPlaceholderKey);
+                        currentPlaceholderKey = propertyName;
+                    } else {
+                      Field field = ReflectionUtilities.findFieldIn(currentValue.getClass(), propertyName);
+                      currentValue = ReflectionUtilities.getFieldValueFrom(field, currentValue);
+                      currentPlaceholderKey = propertyName;
+                    }
+                    sb.setLength(0);
+                  }
+                } else {
+                  sb.append(templateCharacter);
+                }
+            } else {
                 sb.append(templateCharacter);
-              }
-          } else {
-              sb.append(templateCharacter);
+            }
           }
+        } catch (IOException ioex) {
+          Logger.getLogger(StringTemplate.class.getName()).log(Level.SEVERE, null, ioex);
+          throw new utilities.exceptions.IOException(ioex);
         }
       }
       
