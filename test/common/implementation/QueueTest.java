@@ -4,7 +4,7 @@
  */
 package common.implementation;
 
-import junit.framework.Assert;
+import org.junit.Assert;
 import org.junit.Test;
 import utilities.common.implementation.Queue;
 import utilities.common.implementation.QueueException;
