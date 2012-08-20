@@ -43,11 +43,11 @@ public class StringTemplateTest {
 	@Test
 	public void testRenderTo() {
 		System.out.println("renderTo");
-		OutputStream outputStream = null;
-		StringTemplate instance = null;
+		OutputStream outputStream = System.out;
+		String templateString = "Dies ist ein {test}.";
+		StringTemplate instance = new StringTemplate(templateString);
+		instance.add("test", "ganz toller Test");
 		instance.renderTo(outputStream);
-		// TODO review the generated test code and remove the default call to fail.
-		fail("The test case is a prototype.");
 	}
 
 	/**
