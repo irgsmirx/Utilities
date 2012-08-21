@@ -31,6 +31,7 @@ public class OutputStreamRenderer implements ICharRenderer {
 		}
 	}
 	
+  @Override
 	public void render(String s) {
 		try {
 			outputStream.write(s.getBytes());
@@ -40,6 +41,7 @@ public class OutputStreamRenderer implements ICharRenderer {
 		}
 	}
 	
+  @Override
 	public void render(Object o) {
 		render(String.valueOf(o));
 	}

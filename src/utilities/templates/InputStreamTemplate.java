@@ -5,6 +5,8 @@
 package utilities.templates;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.Reader;
 import java.io.StringReader;
@@ -17,19 +19,18 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author ramforth
+ * @author Tobias Ramforth <tobias.ramforth at tu-dortmund.de>
  */
-public class StringTemplate extends AbstractTemplate {
+public class InputStreamTemplate extends AbstractTemplate {
 
-	private String template;
-
-	public StringTemplate(String template) {
-		super();
-		this.template = template;
-	}
-
-	private void renderTo(ICharRenderer renderer) {
-		if (template != null && !placeholderMap.isEmpty()) {
+  protected InputStream template;
+  
+  public InputStreamTemplate(InputStream inputStream) {
+    this.template = inputStream;
+  }
+  
+  private void renderTo(ICharRenderer renderer) {
+    if (template != null && !placeholderMap.isEmpty()) {
 			StringBuilder sb = new StringBuilder();
 
 			boolean inPlaceholder = false;
@@ -39,10 +40,10 @@ public class StringTemplate extends AbstractTemplate {
 			String currentPlaceholderKey = null;
 			Object currentValue = null;
 
-			Reader stringReader = new StringReader(template);
+			Reader reader = new InputStreamReader(template);
 			int templateCharacter;
 			try {
-				while ((templateCharacter = stringReader.read()) != -1) {
+				while ((templateCharacter = reader.read()) != -1) {
 					if (templateCharacter == placeholderBeginTag) {
 						if (inPlaceholder) {
 							sb.append((char)templateCharacter);
@@ -138,30 +139,34 @@ public class StringTemplate extends AbstractTemplate {
 				Logger.getLogger(StringTemplate.class.getName()).log(Level.SEVERE, null, ioex);
 				throw new utilities.exceptions.IOException(ioex);
 			}
-      
+
       try {
-        stringReader.close();
+        reader.close();
+        template.close();
       } catch (IOException ioex) {
         Logger.getLogger(InputStreamTemplate.class.getName()).log(Level.SEVERE, null, ioex);
 				throw new utilities.exceptions.IOException(ioex);
       }
+      
 		}
-		
-	}
-	
-	@Override
-	public void renderTo(OutputStream outputStream) {
+  }
+  
+  @Override
+  public void renderTo(OutputStream outputStream) {
 		ICharRenderer renderer = new OutputStreamRenderer(outputStream);
 		renderTo(renderer);
-	}
+  }
 
-	@Override
-	public String render() {
+  @Override
+  public String render() {
 		StringBuilder renderBuilder = new StringBuilder();
 
 		ICharRenderer renderer = new StringBuilderRenderer(renderBuilder);
 		renderTo(renderer);
-		
+    
 		return renderBuilder.toString();
-	}
+  }
+  
+  
+  
 }

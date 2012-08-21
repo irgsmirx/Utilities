@@ -21,10 +21,12 @@ public class StringBuilderRenderer implements ICharRenderer {
 		stringBuilder.append(c);
 	}
 
+  @Override
 	public void render(String s) {
 		stringBuilder.append(s);
 	}
 	
+  @Override
 	public void render(Object o) {
 		stringBuilder.append(o);
 	}
