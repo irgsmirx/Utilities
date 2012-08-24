@@ -9,7 +9,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.Reader;
-import java.io.StringReader;
 import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.util.List;
@@ -26,6 +25,7 @@ public class InputStreamTemplate extends AbstractTemplate {
   protected InputStream template;
   
   public InputStreamTemplate(InputStream inputStream) {
+		super();
     this.template = inputStream;
   }
   
@@ -166,7 +166,5 @@ public class InputStreamTemplate extends AbstractTemplate {
     
 		return renderBuilder.toString();
   }
-  
-  
   
 }

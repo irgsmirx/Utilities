@@ -12,36 +12,38 @@ import java.util.TreeMap;
  * @author ramforth
  */
 public abstract class AbstractTemplate implements ITemplate {
-    
-    protected char placeholderBeginTag = '{';
-    protected char placeholderEndTag = '}';
-    protected String escapeCharacter = "\\";
 
-    protected Map<String, Object> placeholderMap = new TreeMap<String, Object>();
-    
-    public AbstractTemplate() {
-    }
-    
-    public AbstractTemplate(char placeholderBeginTag, char placeholderEndTag, String escapeCharacter) {
-        this.placeholderBeginTag = placeholderBeginTag;
-        this.placeholderEndTag = placeholderEndTag;
-        this.escapeCharacter = escapeCharacter;
-    }
-    
-    public void add(String placeholder, Object value) {
-        placeholderMap.put(placeholder, value);
-    }
+  protected char placeholderBeginTag = '{';
+  protected char placeholderEndTag = '}';
+  protected String escapeCharacter = "\\";
+  protected Map<String, Object> placeholderMap = new TreeMap<>();
 
-    public void remove(String placeholder) {
-        placeholderMap.remove(placeholder);
-    }
+  public AbstractTemplate() {
+  }
 
-    public void clear() {
-        placeholderMap.clear();
-    }
+  public AbstractTemplate(char placeholderBeginTag, char placeholderEndTag, String escapeCharacter) {
+    this.placeholderBeginTag = placeholderBeginTag;
+    this.placeholderEndTag = placeholderEndTag;
+    this.escapeCharacter = escapeCharacter;
+  }
 
-    public int numberOfPlaceholders() {
-        return placeholderMap.size();
-    }
-    
+  @Override
+  public void add(String placeholder, Object value) {
+    placeholderMap.put(placeholder, value);
+  }
+
+  @Override
+  public void remove(String placeholder) {
+    placeholderMap.remove(placeholder);
+  }
+
+  @Override
+  public void clear() {
+    placeholderMap.clear();
+  }
+
+  @Override
+  public int numberOfPlaceholders() {
+    return placeholderMap.size();
+  }
 }
