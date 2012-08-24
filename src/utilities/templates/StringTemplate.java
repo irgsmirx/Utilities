@@ -164,4 +164,9 @@ public class StringTemplate extends AbstractTemplate {
 		
 		return renderBuilder.toString();
 	}
+  
+  public String getTemplate() {
+    return template;
+  }
+  
 }

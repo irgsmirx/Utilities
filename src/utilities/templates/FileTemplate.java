@@ -185,4 +185,8 @@ public class FileTemplate extends AbstractTemplate {
 		return renderBuilder.toString();
   }
   
+  public File getTemplate() {
+    return template;
+  }
+  
 }
