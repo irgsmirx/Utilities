@@ -30,7 +30,7 @@ public class InputStreamTemplate extends AbstractTemplate {
   }
   
   private void renderTo(ICharRenderer renderer) {
-    if (template != null && !placeholderMap.isEmpty()) {
+    if (template != null) {
 			StringBuilder sb = new StringBuilder();
 
 			boolean inPlaceholder = false;

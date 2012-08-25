@@ -46,7 +46,7 @@ public class FileTemplate extends AbstractTemplate {
   }
   
   private void renderTo(ICharRenderer renderer) {
-    if (template != null && !placeholderMap.isEmpty()) {
+    if (template != null) {
 			StringBuilder sb = new StringBuilder();
 
 			boolean inPlaceholder = false;
@@ -74,13 +74,17 @@ public class FileTemplate extends AbstractTemplate {
                   renderer.render(currentValue);
                 } else {
                   Field field = ReflectionUtilities.findFieldIn(currentValue.getClass(), propertyName);
-                  Object fieldValue = ReflectionUtilities.getFieldValueFrom(field, currentValue);
-                  currentPlaceholderKey = null;
-                  currentValue = null;
-                  if (fieldValue == null) {
-                    sb.append("NULL");
+                  if (field == null) {
+                    sb.append("{").append(propertyName).append("}");
                   } else {
-                    sb.append(fieldValue);
+                    Object fieldValue = ReflectionUtilities.getFieldValueFrom(field, currentValue);
+                    currentPlaceholderKey = null;
+                    currentValue = null;
+                    if (fieldValue == null) {
+                      sb.append("NULL");
+                    } else {
+                      sb.append(fieldValue);
+                    }
                   }
                 }
 
