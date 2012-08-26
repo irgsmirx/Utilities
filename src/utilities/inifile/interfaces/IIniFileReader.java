@@ -10,7 +10,7 @@ import java.io.InputStream;
  *
  * @author Tobias Ramforth <tobias.ramforth at tu-dortmund.de>
  */
-public interface IIniFileParser {
+public interface IIniFileReader {
   
   IIniFile parse(InputStream inputStream);
   

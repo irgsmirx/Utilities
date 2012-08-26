@@ -10,14 +10,14 @@ import java.io.Reader;
 import java.util.Scanner;
 import utilities.common.implementation.StringUtilities;
 import utilities.inifile.interfaces.IIniFile;
-import utilities.inifile.interfaces.IIniFileParser;
+import utilities.inifile.interfaces.IIniFileReader;
 import utilities.inifile.interfaces.IIniFileSection;
 
 /**
  *
  * @author Tobias Ramforth <tobias.ramforth at tu-dortmund.de>
  */
-public class IniFileParser implements IIniFileParser {
+public class IniFileReader implements IIniFileReader {
 
   @Override
   public IIniFile parse(InputStream inputStream) {
