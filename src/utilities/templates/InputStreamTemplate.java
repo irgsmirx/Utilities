@@ -167,4 +167,9 @@ public class InputStreamTemplate extends AbstractTemplate {
 		return renderBuilder.toString();
   }
   
+	@Override
+	public long getLength() {
+		return -1;
+	}
+	
 }

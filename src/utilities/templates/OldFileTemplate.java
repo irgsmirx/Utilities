@@ -60,4 +60,9 @@ public class OldFileTemplate extends AbstractTemplate {
     return createInputStreamTemplate().render();
   }
   
+	@Override
+	public long getLength() {
+		return -1;
+	}
+	
 }

@@ -46,4 +46,5 @@ public abstract class AbstractTemplate implements ITemplate {
   public int numberOfPlaceholders() {
     return placeholderMap.size();
   }
+	
 }

@@ -193,4 +193,9 @@ public class FileTemplate extends AbstractTemplate {
     return template;
   }
   
+	@Override
+	public long getLength() {
+		return template.length();
+	}
+	
 }

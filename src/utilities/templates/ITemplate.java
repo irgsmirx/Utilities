@@ -20,4 +20,6 @@ public interface ITemplate {
     void renderTo(OutputStream outputStream);
     String render();
     
+		long getLength();
+		
 }
