@@ -11,5 +11,13 @@ package utilities.common.implementation;
 public final class StringUtilities {
 	
 	public static final String EMPTY = "";
-	
+
+  public static boolean isNullOrEmpty(String value) {
+    return value == null || value.isEmpty();
+  }
+  
+  public static boolean isNullOrWhitespace(String value) {
+    return value == null || value.trim().isEmpty();
+  }
+  
 }

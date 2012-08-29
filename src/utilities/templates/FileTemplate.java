@@ -72,6 +72,7 @@ public class FileTemplate extends AbstractTemplate {
                 if (currentValue == null) {
                   currentValue = placeholderMap.get(propertyName);
                   renderer.render(currentValue);
+                  currentValue = null;
                 } else {
                   Field field = ReflectionUtilities.findFieldIn(currentValue.getClass(), propertyName);
                   if (field == null) {

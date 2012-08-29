@@ -42,7 +42,7 @@ public class IniFileReader implements IIniFileReader {
         int indexOfSeparator = nextLineTrimmed.indexOf("=");
         
         if (indexOfSeparator > -1) {
-          String key = nextLine.substring(0, indexOfSeparator - 1);
+          String key = nextLine.substring(0, indexOfSeparator);
           String value;
           if (indexOfSeparator < nextLineTrimmed.length()) {
             value = nextLine.substring(indexOfSeparator + 1);
