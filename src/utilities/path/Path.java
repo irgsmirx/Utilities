@@ -142,4 +142,23 @@ public class Path {
       }
     }
   }
+  
+  public static String getFileExtensionFromFilename(String filename) {
+    int length = filename.length();
+    
+    int num = length - 1;
+    while (num >= 0) {
+      int c = filename.codePointAt(num);
+      if (c == '.') {
+        return filename.substring(num + 1, length);
+      }
+      if (c == SystemProperties.getFileSeparator().codePointAt(0)) {
+        break;
+      }
+      num--;
+    }
+    
+    return "";
+  }
+  
 }
