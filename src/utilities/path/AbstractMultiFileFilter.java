@@ -4,7 +4,6 @@
  */
 package utilities.path;
 
-import java.io.File;
 import java.io.FileFilter;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +12,7 @@ import java.util.List;
  *
  * @author Tobias Ramforth <tobias.ramforth at tu-dortmund.de>
  */
-public abstract class MultiFileFilter implements FileFilter {
+public abstract class AbstractMultiFileFilter implements FileFilter {
 
   protected List<FileFilter> filters = new ArrayList<>();
   

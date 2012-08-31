@@ -11,7 +11,7 @@ import java.io.FileFilter;
  *
  * @author Tobias Ramforth <tobias.ramforth at tu-dortmund.de>
  */
-public class DisjunctiveFileFilter extends MultiFileFilter {
+public class DisjunctiveFileFilter extends AbstractMultiFileFilter {
   
   @Override
   public boolean accept(File pathname) {

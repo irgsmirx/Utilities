@@ -18,8 +18,9 @@ public class ExtensionFileFilter implements FileFilter {
   public ExtensionFileFilter(String extension) {
     if (extension.startsWith(".")) {
       this.extension = extension.substring(1);
+    } else {
+      this.extension = extension;
     }
-    this.extension = extension;
   }
   
   @Override

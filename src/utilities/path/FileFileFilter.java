@@ -11,16 +11,11 @@ import java.io.FileFilter;
  *
  * @author Tobias Ramforth <tobias.ramforth at tu-dortmund.de>
  */
-public class ConjunctiveFileFilter extends AbstractMultiFileFilter {
-      
+public class FileFileFilter implements FileFilter {
+
   @Override
   public boolean accept(File pathname) {
-    for (FileFilter filter : filters) {
-      if (!filter.accept(pathname)) {
-        return false;
-      }
-    }
-    return true;
+    return pathname.isFile();
   }
   
 }
