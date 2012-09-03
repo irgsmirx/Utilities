@@ -13,6 +13,6 @@ import java.io.FileFilter;
 public class FileFilters {
   
   public static FileFilter DIRECTORY = new DirectoryFileFilter();
-  public static FileFilter FILE = new DirectoryFileFilter();
+  public static FileFilter FILE = new FileFileFilter();
   
 }
