@@ -158,7 +158,26 @@ public class Path {
       num--;
     }
     
-    return "";
+    return StringUtilities.EMPTY;
+  }
+  
+  public static String getNameWithoutExtensionFromFilename(String filename) {
+    int length = filename.length();
+    
+    int num = length - 1;
+    int indexOfDot = -1;
+    while (num >= 0) {
+      int c = filename.codePointAt(num);
+      if (c == '.') {
+        indexOfDot = num;
+      }
+      if (c == SystemProperties.getFileSeparator().codePointAt(0)) {
+        return filename.substring(num + 1, indexOfDot);
+      }
+      num--;
+    }
+    
+    return StringUtilities.EMPTY;
   }
   
 }
