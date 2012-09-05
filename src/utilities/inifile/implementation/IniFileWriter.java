@@ -4,6 +4,7 @@
  */
 package utilities.inifile.implementation;
 
+import java.io.IOException;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
@@ -21,6 +22,7 @@ import utilities.inifile.interfaces.IIniFileWriter;
 public class IniFileWriter implements IIniFileWriter {
   
   private OutputStream outputStream;
+  private boolean closeStreamWhenDone = true;
   
   public IniFileWriter(OutputStream outputStream) {
     this.outputStream = outputStream;
@@ -32,6 +34,23 @@ public class IniFileWriter implements IIniFileWriter {
     
     writeSection(printWriter, iniFile.getRootSection());
     writeSections(printWriter, iniFile.getSections());
+    
+    try {
+      outputStream.flush();
+      if (closeStreamWhenDone) {
+        outputStream.close();
+      }
+    } catch (IOException ioex) {
+      throw new utilities.exceptions.IOException(ioex);
+    }
+  }
+  
+  public void setCloseStreamWhenDone(boolean value) {
+    this.closeStreamWhenDone = value;
+  }
+  
+  public boolean isCloseStreamWhenDone() {
+    return closeStreamWhenDone;
   }
   
   private void writeSections(PrintWriter printWriter, IIniFileSections sections) {
