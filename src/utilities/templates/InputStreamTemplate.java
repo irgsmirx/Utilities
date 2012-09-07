@@ -55,7 +55,12 @@ public class InputStreamTemplate extends AbstractTemplate {
 							String propertyName = sb.toString();
 							if (currentValue == null) {
 								currentValue = placeholderMap.get(propertyName);
-								renderer.render(currentValue);
+								if (currentValue instanceof ITemplate) {
+									renderer.render(((ITemplate)currentValue).render());
+								} else {
+									renderer.render(currentValue);
+								}
+                currentValue = null;
 							} else {
 								Field field = ReflectionUtilities.findFieldIn(currentValue.getClass(), propertyName);
 								Object fieldValue = ReflectionUtilities.getFieldValueFrom(field, currentValue);

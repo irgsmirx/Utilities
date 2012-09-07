@@ -16,7 +16,8 @@ public interface INameValuePairs extends Iterable<NameValuePair> {
   void add(String name, String value);
   void remove(NameValuePair value);
   void remove(String name);
-  void clear();
+  int numberOfPairs();
+	void clear();
   boolean contains(NameValuePair value);
   boolean contains(String name);
   NameValuePair getAt(int index);

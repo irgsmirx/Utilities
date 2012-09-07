@@ -63,4 +63,34 @@ public class StringTemplateTest {
 		String result = instance.render();
 		assertEquals(expResult, result);
 	}
+	
+	@Test
+	public void testRenderComplex() {
+		System.out.println("renderComplex");
+		String templateString = "Dies ist ein {test}.";
+		StringTemplate instance = new StringTemplate(templateString);
+		
+		String subTemplateString = "wirklich ganz toller {test}";
+		StringTemplate subTemplate = new StringTemplate(subTemplateString);
+		subTemplate.add("test", "TEST");
+		instance.add("test", subTemplate);
+		
+		String expResult = "Dies ist ein wirklich ganz toller TEST.";
+		String result = instance.render();
+		assertEquals(expResult, result);
+	}
+	
+	@Test
+	public void testRenderArray() {
+		System.out.println("renderArray");
+		String templateString = "Dies ist ein {test[0]}.";
+		StringTemplate instance = new StringTemplate(templateString);
+		
+		instance.add("test", new String[] { "Test" });
+		
+		String expResult = "Dies ist ein wirklich ganz toller Test.";
+		String result = instance.render();
+		assertEquals(expResult, result);
+	}
+	
 }

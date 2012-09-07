@@ -42,6 +42,11 @@ public class NameValuePairs implements INameValuePairs {
     }
   }
 
+	@Override
+	public int numberOfPairs() {
+		return pairs.size();
+	}
+	
   @Override
   public void clear() {
     pairs.clear();
