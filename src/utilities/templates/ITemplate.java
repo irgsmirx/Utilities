@@ -12,14 +12,17 @@ import java.io.OutputStream;
  */
 public interface ITemplate {
   
-    void add(String placeholder, Object value);
-    void remove(String placeholder);
-    void clear();
-    int numberOfPlaceholders();
-    
-    void renderTo(OutputStream outputStream);
-    String render();
-    
-		long getLength();
+  void setCustomRenderer(Class<?> type, ICustomRenderer value);
+  void unsetCustomRenderer(Class<?> type);
+  
+  void add(String placeholder, Object value);
+  void remove(String placeholder);
+  void clear();
+  int numberOfPlaceholders();
+
+  void renderTo(OutputStream outputStream);
+  String render();
+
+  long getLength();
 		
 }

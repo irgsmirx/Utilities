@@ -18,6 +18,8 @@ public abstract class AbstractTemplate implements ITemplate {
   protected String escapeCharacter = "\\";
   protected Map<String, Object> placeholderMap = new TreeMap<>();
 
+  protected Map<Class<?>, ICustomRenderer> customRenderers = new TreeMap<>();
+  
   public AbstractTemplate() {
   }
 
@@ -45,6 +47,16 @@ public abstract class AbstractTemplate implements ITemplate {
   @Override
   public int numberOfPlaceholders() {
     return placeholderMap.size();
+  }
+  
+  @Override
+  public void setCustomRenderer(Class<?> type, ICustomRenderer value) {
+    customRenderers.put(type, value);
+  }
+  
+  @Override
+  public void unsetCustomRenderer(Class<?> type) {
+    customRenderers.remove(type);
   }
 	
 }
