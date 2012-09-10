@@ -58,5 +58,11 @@ public abstract class AbstractTemplate implements ITemplate {
   public void unsetCustomRenderer(Class<?> type) {
     customRenderers.remove(type);
   }
+  
+  public boolean isControlCharacter(int characterCode) {
+    return characterCode == '\b' || characterCode == '\t' 
+            || characterCode == '\n' || characterCode == '\f'
+            || characterCode == '\r' || characterCode == '\r';
+  }
 	
 }

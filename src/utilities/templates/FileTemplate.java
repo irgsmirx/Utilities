@@ -154,7 +154,14 @@ public class FileTemplate extends AbstractTemplate {
               }
             } else {
               if (inPlaceholder) {
-                sb.append((char)templateCharacter);
+                if (isControlCharacter(templateCharacter)) {
+                  inPlaceholder = false;
+                  renderer.render(sb.toString());
+                  sb.setLength(0);
+                  renderer.render((char)templateCharacter);
+                } else {
+                  sb.append((char)templateCharacter);
+                }
               } else {
                 renderer.render((char)templateCharacter);
               }
