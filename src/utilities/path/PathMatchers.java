@@ -18,9 +18,9 @@ public class PathMatchers {
   
   public static PathMatcher extension(String extension) {
     if (extension.startsWith(".")) {
-      return FileSystems.getDefault().getPathMatcher(String.format("glob:%s", extension.substring(1)));
+      return glob(String.format("*.%s", extension.substring(1)));
     } else {
-      return FileSystems.getDefault().getPathMatcher(String.format("glob:%s", extension));
+      return glob(String.format("*.%s", extension));
     }
   }
   
