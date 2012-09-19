@@ -20,7 +20,7 @@ public interface ITemplate {
   void clear();
   int numberOfPlaceholders();
 
-  void renderTo(OutputStream outputStream);
+  long renderTo(OutputStream outputStream);
   String render();
 
   long getLength();

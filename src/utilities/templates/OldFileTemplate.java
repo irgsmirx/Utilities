@@ -16,19 +16,19 @@ import java.util.logging.Logger;
  * @author Tobias Ramforth <tobias.ramforth at tu-dortmund.de>
  */
 public class OldFileTemplate extends AbstractTemplate {
-  
+
   private File template;
-  
+
   public OldFileTemplate(File file) {
     super();
     this.template = file;
   }
-  
+
   public OldFileTemplate(File file, char placeholderBeginTag, char placeholderEndTag, String escapeCharacter) {
     super(placeholderBeginTag, placeholderEndTag, escapeCharacter);
     this.template = file;
   }
-  
+
   public OldFileTemplate(String filePath) {
     super();
     this.template = new File(filePath);
@@ -38,7 +38,7 @@ public class OldFileTemplate extends AbstractTemplate {
     super(placeholderBeginTag, placeholderEndTag, escapeCharacter);
     this.template = new File(filePath);
   }
-  
+
   private InputStreamTemplate createInputStreamTemplate() {
     try {
       FileInputStream fileInputStream = new FileInputStream(template);
@@ -49,20 +49,19 @@ public class OldFileTemplate extends AbstractTemplate {
       throw new RuntimeException(ex);
     }
   }
-  
+
   @Override
-  public void renderTo(OutputStream outputStream) {
-    createInputStreamTemplate().renderTo(outputStream);
+  public long renderTo(OutputStream outputStream) {
+    return createInputStreamTemplate().renderTo(outputStream);
   }
 
   @Override
   public String render() {
     return createInputStreamTemplate().render();
   }
-  
-	@Override
-	public long getLength() {
-		return -1;
-	}
-	
+
+  @Override
+  public long getLength() {
+    return -1;
+  }
 }

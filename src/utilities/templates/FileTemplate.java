@@ -4,6 +4,7 @@
  */
 package utilities.templates;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -24,17 +25,17 @@ import java.util.logging.Logger;
 public class FileTemplate extends AbstractTemplate {
 
   private File template;
-  
+
   public FileTemplate(File file) {
     super();
     this.template = file;
   }
-  
+
   public FileTemplate(File file, char placeholderBeginTag, char placeholderEndTag, String escapeCharacter) {
     super(placeholderBeginTag, placeholderEndTag, escapeCharacter);
     this.template = file;
   }
-  
+
   public FileTemplate(String filePath) {
     super();
     this.template = new File(filePath);
@@ -44,25 +45,26 @@ public class FileTemplate extends AbstractTemplate {
     super(placeholderBeginTag, placeholderEndTag, escapeCharacter);
     this.template = new File(filePath);
   }
-  
-  private void renderTo(ICharRenderer renderer) {
+
+  private long renderTo(ICharRenderer renderer) {
+    long length = 0;
     if (template != null) {
-			StringBuilder sb = new StringBuilder();
+      StringBuilder sb = new StringBuilder();
 
-			boolean inPlaceholder = false;
-			boolean inIndexer = false;
+      boolean inPlaceholder = false;
+      boolean inIndexer = false;
 
-			Field currentField = null;
-			String currentPlaceholderKey = null;
-			Object currentValue = null;
+      Field currentField = null;
+      String currentPlaceholderKey = null;
+      Object currentValue = null;
 
-			try (Reader reader = new InputStreamReader(new FileInputStream(template))) {
+      try (Reader reader = new BufferedReader(new InputStreamReader(new FileInputStream(template)))) {
         int templateCharacter;
         try {
           while ((templateCharacter = reader.read()) != -1) {
             if (templateCharacter == placeholderBeginTag) {
               if (inPlaceholder) {
-                sb.append((char)templateCharacter);
+                sb.append((char) templateCharacter);
               } else {
                 inPlaceholder = true;
               }
@@ -72,10 +74,10 @@ public class FileTemplate extends AbstractTemplate {
                 if (currentValue == null) {
                   currentValue = placeholderMap.get(propertyName);
                   if (currentValue instanceof ITemplate) {
-										renderer.render(((ITemplate)currentValue).render());
-									} else {
-										renderer.render(currentValue);
-									}
+                    renderer.render(((ITemplate) currentValue).render());
+                  } else {
+                    renderer.render(currentValue);
+                  }
                   currentValue = null;
                 } else {
                   Field field = ReflectionUtilities.findFieldIn(currentValue.getClass(), propertyName);
@@ -106,7 +108,8 @@ public class FileTemplate extends AbstractTemplate {
 
                 inIndexer = true;
               } else {
-                renderer.render((char)templateCharacter);
+                renderer.render((char) templateCharacter);
+                length++;
               }
             } else if (templateCharacter == ']') {
               if (inPlaceholder) {
@@ -133,7 +136,8 @@ public class FileTemplate extends AbstractTemplate {
                   inIndexer = false;
                 }
               } else {
-                renderer.render((char)templateCharacter);
+                renderer.render((char) templateCharacter);
+                length++;
               }
             } else if (templateCharacter == '.') {
               if (inPlaceholder) {
@@ -150,20 +154,24 @@ public class FileTemplate extends AbstractTemplate {
                   sb.setLength(0);
                 }
               } else {
-                renderer.render((char)templateCharacter);
+                renderer.render((char) templateCharacter);
+                length++;
               }
             } else {
               if (inPlaceholder) {
                 if (isControlCharacter(templateCharacter)) {
                   inPlaceholder = false;
                   renderer.render(sb.toString());
+                  length += sb.length();
                   sb.setLength(0);
-                  renderer.render((char)templateCharacter);
+                  renderer.render((char) templateCharacter);
+                  length++;
                 } else {
-                  sb.append((char)templateCharacter);
+                  sb.append((char) templateCharacter);
                 }
               } else {
-                renderer.render((char)templateCharacter);
+                renderer.render((char) templateCharacter);
+                length++;
               }
             }
           }
@@ -182,32 +190,45 @@ public class FileTemplate extends AbstractTemplate {
         Logger.getLogger(InputStreamTemplate.class.getName()).log(Level.SEVERE, null, ioex);
         throw new utilities.exceptions.IOException(ioex);
       }
-		}
+    }
+    return length;
   }
-  
+
   @Override
-  public void renderTo(OutputStream outputStream) {
-		ICharRenderer renderer = new OutputStreamRenderer(outputStream);
-		renderTo(renderer);
+  public long renderTo(OutputStream outputStream) {
+    ICharRenderer renderer = new OutputStreamRenderer(outputStream);
+    return renderTo(renderer);
   }
 
   @Override
   public String render() {
-		StringBuilder renderBuilder = new StringBuilder();
+    StringBuilder renderBuilder = new StringBuilder();
 
-		ICharRenderer renderer = new StringBuilderRenderer(renderBuilder);
-		renderTo(renderer);
-    
-		return renderBuilder.toString();
+    ICharRenderer renderer = new StringBuilderRenderer(renderBuilder);
+    renderTo(renderer);
+
+    return renderBuilder.toString();
   }
-  
+
   public File getTemplate() {
     return template;
   }
-  
-	@Override
-	public long getLength() {
-		return template.length();
-	}
-	
+
+  @Override
+  public long getLength() {
+    long templateLength = template.length();
+    for (Map.Entry<String, Object> entry : placeholderMap.entrySet()) {
+      if (entry.getValue() == null) {
+        templateLength -= entry.getKey().length();
+        templateLength += "null".length();
+      } else if (entry.getValue() instanceof String) {
+        templateLength -= entry.getKey().length();
+        templateLength += ((String) entry.getValue()).length();
+      } else if (entry.getValue() instanceof ITemplate) {
+        templateLength -= entry.getKey().length();
+        templateLength += ((ITemplate) entry.getValue()).getLength();
+      }
+    }
+    return templateLength;
+  }
 }

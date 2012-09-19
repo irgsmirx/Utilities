@@ -93,4 +93,15 @@ public class StringTemplateTest {
 		assertEquals(expResult, result);
 	}
 	
+  @Test
+  public void testSpecialCharacter() {
+    System.out.println("render");
+		String templateString = "Dies ist ein {test}.";
+		StringTemplate instance = new StringTemplate(templateString);
+		instance.add("test", "Test");
+		String expResult = "Dies ist ein Test.";
+		String result = instance.render();
+		assertEquals(expResult, result);
+  }
+  
 }
