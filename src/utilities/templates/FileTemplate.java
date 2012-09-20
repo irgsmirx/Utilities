@@ -218,14 +218,12 @@ public class FileTemplate extends AbstractTemplate {
   public long getLength() {
     long templateLength = template.length();
     for (Map.Entry<String, Object> entry : placeholderMap.entrySet()) {
+      templateLength -= entry.getKey().getBytes().length;
       if (entry.getValue() == null) {
-        templateLength -= entry.getKey().length();
-        templateLength += "null".length();
+        templateLength += "null".getBytes().length;
       } else if (entry.getValue() instanceof String) {
-        templateLength -= entry.getKey().length();
-        templateLength += ((String) entry.getValue()).length();
+        templateLength += ((String) entry.getValue()).getBytes().length;
       } else if (entry.getValue() instanceof ITemplate) {
-        templateLength -= entry.getKey().length();
         templateLength += ((ITemplate) entry.getValue()).getLength();
       }
     }
