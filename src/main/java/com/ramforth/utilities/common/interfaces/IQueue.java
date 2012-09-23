@@ -9,15 +9,16 @@ package com.ramforth.utilities.common.interfaces;
  * @author Tobias Ramforth <tobias.ramforth at tu-dortmund.de>
  */
 public interface IQueue<T> {
-  
-  int getLength();
-  int numberOfElements();
 
-  void enqueue(T value);
-  T dequeue();
-  
-  void clear();
-  
-  T getAt(int index);
-  
+    int getLength();
+
+    int numberOfElements();
+
+    void enqueue(T value);
+
+    T dequeue();
+
+    void clear();
+
+    T getAt(int index);
 }

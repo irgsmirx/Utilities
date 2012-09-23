@@ -9,7 +9,6 @@ package com.ramforth.utilities.common.interfaces;
  * @author ramforth
  */
 public interface IVisitor<T> {
-    
+
     void visit(T toVisit);
-    
 }

@@ -14,20 +14,19 @@ import com.ramforth.utilities.inifile.interfaces.IIniFileSections;
  */
 public class IniFile implements IIniFile {
 
-  protected final IIniFileSection rootSection = new IniFileSection();
-  protected final IIniFileSections sections = new IniFileSections();
-  
-  public IniFile() {
-  }
-  
-  @Override
-  public final IIniFileSection getRootSection() {
-    return rootSection;
-  }
+    protected final IIniFileSection rootSection = new IniFileSection();
+    protected final IIniFileSections sections = new IniFileSections();
 
-  @Override
-  public final IIniFileSections getSections() {
-    return sections;
-  }
-  
+    public IniFile() {
+    }
+
+    @Override
+    public final IIniFileSection getRootSection() {
+        return rootSection;
+    }
+
+    @Override
+    public final IIniFileSections getSections() {
+        return sections;
+    }
 }

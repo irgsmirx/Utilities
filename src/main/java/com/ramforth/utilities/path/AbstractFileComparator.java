@@ -12,5 +12,4 @@ import java.util.Comparator;
  * @author Tobias Ramforth <tobias.ramforth at tu-dortmund.de>
  */
 public abstract class AbstractFileComparator implements Comparator<File> {
-  
 }

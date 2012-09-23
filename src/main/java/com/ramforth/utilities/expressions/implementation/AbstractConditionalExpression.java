@@ -13,8 +13,7 @@ import com.ramforth.utilities.expressions.interfaces.IExpression;
  */
 public class AbstractConditionalExpression extends AbstractBinaryExpression implements IConditionalExpression {
 
-  public AbstractConditionalExpression(IExpression leftChild, IExpression rightChild) {
-    super(leftChild, rightChild);
-  }
-  
+    public AbstractConditionalExpression(IExpression leftChild, IExpression rightChild) {
+        super(leftChild, rightChild);
+    }
 }

@@ -9,7 +9,6 @@ package com.ramforth.utilities.common.interfaces;
  * @author tobias
  */
 public interface IDeepCopyable<T> {
-	
-	T deepCopy();
-	
+
+    T deepCopy();
 }

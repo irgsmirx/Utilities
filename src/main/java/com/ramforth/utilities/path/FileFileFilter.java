@@ -13,9 +13,8 @@ import java.io.FileFilter;
  */
 public class FileFileFilter implements FileFilter {
 
-  @Override
-  public boolean accept(File pathname) {
-    return pathname.isFile();
-  }
-  
+    @Override
+    public boolean accept(File pathname) {
+        return pathname.isFile();
+    }
 }

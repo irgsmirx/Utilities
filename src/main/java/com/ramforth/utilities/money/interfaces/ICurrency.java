@@ -9,9 +9,10 @@ package com.ramforth.utilities.money.interfaces;
  * @author Administrator
  */
 public interface ICurrency {
-    
+
     String getName();
+
     String getAbbreviation();
+
     String getSymbol();
-    
 }

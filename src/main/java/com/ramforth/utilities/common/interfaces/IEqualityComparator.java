@@ -9,7 +9,6 @@ package com.ramforth.utilities.common.interfaces;
  * @author tobias
  */
 public interface IEqualityComparator {
-  
-  boolean equals(Object x, Object y);
-  
+
+    boolean equals(Object x, Object y);
 }

@@ -13,8 +13,7 @@ import com.ramforth.utilities.expressions.interfaces.IGreaterOrEqualExpression;
  */
 public class GreaterOrEqualExpression extends AbstractConditionalExpression implements IGreaterOrEqualExpression {
 
-  public GreaterOrEqualExpression(IExpression leftChild, IExpression rightChild) {
-    super(leftChild, rightChild);
-  }
-  
+    public GreaterOrEqualExpression(IExpression leftChild, IExpression rightChild) {
+        super(leftChild, rightChild);
+    }
 }

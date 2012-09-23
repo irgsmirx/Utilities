@@ -13,32 +13,31 @@ import com.ramforth.utilities.expressions.interfaces.IExpression;
  */
 public class AbstractBinaryExpression extends AbstractExpression implements IBinaryExpression {
 
-  protected IExpression leftChild;
-  protected IExpression rightChild;
-  
-  public AbstractBinaryExpression(IExpression leftChild, IExpression rightChild) {
-    this.leftChild = leftChild;
-    this.rightChild = rightChild;
-  }
-  
-  @Override
-  public IExpression getLeftChild() {
-    return leftChild;
-  }
+    protected IExpression leftChild;
+    protected IExpression rightChild;
 
-  @Override
-  public void setLeftChild(IExpression value) {
-    this.leftChild = value;
-  }
+    public AbstractBinaryExpression(IExpression leftChild, IExpression rightChild) {
+        this.leftChild = leftChild;
+        this.rightChild = rightChild;
+    }
 
-  @Override
-  public IExpression getRightChild() {
-    return rightChild;
-  }
+    @Override
+    public IExpression getLeftChild() {
+        return leftChild;
+    }
 
-  @Override
-  public void setRightChild(IExpression value) {
-    this.rightChild = value;
-  }
-  
+    @Override
+    public void setLeftChild(IExpression value) {
+        this.leftChild = value;
+    }
+
+    @Override
+    public IExpression getRightChild() {
+        return rightChild;
+    }
+
+    @Override
+    public void setRightChild(IExpression value) {
+        this.rightChild = value;
+    }
 }

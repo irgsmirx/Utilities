@@ -15,19 +15,18 @@ import java.nio.file.PathMatcher;
  */
 public class FilePathMatcher implements PathMatcher {
 
-  private final LinkOption[] linkOptions;
-  
-  public FilePathMatcher(LinkOption... linkOptions) {
-    this.linkOptions = linkOptions;
-  }
-  
-  public FilePathMatcher() {
-    this(new LinkOption[0]);
-  }
-  
-  @Override
-  public boolean matches(Path path) {
-    return Files.isRegularFile(path, linkOptions);
-  }
-  
+    private final LinkOption[] linkOptions;
+
+    public FilePathMatcher(LinkOption... linkOptions) {
+        this.linkOptions = linkOptions;
+    }
+
+    public FilePathMatcher() {
+        this(new LinkOption[0]);
+    }
+
+    @Override
+    public boolean matches(Path path) {
+        return Files.isRegularFile(path, linkOptions);
+    }
 }

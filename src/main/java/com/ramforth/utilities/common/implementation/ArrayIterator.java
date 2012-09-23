@@ -13,44 +13,43 @@ import java.util.NoSuchElementException;
  */
 public class ArrayIterator<T> implements Iterator<T> {
 
-  private T[] array;
-  private int currentIndex = -1;
-  private int maximumIndex;
-  private boolean alreadyRemoved = true;
-  
-  public ArrayIterator(final T[] array) {
-    this.array = array;
-    this.maximumIndex = array.length - 1;
-  }
-  
-  @Override
-  public boolean hasNext() {
-    return currentIndex < maximumIndex;
-  }
+    private T[] array;
+    private int currentIndex = -1;
+    private int maximumIndex;
+    private boolean alreadyRemoved = true;
 
-  @Override
-  public T next() {
-    if (currentIndex == maximumIndex) {
-      throw new NoSuchElementException();
+    public ArrayIterator(final T[] array) {
+        this.array = array;
+        this.maximumIndex = array.length - 1;
     }
-    currentIndex++;
-    alreadyRemoved = false;
-    return array[currentIndex];
-   }
 
-  @Override
-  public void remove() {
-    if (currentIndex == -1) {
-      throw new IllegalStateException("No element yet.");
-    } else if (alreadyRemoved) {
-      throw new IllegalStateException("Already removed.");
+    @Override
+    public boolean hasNext() {
+        return currentIndex < maximumIndex;
     }
-    
-    for (int i = currentIndex; i < maximumIndex; i++) {
-      array[i] = array[i + 1];
-      array[i + 1] = null;
+
+    @Override
+    public T next() {
+        if (currentIndex == maximumIndex) {
+            throw new NoSuchElementException();
+        }
+        currentIndex++;
+        alreadyRemoved = false;
+        return array[currentIndex];
     }
-    alreadyRemoved = false;
-  }
-  
+
+    @Override
+    public void remove() {
+        if (currentIndex == -1) {
+            throw new IllegalStateException("No element yet.");
+        } else if (alreadyRemoved) {
+            throw new IllegalStateException("Already removed.");
+        }
+
+        for (int i = currentIndex; i < maximumIndex; i++) {
+            array[i] = array[i + 1];
+            array[i + 1] = null;
+        }
+        alreadyRemoved = false;
+    }
 }

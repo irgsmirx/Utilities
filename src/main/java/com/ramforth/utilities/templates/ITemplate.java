@@ -11,18 +11,22 @@ import java.io.OutputStream;
  * @author ramforth
  */
 public interface ITemplate {
-  
-  void setCustomRenderer(Class<?> type, ICustomRenderer value);
-  void unsetCustomRenderer(Class<?> type);
-  
-  void add(String placeholder, Object value);
-  void remove(String placeholder);
-  void clear();
-  int numberOfPlaceholders();
 
-  long renderTo(OutputStream outputStream);
-  String render();
+    void setCustomRenderer(Class<?> type, ICustomRenderer value);
 
-  long getLength();
-		
+    void unsetCustomRenderer(Class<?> type);
+
+    void add(String placeholder, Object value);
+
+    void remove(String placeholder);
+
+    void clear();
+
+    int numberOfPlaceholders();
+
+    long renderTo(OutputStream outputStream);
+
+    String render();
+
+    long getLength();
 }

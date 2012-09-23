@@ -14,18 +14,17 @@ import java.util.List;
  */
 public abstract class AbstractMultiFileFilter implements FileFilter {
 
-  protected List<FileFilter> filters = new ArrayList<>();
-  
-  public void addFilter(FileFilter value) {
-    filters.add(value);
-  }
-  
-  public void removeFilter(FileFilter value) {
-    filters.remove(value);
-  }
-  
-  public void clear() {
-    filters.clear();
-  }
-  
+    protected List<FileFilter> filters = new ArrayList<>();
+
+    public void addFilter(FileFilter value) {
+        filters.add(value);
+    }
+
+    public void removeFilter(FileFilter value) {
+        filters.remove(value);
+    }
+
+    public void clear() {
+        filters.clear();
+    }
 }

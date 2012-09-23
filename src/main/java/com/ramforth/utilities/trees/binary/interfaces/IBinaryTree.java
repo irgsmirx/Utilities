@@ -11,5 +11,4 @@ import com.ramforth.utilities.trees.interfaces.ITree;
  * @author tobias
  */
 public interface IBinaryTree extends ITree {
-	
 }

@@ -13,7 +13,7 @@ import static org.junit.Assert.*;
  * @author Administrator
  */
 public class SimpleFractionTest {
-    
+
     public SimpleFractionTest() {
     }
 
@@ -24,11 +24,11 @@ public class SimpleFractionTest {
     @AfterClass
     public static void tearDownClass() throws Exception {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -165,7 +165,7 @@ public class SimpleFractionTest {
         assertEquals(expResult, result);
     }
 
-        /**
+    /**
      * Test of toString method, of class SimpleFraction.
      */
     @Test
@@ -176,7 +176,7 @@ public class SimpleFractionTest {
         String result = instance.toMixedString();
         assertEquals(expResult, result);
     }
-    
+
     /**
      * Test of add method, of class SimpleFraction.
      */

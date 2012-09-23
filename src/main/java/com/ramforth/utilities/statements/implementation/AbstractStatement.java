@@ -11,5 +11,4 @@ import com.ramforth.utilities.statements.interfaces.IStatement;
  * @author Tobias Ramforth <tobias.ramforth at tu-dortmund.de>
  */
 public abstract class AbstractStatement implements IStatement {
-  
 }

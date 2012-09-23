@@ -12,32 +12,31 @@ import com.ramforth.utilities.inifile.interfaces.IIniFileEntry;
  */
 public class IniFileEntry implements IIniFileEntry {
 
-  private String key;
-  private String value;
-  
-  public IniFileEntry(String key, String value) {
-    this.key = key;
-    this.value = value;
-  }
-  
-  @Override
-  public String getKey() {
-    return key;
-  }
+    private String key;
+    private String value;
 
-  @Override
-  public void setKey(String value) {
-    this.key = value;
-  }
+    public IniFileEntry(String key, String value) {
+        this.key = key;
+        this.value = value;
+    }
 
-  @Override
-  public String getValue() {
-    return value;
-  }
+    @Override
+    public String getKey() {
+        return key;
+    }
 
-  @Override
-  public void setValue(String value) {
-    this.value = value;
-  }
-  
+    @Override
+    public void setKey(String value) {
+        this.key = value;
+    }
+
+    @Override
+    public String getValue() {
+        return value;
+    }
+
+    @Override
+    public void setValue(String value) {
+        this.value = value;
+    }
 }

@@ -14,15 +14,15 @@ import com.ramforth.utilities.common.interfaces.IComparableGeneric;
 public final class ComparableIComparableGenericAdapter<T> implements IComparableGeneric<T> {
 
     private Comparable<T> adaptee;
-    
+
     public ComparableIComparableGenericAdapter(Comparable<T> adaptee) {
         this.adaptee = adaptee;
     }
-    
+
     public final Comparable<T> getAdaptee() {
         return adaptee;
     }
-    
+
     public void setAdaptee(Comparable<T> value) {
         this.adaptee = value;
     }
@@ -41,5 +41,4 @@ public final class ComparableIComparableGenericAdapter<T> implements IComparable
     public boolean isEqualTo(T x) {
         return adaptee.compareTo(x) == 0;
     }
-    
 }

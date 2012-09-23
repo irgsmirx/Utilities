@@ -9,8 +9,8 @@ package com.ramforth.utilities.expressions.interfaces;
  * @author tobias
  */
 public interface IUnaryExpression extends IExpression {
-	
-  IExpression getChild();
-  void setChild(IExpression value);
-  
+
+    IExpression getChild();
+
+    void setChild(IExpression value);
 }

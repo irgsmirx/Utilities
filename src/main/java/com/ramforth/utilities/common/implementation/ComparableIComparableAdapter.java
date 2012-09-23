@@ -13,15 +13,15 @@ import com.ramforth.utilities.common.interfaces.IComparable;
 public final class ComparableIComparableAdapter implements IComparable {
 
     private Comparable adaptee;
-    
+
     public ComparableIComparableAdapter(Comparable adaptee) {
         this.adaptee = adaptee;
     }
-    
+
     public final Comparable getAdaptee() {
         return adaptee;
     }
-    
+
     public void setAdaptee(Comparable value) {
         this.adaptee = value;
     }
@@ -40,7 +40,4 @@ public final class ComparableIComparableAdapter implements IComparable {
     public boolean isEqualTo(Object x) {
         return adaptee.compareTo(x) == 0;
     }
-    
-
-    
 }

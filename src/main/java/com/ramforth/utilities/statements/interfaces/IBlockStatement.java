@@ -9,8 +9,8 @@ package com.ramforth.utilities.statements.interfaces;
  * @author Tobias Ramforth <tobias.ramforth at tu-dortmund.de>
  */
 public interface IBlockStatement extends IStatement {
-  
-  IStatement[] getStatements();
-  void setStatements(IStatement... value);
-  
+
+    IStatement[] getStatements();
+
+    void setStatements(IStatement... value);
 }

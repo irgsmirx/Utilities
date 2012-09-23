@@ -9,5 +9,4 @@ package com.ramforth.utilities.common.implementation;
  * @author Tobias Ramforth <tobias.ramforth at tu-dortmund.de>
  */
 public class QueueException extends RuntimeException {
-  
 }

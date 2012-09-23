@@ -12,33 +12,32 @@ import com.ramforth.utilities.expressions.interfaces.IPropertyExpression;
  * @author Tobias Ramforth <tobias.ramforth at tu-dortmund.de>
  */
 public class PropertyExpression extends AbstractExpression implements IPropertyExpression {
-  
-  private IExpression target;
-  private String propertyName;
 
-  public PropertyExpression(IExpression target, String propertyName) {
-    this.target = target;
-    this.propertyName = propertyName;
-  }
+    private IExpression target;
+    private String propertyName;
 
-  @Override
-  public IExpression getTarget() {
-    return target;
-  }
+    public PropertyExpression(IExpression target, String propertyName) {
+        this.target = target;
+        this.propertyName = propertyName;
+    }
 
-  @Override
-  public void setTarget(IExpression value) {
-    this.target = value;
-  }
+    @Override
+    public IExpression getTarget() {
+        return target;
+    }
 
-  @Override
-  public String getPropertyName() {
-    return propertyName;
-  }
+    @Override
+    public void setTarget(IExpression value) {
+        this.target = value;
+    }
 
-  @Override
-  public void setPropertyName(String value) {
-    this.propertyName = value;
-  }
-  
+    @Override
+    public String getPropertyName() {
+        return propertyName;
+    }
+
+    @Override
+    public void setPropertyName(String value) {
+        this.propertyName = value;
+    }
 }

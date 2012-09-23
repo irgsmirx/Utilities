@@ -13,8 +13,7 @@ import com.ramforth.utilities.expressions.interfaces.IMultiplyExpression;
  */
 public class MultiplyExpression extends AbstractBinaryExpression implements IMultiplyExpression {
 
-  public MultiplyExpression(IExpression leftChild, IExpression rightChild) {
-    super(leftChild, rightChild);
-  }
-  
+    public MultiplyExpression(IExpression leftChild, IExpression rightChild) {
+        super(leftChild, rightChild);
+    }
 }

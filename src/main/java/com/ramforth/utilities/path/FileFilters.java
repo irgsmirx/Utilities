@@ -11,8 +11,7 @@ import java.io.FileFilter;
  * @author Tobias Ramforth <tobias.ramforth at tu-dortmund.de>
  */
 public class FileFilters {
-  
-  public static FileFilter DIRECTORY = new DirectoryFileFilter();
-  public static FileFilter FILE = new FileFileFilter();
-  
+
+    public static FileFilter DIRECTORY = new DirectoryFileFilter();
+    public static FileFilter FILE = new FileFileFilter();
 }

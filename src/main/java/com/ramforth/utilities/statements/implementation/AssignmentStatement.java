@@ -11,5 +11,4 @@ import com.ramforth.utilities.statements.interfaces.IAssignmentStatement;
  * @author Tobias Ramforth <tobias.ramforth at tu-dortmund.de>
  */
 public class AssignmentStatement extends AbstractStatement implements IAssignmentStatement {
-  
 }

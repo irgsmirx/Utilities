@@ -13,8 +13,7 @@ import com.ramforth.utilities.expressions.interfaces.IGreaterThanExpression;
  */
 public class GreaterThanExpression extends AbstractConditionalExpression implements IGreaterThanExpression {
 
-  public GreaterThanExpression(IExpression leftChild, IExpression rightChild) {
-    super(leftChild, rightChild);
-  }
-  
+    public GreaterThanExpression(IExpression leftChild, IExpression rightChild) {
+        super(leftChild, rightChild);
+    }
 }

@@ -14,28 +14,28 @@ import java.util.List;
  */
 public abstract class AbstractMultiPathMatcher implements PathMatcher {
 
-  protected final List<PathMatcher> matchers;
-  
-  public AbstractMultiPathMatcher() {
-    this.matchers = new ArrayList<>();
-  }
-  
-  public AbstractMultiPathMatcher(PathMatcher... matchers) {
-    this();
-    for (PathMatcher matcher : matchers) {
-      this.matchers.add(matcher);
+    protected final List<PathMatcher> matchers;
+
+    public AbstractMultiPathMatcher() {
+        this.matchers = new ArrayList<>();
     }
-  }
-   
-  public void addMatcher(PathMatcher value) {
-    matchers.add(value);
-  }
-  
-  public void removeMatcher(PathMatcher value) {
-    matchers.remove(value);
-  }
-  
-  public void clear() {
-    matchers.clear();
-  }  
+
+    public AbstractMultiPathMatcher(PathMatcher... matchers) {
+        this();
+        for (PathMatcher matcher : matchers) {
+            this.matchers.add(matcher);
+        }
+    }
+
+    public void addMatcher(PathMatcher value) {
+        matchers.add(value);
+    }
+
+    public void removeMatcher(PathMatcher value) {
+        matchers.remove(value);
+    }
+
+    public void clear() {
+        matchers.clear();
+    }
 }

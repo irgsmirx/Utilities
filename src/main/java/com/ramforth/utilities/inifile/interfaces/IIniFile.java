@@ -9,8 +9,8 @@ package com.ramforth.utilities.inifile.interfaces;
  * @author Tobias Ramforth <tobias.ramforth at tu-dortmund.de>
  */
 public interface IIniFile {
-  
-  IIniFileSection getRootSection();
-  IIniFileSections getSections();
-  
+
+    IIniFileSection getRootSection();
+
+    IIniFileSections getSections();
 }

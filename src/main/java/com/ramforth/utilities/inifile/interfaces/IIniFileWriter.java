@@ -9,7 +9,6 @@ package com.ramforth.utilities.inifile.interfaces;
  * @author Tobias Ramforth <tobias.ramforth at tu-dortmund.de>
  */
 public interface IIniFileWriter {
-  
-  void write(IIniFile iniFile);
-  
+
+    void write(IIniFile iniFile);
 }

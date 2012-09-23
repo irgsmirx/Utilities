@@ -9,7 +9,6 @@ package com.ramforth.utilities.common.interfaces;
  * @author tobias
  */
 public interface IEqualityComparableGeneric<T> {
-  
-  boolean isEqualTo(T x);
-  
+
+    boolean isEqualTo(T x);
 }

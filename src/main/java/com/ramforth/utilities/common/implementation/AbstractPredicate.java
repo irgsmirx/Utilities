@@ -11,10 +11,9 @@ import com.ramforth.utilities.common.interfaces.IPredicate;
  * @author tobias
  */
 public abstract class AbstractPredicate<T> implements IPredicate<T> {
-	
-	@Override
-	public boolean doesNotHold() {
-		return !holds();
-	}
-	
+
+    @Override
+    public boolean doesNotHold() {
+        return !holds();
+    }
 }

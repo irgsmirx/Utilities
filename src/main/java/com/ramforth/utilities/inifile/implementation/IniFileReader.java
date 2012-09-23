@@ -19,42 +19,41 @@ import com.ramforth.utilities.inifile.interfaces.IIniFileSection;
  */
 public class IniFileReader implements IIniFileReader {
 
-  @Override
-  public IIniFile parse(InputStream inputStream) {
-    IIniFile file = new IniFile();
-    
-    Reader reader = new InputStreamReader(inputStream);
-    Scanner scanner = new Scanner(reader);
-   
-    IIniFileSection currentSection = file.getRootSection();
-    
-    while (scanner.hasNextLine()) {
-      String nextLine = scanner.nextLine();
-      String nextLineTrimmed = nextLine.trim();
-      
-      if (nextLineTrimmed.startsWith("#")) {
-        // skip
-      } else if (nextLineTrimmed.startsWith("[") && nextLineTrimmed.endsWith("]")) {
-        String sectionName = nextLineTrimmed.substring(1, nextLineTrimmed.length() - 1);
-        currentSection = new IniFileSection(sectionName);
-        file.getSections().add(currentSection);
-      } else {
-        int indexOfSeparator = nextLineTrimmed.indexOf("=");
-        
-        if (indexOfSeparator > -1) {
-          String key = nextLine.substring(0, indexOfSeparator);
-          String value;
-          if (indexOfSeparator < nextLineTrimmed.length()) {
-            value = nextLine.substring(indexOfSeparator + 1);
-          } else {
-            value = StringUtilities.EMPTY;
-          }
-          currentSection.getEntries().add(new IniFileEntry(key, value));
+    @Override
+    public IIniFile parse(InputStream inputStream) {
+        IIniFile file = new IniFile();
+
+        Reader reader = new InputStreamReader(inputStream);
+        Scanner scanner = new Scanner(reader);
+
+        IIniFileSection currentSection = file.getRootSection();
+
+        while (scanner.hasNextLine()) {
+            String nextLine = scanner.nextLine();
+            String nextLineTrimmed = nextLine.trim();
+
+            if (nextLineTrimmed.startsWith("#")) {
+                // skip
+            } else if (nextLineTrimmed.startsWith("[") && nextLineTrimmed.endsWith("]")) {
+                String sectionName = nextLineTrimmed.substring(1, nextLineTrimmed.length() - 1);
+                currentSection = new IniFileSection(sectionName);
+                file.getSections().add(currentSection);
+            } else {
+                int indexOfSeparator = nextLineTrimmed.indexOf("=");
+
+                if (indexOfSeparator > -1) {
+                    String key = nextLine.substring(0, indexOfSeparator);
+                    String value;
+                    if (indexOfSeparator < nextLineTrimmed.length()) {
+                        value = nextLine.substring(indexOfSeparator + 1);
+                    } else {
+                        value = StringUtilities.EMPTY;
+                    }
+                    currentSection.getEntries().add(new IniFileEntry(key, value));
+                }
+            }
         }
-      }
+
+        return file;
     }
-    
-    return file;
-  }
-  
 }

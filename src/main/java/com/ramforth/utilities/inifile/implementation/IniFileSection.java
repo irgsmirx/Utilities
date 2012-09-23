@@ -15,34 +15,33 @@ import com.ramforth.utilities.inifile.interfaces.IIniFileSection;
  */
 public class IniFileSection implements IIniFileSection {
 
-  private String name;
-  protected final IIniFileEntries entries = new IniFileEntries();
-  
-  public IniFileSection() {
-  }
+    private String name;
+    protected final IIniFileEntries entries = new IniFileEntries();
 
-  public IniFileSection(String name) {
-    this.name = name;
-  }
-  
-  @Override
-  public String getName() {
-    return name;
-  }
-  
-  @Override
-  public void setName(String value) {
-    this.name = value;
-  }
-  
-  @Override
-  public final IIniFileEntries getEntries() {
-    return entries;
-  }
+    public IniFileSection() {
+    }
 
-  @Override
-  public final Iterator<IIniFileEntry> iterator() {
-    return entries.iterator();
-  }
-  
+    public IniFileSection(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public void setName(String value) {
+        this.name = value;
+    }
+
+    @Override
+    public final IIniFileEntries getEntries() {
+        return entries;
+    }
+
+    @Override
+    public final Iterator<IIniFileEntry> iterator() {
+        return entries.iterator();
+    }
 }

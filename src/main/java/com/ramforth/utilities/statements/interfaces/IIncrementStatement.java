@@ -11,8 +11,8 @@ import com.ramforth.utilities.expressions.interfaces.IParameterExpression;
  * @author Tobias Ramforth <tobias.ramforth at tu-dortmund.de>
  */
 public interface IIncrementStatement extends IStatement {
-  
-  IParameterExpression getTarget();
-  void setTarget(IParameterExpression value);
-  
+
+    IParameterExpression getTarget();
+
+    void setTarget(IParameterExpression value);
 }

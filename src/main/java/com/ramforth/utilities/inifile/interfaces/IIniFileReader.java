@@ -11,7 +11,6 @@ import java.io.InputStream;
  * @author Tobias Ramforth <tobias.ramforth at tu-dortmund.de>
  */
 public interface IIniFileReader {
-  
-  IIniFile parse(InputStream inputStream);
-  
+
+    IIniFile parse(InputStream inputStream);
 }

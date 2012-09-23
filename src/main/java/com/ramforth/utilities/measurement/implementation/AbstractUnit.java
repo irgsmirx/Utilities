@@ -11,6 +11,4 @@ import com.ramforth.utilities.measurement.interfaces.IUnit;
  * @author tobias
  */
 public abstract class AbstractUnit implements IUnit {
-	
-	
 }

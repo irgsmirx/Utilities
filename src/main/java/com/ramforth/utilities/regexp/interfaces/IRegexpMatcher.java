@@ -9,15 +9,18 @@ package com.ramforth.utilities.regexp.interfaces;
  * @author Tobias Ramforth <tobias.ramforth at tu-dortmund.de>
  */
 public interface IRegexpMatcher {
-  
-  IRegexpMatcher alpha();
-  IRegexpMatcher numeric();
-  IRegexpMatcher alphaNumeric();
-  
-  IRegexpMatcher space();
-  IRegexpMatcher tab();
-  
-  IRegexpMatcher carriageReturn();
-  IRegexpMatcher newLine();
-  
+
+    IRegexpMatcher alpha();
+
+    IRegexpMatcher numeric();
+
+    IRegexpMatcher alphaNumeric();
+
+    IRegexpMatcher space();
+
+    IRegexpMatcher tab();
+
+    IRegexpMatcher carriageReturn();
+
+    IRegexpMatcher newLine();
 }

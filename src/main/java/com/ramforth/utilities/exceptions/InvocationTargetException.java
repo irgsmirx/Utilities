@@ -10,24 +10,23 @@ package com.ramforth.utilities.exceptions;
  */
 public class InvocationTargetException extends RuntimeException {
 
-  public InvocationTargetException() {
-    super();
-  }
+    public InvocationTargetException() {
+        super();
+    }
 
-  public InvocationTargetException(String message) {
-    super(message);
-  }
+    public InvocationTargetException(String message) {
+        super(message);
+    }
 
-  public InvocationTargetException(String message, Throwable cause) {
-    super(message, cause);
-  }
+    public InvocationTargetException(String message, Throwable cause) {
+        super(message, cause);
+    }
 
-  public InvocationTargetException(Throwable cause) {
-    super(cause);
-  }
+    public InvocationTargetException(Throwable cause) {
+        super(cause);
+    }
 
-  public InvocationTargetException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
-    super(message, cause, enableSuppression, writableStackTrace);
-  }
-  
+    public InvocationTargetException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+        super(message, cause, enableSuppression, writableStackTrace);
+    }
 }

@@ -14,19 +14,18 @@ import java.util.regex.Pattern;
  */
 public class RegularExpressionFileFilter implements FileFilter {
 
-  protected Pattern regularExpressionPattern;
-  
-  public RegularExpressionFileFilter(String regularExpression) {
-    this.regularExpressionPattern = Pattern.compile(regularExpression);
-  }
-  
-  public RegularExpressionFileFilter(Pattern regularExpressionPattern) {
-    this.regularExpressionPattern = regularExpressionPattern;
-  }
-  
-  @Override
-  public boolean accept(File pathname) {
-    return regularExpressionPattern.matcher(pathname.getName()).matches();
-  }
-  
+    protected Pattern regularExpressionPattern;
+
+    public RegularExpressionFileFilter(String regularExpression) {
+        this.regularExpressionPattern = Pattern.compile(regularExpression);
+    }
+
+    public RegularExpressionFileFilter(Pattern regularExpressionPattern) {
+        this.regularExpressionPattern = regularExpressionPattern;
+    }
+
+    @Override
+    public boolean accept(File pathname) {
+        return regularExpressionPattern.matcher(pathname.getName()).matches();
+    }
 }

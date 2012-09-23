@@ -21,7 +21,7 @@ public final class ComplexFraction extends AbstractFraction implements IComplexF
         setNumerator(numerator);
         setDenominator(denominator);
     }
-    
+
     @Override
     public IFraction getNumerator() {
         return numerator;
@@ -41,7 +41,7 @@ public final class ComplexFraction extends AbstractFraction implements IComplexF
     public void setDenominator(IFraction value) {
         this.denominator = value;
     }
-        
+
     @Override
     public IFraction reciprocal() {
         return new ComplexFraction(denominator, numerator);
@@ -51,7 +51,7 @@ public final class ComplexFraction extends AbstractFraction implements IComplexF
     public IFraction reduce() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
-    
+
     @Override
     public float floatValue() {
         return numerator.floatValue() / denominator.floatValue();
@@ -61,7 +61,7 @@ public final class ComplexFraction extends AbstractFraction implements IComplexF
     public double doubleValue() {
         return numerator.doubleValue() / denominator.doubleValue();
     }
-    
+
     @Override
     public String toString() {
         return "(" + numerator.toString() + ") / (" + denominator.toString() + ")";
@@ -115,5 +115,4 @@ public final class ComplexFraction extends AbstractFraction implements IComplexF
         int hash = 3;
         return hash;
     }
-    
 }

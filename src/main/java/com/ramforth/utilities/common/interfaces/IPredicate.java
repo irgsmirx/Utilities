@@ -9,8 +9,8 @@ package com.ramforth.utilities.common.interfaces;
  * @author tobias
  */
 public interface IPredicate<T> {
-	
-	boolean holds();
-	boolean doesNotHold();
-	
+
+    boolean holds();
+
+    boolean doesNotHold();
 }

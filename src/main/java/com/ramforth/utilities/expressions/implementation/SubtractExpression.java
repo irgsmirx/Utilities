@@ -13,8 +13,7 @@ import com.ramforth.utilities.expressions.interfaces.IExpression;
  */
 public class SubtractExpression extends AbstractBinaryExpression implements ISubtractExpression {
 
-  public SubtractExpression(IExpression leftChild, IExpression rightChild) {
-    super(leftChild, rightChild);
-  }
-  
+    public SubtractExpression(IExpression leftChild, IExpression rightChild) {
+        super(leftChild, rightChild);
+    }
 }

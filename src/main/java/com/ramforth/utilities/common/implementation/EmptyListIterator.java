@@ -13,49 +13,48 @@ import java.util.NoSuchElementException;
  */
 public class EmptyListIterator<T> implements ListIterator<T> {
 
-  @Override
-  public boolean hasNext() {
-    return false;
-  }
+    @Override
+    public boolean hasNext() {
+        return false;
+    }
 
-  @Override
-  public T next() {
-    throw new NoSuchElementException();
-  }
+    @Override
+    public T next() {
+        throw new NoSuchElementException();
+    }
 
-  @Override
-  public boolean hasPrevious() {
-    return false;
-  }
+    @Override
+    public boolean hasPrevious() {
+        return false;
+    }
 
-  @Override
-  public T previous() {
-    throw new NoSuchElementException();
-  }
+    @Override
+    public T previous() {
+        throw new NoSuchElementException();
+    }
 
-  @Override
-  public int nextIndex() {
-    return 0;
-  }
+    @Override
+    public int nextIndex() {
+        return 0;
+    }
 
-  @Override
-  public int previousIndex() {
-    return -1;
-  }
+    @Override
+    public int previousIndex() {
+        return -1;
+    }
 
-  @Override
-  public void remove() {
-    throw new UnsupportedOperationException("Not supported.");
-  }
+    @Override
+    public void remove() {
+        throw new UnsupportedOperationException("Not supported.");
+    }
 
-  @Override
-  public void set(T e) {
-    throw new UnsupportedOperationException("Not supported.");
-  }
+    @Override
+    public void set(T e) {
+        throw new UnsupportedOperationException("Not supported.");
+    }
 
-  @Override
-  public void add(T e) {
-    throw new UnsupportedOperationException("Not supported.");
-  }
-  
+    @Override
+    public void add(T e) {
+        throw new UnsupportedOperationException("Not supported.");
+    }
 }

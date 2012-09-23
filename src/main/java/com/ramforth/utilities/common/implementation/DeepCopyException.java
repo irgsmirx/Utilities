@@ -9,13 +9,12 @@ package com.ramforth.utilities.common.implementation;
  * @author tobias
  */
 public class DeepCopyException extends RuntimeException {
-	
-	public DeepCopyException() {
-		super();
-	}
-	
-	public DeepCopyException(String message) {
-		super(message);
-	}
-	
+
+    public DeepCopyException() {
+        super();
+    }
+
+    public DeepCopyException(String message) {
+        super(message);
+    }
 }

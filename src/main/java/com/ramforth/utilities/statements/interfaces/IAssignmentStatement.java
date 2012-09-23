@@ -9,5 +9,4 @@ package com.ramforth.utilities.statements.interfaces;
  * @author tobias
  */
 public interface IAssignmentStatement extends IStatement {
-	
 }

@@ -11,5 +11,4 @@ import com.ramforth.utilities.expressions.interfaces.IExpression;
  * @author Tobias Ramforth <tobias.ramforth at tu-dortmund.de>
  */
 public abstract class AbstractExpression implements IExpression {
-  
 }

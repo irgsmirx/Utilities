@@ -14,48 +14,47 @@ import com.ramforth.utilities.statements.interfaces.IStatement;
  */
 public class IfStatement extends AbstractStatement implements IIfStatement {
 
-  private IExpression condition;
-  private IStatement thenStatement;
-  private IStatement elseStatement;
-  
-  public IfStatement(IExpression condition, IStatement thenStatement) {
-    this.condition = condition;
-    this.thenStatement = thenStatement;
-  }
-  
-  public IfStatement(IExpression condition, IStatement thenStatement, IStatement elseStatement) {
-    this(condition, thenStatement);
-    this.elseStatement = elseStatement;
-  }
-  
-  @Override
-  public IExpression getCondition() {
-    return condition;
-  }
+    private IExpression condition;
+    private IStatement thenStatement;
+    private IStatement elseStatement;
 
-  @Override
-  public void setCondition(IExpression value) {
-    this.condition = value;
-  }
+    public IfStatement(IExpression condition, IStatement thenStatement) {
+        this.condition = condition;
+        this.thenStatement = thenStatement;
+    }
 
-  @Override
-  public IStatement getThen() {
-    return thenStatement;
-  }
+    public IfStatement(IExpression condition, IStatement thenStatement, IStatement elseStatement) {
+        this(condition, thenStatement);
+        this.elseStatement = elseStatement;
+    }
 
-  @Override
-  public void setThen(IStatement value) {
-    this.thenStatement = value;
-  }
+    @Override
+    public IExpression getCondition() {
+        return condition;
+    }
 
-  @Override
-  public IStatement getElse() {
-    return elseStatement;
-  }
+    @Override
+    public void setCondition(IExpression value) {
+        this.condition = value;
+    }
 
-  @Override
-  public void setElse(IStatement value) {
-    this.elseStatement = value;
-  }
-  
+    @Override
+    public IStatement getThen() {
+        return thenStatement;
+    }
+
+    @Override
+    public void setThen(IStatement value) {
+        this.thenStatement = value;
+    }
+
+    @Override
+    public IStatement getElse() {
+        return elseStatement;
+    }
+
+    @Override
+    public void setElse(IStatement value) {
+        this.elseStatement = value;
+    }
 }

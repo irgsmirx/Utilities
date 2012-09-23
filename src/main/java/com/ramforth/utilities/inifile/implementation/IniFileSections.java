@@ -16,41 +16,40 @@ import com.ramforth.utilities.inifile.interfaces.IIniFileSections;
  */
 public class IniFileSections implements IIniFileSections {
 
-  protected final Map<String, IIniFileSection> sectionMap = new TreeMap<>();
-  
-  @Override
-  public Iterator<IIniFileSection> iterator() {
-    return sectionMap.values().iterator();
-  }
+    protected final Map<String, IIniFileSection> sectionMap = new TreeMap<>();
 
-  @Override
-  public void add(IIniFileSection value) {
-    sectionMap.put(value.getName(), value);
-  }
+    @Override
+    public Iterator<IIniFileSection> iterator() {
+        return sectionMap.values().iterator();
+    }
 
-  @Override
-  public void remove(IIniFileSection value) {
-    sectionMap.remove(value.getName());
-  }
+    @Override
+    public void add(IIniFileSection value) {
+        sectionMap.put(value.getName(), value);
+    }
 
-  @Override
-  public void remove(String value) {
-    sectionMap.remove(value);
-  }
+    @Override
+    public void remove(IIniFileSection value) {
+        sectionMap.remove(value.getName());
+    }
 
-  @Override
-  public void clear() {
-    sectionMap.clear();
-  }
+    @Override
+    public void remove(String value) {
+        sectionMap.remove(value);
+    }
 
-  @Override
-  public boolean contains(IIniFileSection value) {
-    return sectionMap.containsKey(value.getName());
-  }
+    @Override
+    public void clear() {
+        sectionMap.clear();
+    }
 
-  @Override
-  public boolean contains(String value) {
-    return sectionMap.containsKey(value);
-  }
-  
+    @Override
+    public boolean contains(IIniFileSection value) {
+        return sectionMap.containsKey(value.getName());
+    }
+
+    @Override
+    public boolean contains(String value) {
+        return sectionMap.containsKey(value);
+    }
 }

@@ -14,19 +14,18 @@ import java.util.regex.Pattern;
  */
 public class RegularExpressionPathMatcher implements PathMatcher {
 
-  protected Pattern regularExpressionPattern;
-  
-  public RegularExpressionPathMatcher(String regularExpression) {
-    this.regularExpressionPattern = Pattern.compile(regularExpression);
-  }
-  
-  public RegularExpressionPathMatcher(Pattern regularExpressionPattern) {
-    this.regularExpressionPattern = regularExpressionPattern;
-  }
-  
-  @Override
-  public boolean matches(Path path) {
-    return regularExpressionPattern.matcher(path.toString()).matches();
-  }
-  
+    protected Pattern regularExpressionPattern;
+
+    public RegularExpressionPathMatcher(String regularExpression) {
+        this.regularExpressionPattern = Pattern.compile(regularExpression);
+    }
+
+    public RegularExpressionPathMatcher(Pattern regularExpressionPattern) {
+        this.regularExpressionPattern = regularExpressionPattern;
+    }
+
+    @Override
+    public boolean matches(Path path) {
+        return regularExpressionPattern.matcher(path.toString()).matches();
+    }
 }

@@ -13,8 +13,7 @@ import com.ramforth.utilities.expressions.interfaces.ILessOrEqualExpression;
  */
 public class LessOrEqualExpression extends AbstractConditionalExpression implements ILessOrEqualExpression {
 
-  public LessOrEqualExpression(IExpression leftChild, IExpression rightChild) {
-    super(leftChild, rightChild);
-  }
-  
+    public LessOrEqualExpression(IExpression leftChild, IExpression rightChild) {
+        super(leftChild, rightChild);
+    }
 }

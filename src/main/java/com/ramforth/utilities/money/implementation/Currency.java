@@ -15,7 +15,7 @@ public final class Currency implements ICurrency {
     private String name;
     private String abbreviation;
     private String symbol;
-    
+
     @Override
     public final String getName() {
         return name;
@@ -30,5 +30,4 @@ public final class Currency implements ICurrency {
     public final String getSymbol() {
         return symbol;
     }
-    
 }

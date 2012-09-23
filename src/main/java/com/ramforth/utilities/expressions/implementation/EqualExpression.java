@@ -13,8 +13,7 @@ import com.ramforth.utilities.expressions.interfaces.IExpression;
  */
 public class EqualExpression extends AbstractConditionalExpression implements IEqualExpression {
 
-  public EqualExpression(IExpression leftChild, IExpression rightChild) {
-    super(leftChild, rightChild);
-  }
-  
+    public EqualExpression(IExpression leftChild, IExpression rightChild) {
+        super(leftChild, rightChild);
+    }
 }

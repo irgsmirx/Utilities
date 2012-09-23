@@ -13,22 +13,21 @@ import java.nio.file.PathMatcher;
  */
 public class ConjunctivePathMatcher extends AbstractMultiPathMatcher {
 
-  public ConjunctivePathMatcher() {
-    super();
-  }
-  
-  public ConjunctivePathMatcher(PathMatcher... matchers) {
-    super(matchers);
-  }
-  
-  @Override
-  public boolean matches(Path path) {
-    for (PathMatcher matcher : matchers) {
-      if (!matcher.matches(path)) {
-        return false;
-      }
+    public ConjunctivePathMatcher() {
+        super();
     }
-    return true;
-  }
-  
+
+    public ConjunctivePathMatcher(PathMatcher... matchers) {
+        super(matchers);
+    }
+
+    @Override
+    public boolean matches(Path path) {
+        for (PathMatcher matcher : matchers) {
+            if (!matcher.matches(path)) {
+                return false;
+            }
+        }
+        return true;
+    }
 }

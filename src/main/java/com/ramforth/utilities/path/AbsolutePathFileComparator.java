@@ -12,9 +12,8 @@ import java.io.File;
  */
 public class AbsolutePathFileComparator extends AbstractFileComparator {
 
-  @Override
-  public int compare(File o1, File o2) {
-    return o1.getAbsolutePath().compareTo(o2.getAbsolutePath());
-  }
-  
+    @Override
+    public int compare(File o1, File o2) {
+        return o1.getAbsolutePath().compareTo(o2.getAbsolutePath());
+    }
 }

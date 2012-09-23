@@ -9,7 +9,6 @@ package com.ramforth.utilities.common.interfaces;
  * @author tobias
  */
 public interface IEqualityComparatorGeneric<T> {
-  
-  boolean equals(T x, T y);
-  
+
+    boolean equals(T x, T y);
 }

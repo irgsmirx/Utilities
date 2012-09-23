@@ -9,5 +9,4 @@ package com.ramforth.utilities.trees.b.interfaces;
  * @author tobias
  */
 public interface IBPlusTree extends IBTree {
-	
 }

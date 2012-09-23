@@ -13,8 +13,7 @@ import com.ramforth.utilities.expressions.interfaces.INotExpression;
  */
 public class NotExpression extends AbstractUnaryExpression implements INotExpression {
 
-  public NotExpression(IExpression child) {
-    super(child);
-  }
-  
+    public NotExpression(IExpression child) {
+        super(child);
+    }
 }

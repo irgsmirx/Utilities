@@ -13,19 +13,18 @@ import java.io.FileFilter;
  */
 public class ExtensionFileFilter implements FileFilter {
 
-  private String extension;
-  
-  public ExtensionFileFilter(String extension) {
-    if (extension.startsWith(".")) {
-      this.extension = extension.substring(1);
-    } else {
-      this.extension = extension;
+    private String extension;
+
+    public ExtensionFileFilter(String extension) {
+        if (extension.startsWith(".")) {
+            this.extension = extension.substring(1);
+        } else {
+            this.extension = extension;
+        }
     }
-  }
-  
-  @Override
-  public boolean accept(File pathname) {
-    return pathname.isFile() && pathname.getName().toLowerCase().endsWith("." + extension);
-  }
-  
+
+    @Override
+    public boolean accept(File pathname) {
+        return pathname.isFile() && pathname.getName().toLowerCase().endsWith("." + extension);
+    }
 }

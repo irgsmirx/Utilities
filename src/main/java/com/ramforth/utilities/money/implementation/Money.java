@@ -15,7 +15,7 @@ public final class Money implements IMoney {
 
     private int amount;
     private ICurrency currency;
-    
+
     @Override
     public int getAmount() {
         return amount;
@@ -35,5 +35,4 @@ public final class Money implements IMoney {
     public void setCurrency(ICurrency value) {
         this.currency = value;
     }
-    
 }

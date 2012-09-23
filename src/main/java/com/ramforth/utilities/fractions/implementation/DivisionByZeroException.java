@@ -9,5 +9,4 @@ package com.ramforth.utilities.fractions.implementation;
  * @author Administrator
  */
 public class DivisionByZeroException extends RuntimeException {
-    
 }

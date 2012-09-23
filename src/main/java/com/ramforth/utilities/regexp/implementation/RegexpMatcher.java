@@ -12,67 +12,65 @@ import com.ramforth.utilities.regexp.interfaces.IRegexpMatcher;
  */
 public class RegexpMatcher implements IRegexpMatcher {
 
-  private String value;
-  private int valueLength;
-  private int currentPosition = -1;
-  
- 
-  public RegexpMatcher(String value) {
-    this.value = value;
-    this.valueLength = value.length();
-  } 
- 
-  private int nextCharacter() {
-    return value.codePointAt(currentPosition++);
-  }
-  
-  @Override
-  public IRegexpMatcher alpha() {
-    if (!Character.isAlphabetic(nextCharacter())) {
-      throw new RegexpDoesNotMatchException();
+    private String value;
+    private int valueLength;
+    private int currentPosition = -1;
+
+    public RegexpMatcher(String value) {
+        this.value = value;
+        this.valueLength = value.length();
     }
-    return this;
-  }
 
-  @Override
-  public IRegexpMatcher numeric() {
-    if (!Character.isDigit(nextCharacter())) {
-      throw new RegexpDoesNotMatchException();
+    private int nextCharacter() {
+        return value.codePointAt(currentPosition++);
     }
-    return this;
-  }
 
-  @Override
-  public IRegexpMatcher alphaNumeric() {
-    int nextCharacter = nextCharacter();
-    
-    if (!Character.isAlphabetic(nextCharacter) && !Character.isDigit(nextCharacter)) {
-      throw new RegexpDoesNotMatchException();
+    @Override
+    public IRegexpMatcher alpha() {
+        if (!Character.isAlphabetic(nextCharacter())) {
+            throw new RegexpDoesNotMatchException();
+        }
+        return this;
     }
-    return this;
-  }
 
-  @Override
-  public IRegexpMatcher space() {
-    if (!Character.isSpaceChar(nextCharacter())) {
-      throw new RegexpDoesNotMatchException();
+    @Override
+    public IRegexpMatcher numeric() {
+        if (!Character.isDigit(nextCharacter())) {
+            throw new RegexpDoesNotMatchException();
+        }
+        return this;
     }
-    return this;
-  }
 
-  @Override
-  public IRegexpMatcher tab() {
-    return this;
-  }
+    @Override
+    public IRegexpMatcher alphaNumeric() {
+        int nextCharacter = nextCharacter();
 
-  @Override
-  public IRegexpMatcher carriageReturn() {
-    return this;
-  }
+        if (!Character.isAlphabetic(nextCharacter) && !Character.isDigit(nextCharacter)) {
+            throw new RegexpDoesNotMatchException();
+        }
+        return this;
+    }
 
-  @Override
-  public IRegexpMatcher newLine() {
-    return this;
-  }
-  
+    @Override
+    public IRegexpMatcher space() {
+        if (!Character.isSpaceChar(nextCharacter())) {
+            throw new RegexpDoesNotMatchException();
+        }
+        return this;
+    }
+
+    @Override
+    public IRegexpMatcher tab() {
+        return this;
+    }
+
+    @Override
+    public IRegexpMatcher carriageReturn() {
+        return this;
+    }
+
+    @Override
+    public IRegexpMatcher newLine() {
+        return this;
+    }
 }

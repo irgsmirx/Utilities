@@ -9,5 +9,4 @@ package com.ramforth.utilities.templates;
  * @author Tobias Ramforth <tobias.ramforth at tu-dortmund.de>
  */
 public interface ICustomRenderer {
-  
 }

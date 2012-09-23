@@ -13,8 +13,7 @@ import com.ramforth.utilities.expressions.interfaces.INegateExpression;
  */
 public class NegateExpression extends AbstractUnaryExpression implements INegateExpression {
 
-  public NegateExpression(IExpression child) {
-    super(child);
-  }
-  
+    public NegateExpression(IExpression child) {
+        super(child);
+    }
 }

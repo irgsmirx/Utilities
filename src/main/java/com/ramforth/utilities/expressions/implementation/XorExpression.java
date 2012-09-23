@@ -13,8 +13,7 @@ import com.ramforth.utilities.expressions.interfaces.IXorExpression;
  */
 public class XorExpression extends AbstractConditionalExpression implements IXorExpression {
 
-  public XorExpression(IExpression leftChild, IExpression rightChild) {
-    super(leftChild, rightChild);
-  }
-  
+    public XorExpression(IExpression leftChild, IExpression rightChild) {
+        super(leftChild, rightChild);
+    }
 }

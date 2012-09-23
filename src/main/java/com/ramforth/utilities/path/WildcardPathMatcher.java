@@ -14,16 +14,15 @@ import java.util.regex.Pattern;
  */
 public class WildcardPathMatcher implements PathMatcher {
 
-  protected RegularExpressionPathMatcher innerPathMatcher;
-  
-  public WildcardPathMatcher(String wildcardExpression) {
-    String regularExpressionPattern = wildcardExpression.replaceAll("\\?", ".").replaceAll("\\*|\\%", ".*").replaceAll("#", "[0-9]+");
-    this.innerPathMatcher = new RegularExpressionPathMatcher(Pattern.compile(regularExpressionPattern, Pattern.CASE_INSENSITIVE));
-  }
-  
-  @Override
-  public boolean matches(Path path) {
-    return innerPathMatcher.matches(path);
-  }
-  
+    protected RegularExpressionPathMatcher innerPathMatcher;
+
+    public WildcardPathMatcher(String wildcardExpression) {
+        String regularExpressionPattern = wildcardExpression.replaceAll("\\?", ".").replaceAll("\\*|\\%", ".*").replaceAll("#", "[0-9]+");
+        this.innerPathMatcher = new RegularExpressionPathMatcher(Pattern.compile(regularExpressionPattern, Pattern.CASE_INSENSITIVE));
+    }
+
+    @Override
+    public boolean matches(Path path) {
+        return innerPathMatcher.matches(path);
+    }
 }

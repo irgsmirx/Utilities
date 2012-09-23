@@ -9,11 +9,12 @@ package com.ramforth.utilities.expressions.interfaces;
  * @author tobias
  */
 public interface IBinaryExpression extends IExpression {
-	
-  IExpression getLeftChild();
-  void setLeftChild(IExpression value);
-  
-  IExpression getRightChild();
-  void setRightChild(IExpression value);
-  
+
+    IExpression getLeftChild();
+
+    void setLeftChild(IExpression value);
+
+    IExpression getRightChild();
+
+    void setRightChild(IExpression value);
 }

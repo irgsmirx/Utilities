@@ -13,8 +13,7 @@ import com.ramforth.utilities.expressions.interfaces.IExpression;
  */
 public class ModuloExpression extends AbstractBinaryExpression implements IModuloExpression {
 
-  public ModuloExpression(IExpression leftChild, IExpression rightChild) {
-    super(leftChild, rightChild);
-  }
-  
+    public ModuloExpression(IExpression leftChild, IExpression rightChild) {
+        super(leftChild, rightChild);
+    }
 }

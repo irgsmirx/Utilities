@@ -13,8 +13,7 @@ import com.ramforth.utilities.expressions.interfaces.IParenthesizedExpression;
  */
 public class ParenthesizedExpression extends AbstractUnaryExpression implements IParenthesizedExpression {
 
-  public ParenthesizedExpression(IExpression child) {
-    super(child);
-  }
-  
+    public ParenthesizedExpression(IExpression child) {
+        super(child);
+    }
 }

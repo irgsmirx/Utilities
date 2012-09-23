@@ -13,8 +13,7 @@ import com.ramforth.utilities.expressions.interfaces.IExpression;
  */
 public class DivideExpression extends AbstractBinaryExpression implements IDivideExpression {
 
-  public DivideExpression(IExpression leftChild, IExpression rightChild) {
-    super(leftChild, rightChild);
-  }
-  
+    public DivideExpression(IExpression leftChild, IExpression rightChild) {
+        super(leftChild, rightChild);
+    }
 }

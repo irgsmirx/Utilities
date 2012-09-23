@@ -9,11 +9,12 @@ package com.ramforth.utilities.fractions.interfaces;
  * @author Administrator
  */
 public interface IMixedNumer extends IFraction {
-    
+
     int getIntegerPart();
+
     void setIntegerPart(int value);
-    
+
     ISimpleFraction getFractionPart();
+
     void setFractionPart(ISimpleFraction value);
-    
 }

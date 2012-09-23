@@ -13,20 +13,19 @@ import com.ramforth.utilities.statements.interfaces.IStatement;
  */
 public class BlockStatement extends AbstractStatement implements IBlockStatement {
 
-  protected IStatement[] statements;
-  
-  public BlockStatement(IStatement... statements) {
-    this.statements = statements;
-  }
-  
-  @Override
-  public IStatement[] getStatements() {
-    return statements;
-  }
+    protected IStatement[] statements;
 
-  @Override
-  public void setStatements(IStatement... value) {
-    this.statements = value;
-  }
-  
+    public BlockStatement(IStatement... statements) {
+        this.statements = statements;
+    }
+
+    @Override
+    public IStatement[] getStatements() {
+        return statements;
+    }
+
+    @Override
+    public void setStatements(IStatement... value) {
+        this.statements = value;
+    }
 }

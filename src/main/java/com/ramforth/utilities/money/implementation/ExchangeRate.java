@@ -16,9 +16,8 @@ public final class ExchangeRate implements IExchangeRate {
 
     private ICurrency sourceCurrency;
     private ICurrency targetCurrency;
-    
     private IFraction rate;
-    
+
     @Override
     public final ICurrency getSourceCurrency() {
         return sourceCurrency;
@@ -48,5 +47,4 @@ public final class ExchangeRate implements IExchangeRate {
     public void setRate(IFraction value) {
         this.rate = value;
     }
-    
 }

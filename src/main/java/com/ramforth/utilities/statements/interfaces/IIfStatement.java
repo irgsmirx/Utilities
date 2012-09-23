@@ -11,14 +11,16 @@ import com.ramforth.utilities.expressions.interfaces.IExpression;
  * @author Tobias Ramforth <tobias.ramforth at tu-dortmund.de>
  */
 public interface IIfStatement extends IStatement {
-  
-  IExpression getCondition();
-  void setCondition(IExpression value);
-  
-  IStatement getThen();
-  void setThen(IStatement value);
-  
-  IStatement getElse();
-  void setElse(IStatement value);
-  
+
+    IExpression getCondition();
+
+    void setCondition(IExpression value);
+
+    IStatement getThen();
+
+    void setThen(IStatement value);
+
+    IStatement getElse();
+
+    void setElse(IStatement value);
 }

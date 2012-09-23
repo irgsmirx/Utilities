@@ -9,9 +9,8 @@ package com.ramforth.utilities.common.implementation;
  * @author Tobias Ramforth <tobias.ramforth at tu-dortmund.de>
  */
 public class OS {
-  
-  public static boolean isWindows() {
-    return SystemProperties.getOperatingSystemName().toLowerCase().contains("windows");
-  }
-  
+
+    public static boolean isWindows() {
+        return SystemProperties.getOperatingSystemName().toLowerCase().contains("windows");
+    }
 }

@@ -21,12 +21,12 @@ public final class MixedNumber extends AbstractFraction implements IMixedNumer {
     public MixedNumber(int integerPart, int numerator, int denominator) {
         this(integerPart, new SimpleFraction(numerator, denominator));
     }
-    
+
     public MixedNumber(int integerPart, ISimpleFraction fractionPart) {
         setIntegerPart(integerPart);
         setFractionPart(fractionPart);
     }
-    
+
     @Override
     public int getIntegerPart() {
         return integerPart;
@@ -47,7 +47,7 @@ public final class MixedNumber extends AbstractFraction implements IMixedNumer {
         if (value.isImproper()) {
             throw new IllegalArgumentException();
         }
-        
+
         this.fractionPart = value;
     }
 
@@ -55,22 +55,22 @@ public final class MixedNumber extends AbstractFraction implements IMixedNumer {
     public IFraction reciprocal() {
         return new SimpleFraction(integerPart * fractionPart.getDenominator() + fractionPart.getNumerator(), fractionPart.getDenominator()).reciprocal();
     }
-    
+
     @Override
     public IFraction reduce() {
         return new SimpleFraction(integerPart * fractionPart.getDenominator() + fractionPart.getNumerator(), fractionPart.getDenominator()).reduce();
     }
-    
+
     @Override
     public float floatValue() {
-        return (float)integerPart + fractionPart.floatValue();
+        return (float) integerPart + fractionPart.floatValue();
     }
 
     @Override
     public double doubleValue() {
-        return (double)integerPart + fractionPart.doubleValue();
+        return (double) integerPart + fractionPart.doubleValue();
     }
-    
+
     @Override
     public String toString() {
         return integerPart + " " + fractionPart.toString();
@@ -124,5 +124,4 @@ public final class MixedNumber extends AbstractFraction implements IMixedNumer {
         int hash = 5;
         return hash;
     }
-    
 }

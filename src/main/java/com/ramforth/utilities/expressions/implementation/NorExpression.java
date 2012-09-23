@@ -13,8 +13,7 @@ import com.ramforth.utilities.expressions.interfaces.INorExpression;
  */
 public class NorExpression extends AbstractConditionalExpression implements INorExpression {
 
-  public NorExpression(IExpression leftChild, IExpression rightChild) {
-    super(leftChild, rightChild);
-  }
-  
+    public NorExpression(IExpression leftChild, IExpression rightChild) {
+        super(leftChild, rightChild);
+    }
 }

@@ -9,5 +9,4 @@ package com.ramforth.utilities.statements.interfaces;
  * @author Tobias Ramforth <tobias.ramforth at tu-dortmund.de>
  */
 public interface ICallStatement extends IStatement {
-  
 }

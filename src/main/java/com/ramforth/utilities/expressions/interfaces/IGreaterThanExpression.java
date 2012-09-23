@@ -9,5 +9,4 @@ package com.ramforth.utilities.expressions.interfaces;
  * @author Tobias Ramforth <tobias.ramforth at tu-dortmund.de>
  */
 public interface IGreaterThanExpression extends IConditionalExpression {
-  
 }

@@ -13,20 +13,19 @@ import com.ramforth.utilities.statements.interfaces.IIncrementStatement;
  */
 public class IncrementStatement extends AbstractStatement implements IIncrementStatement {
 
-  private IParameterExpression target;
-  
-  public IncrementStatement(IParameterExpression target) {
-    this.target = target;
-  }
+    private IParameterExpression target;
 
-  @Override
-  public IParameterExpression getTarget() {
-    return target;
-  }
+    public IncrementStatement(IParameterExpression target) {
+        this.target = target;
+    }
 
-  @Override
-  public void setTarget(IParameterExpression value) {
-    this.target = value;
-  }
-  
+    @Override
+    public IParameterExpression getTarget() {
+        return target;
+    }
+
+    @Override
+    public void setTarget(IParameterExpression value) {
+        this.target = value;
+    }
 }

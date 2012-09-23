@@ -9,10 +9,10 @@ package com.ramforth.utilities.inifile.interfaces;
  * @author Tobias Ramforth <tobias.ramforth at tu-dortmund.de>
  */
 public interface IIniFileSection extends Iterable<IIniFileEntry> {
- 
-  String getName();
-  void setName(String value);
-  
-  IIniFileEntries getEntries();
-  
+
+    String getName();
+
+    void setName(String value);
+
+    IIniFileEntries getEntries();
 }

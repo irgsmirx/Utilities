@@ -12,15 +12,14 @@ import java.io.FileFilter;
  * @author Tobias Ramforth <tobias.ramforth at tu-dortmund.de>
  */
 public class DisjunctiveFileFilter extends AbstractMultiFileFilter {
-  
-  @Override
-  public boolean accept(File pathname) {
-    for (FileFilter filter : filters) {
-      if (filter.accept(pathname)) {
-        return true;
-      }
+
+    @Override
+    public boolean accept(File pathname) {
+        for (FileFilter filter : filters) {
+            if (filter.accept(pathname)) {
+                return true;
+            }
+        }
+        return false;
     }
-    return false;
-  }
-  
 }

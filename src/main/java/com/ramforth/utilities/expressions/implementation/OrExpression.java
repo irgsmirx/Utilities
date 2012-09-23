@@ -13,8 +13,7 @@ import com.ramforth.utilities.expressions.interfaces.IOrExpression;
  */
 public class OrExpression extends AbstractConditionalExpression implements IOrExpression {
 
-  public OrExpression(IExpression leftChild, IExpression rightChild) {
-    super(leftChild, rightChild);
-  }
-  
+    public OrExpression(IExpression leftChild, IExpression rightChild) {
+        super(leftChild, rightChild);
+    }
 }

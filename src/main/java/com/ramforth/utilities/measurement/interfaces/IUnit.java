@@ -9,16 +9,20 @@ package com.ramforth.utilities.measurement.interfaces;
  * @author tobias
  */
 public interface IUnit {
-	
-	double getValue();
-	void setValue(double value);
-	
-	String getSymbol();
-	String getName();
-	
-	IUnit multiply(IUnit value);
-	IUnit divide(IUnit value);	
-	IUnit add(IUnit value);
-	IUnit subtract(IUnit value);
-	
+
+    double getValue();
+
+    void setValue(double value);
+
+    String getSymbol();
+
+    String getName();
+
+    IUnit multiply(IUnit value);
+
+    IUnit divide(IUnit value);
+
+    IUnit add(IUnit value);
+
+    IUnit subtract(IUnit value);
 }

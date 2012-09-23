@@ -16,41 +16,40 @@ import com.ramforth.utilities.inifile.interfaces.IIniFileEntry;
  */
 public class IniFileEntries implements IIniFileEntries {
 
-  protected final Map<String, IIniFileEntry> entryMap = new TreeMap<>();
-  
-  @Override
-  public Iterator<IIniFileEntry> iterator() {
-    return entryMap.values().iterator();
-  }
+    protected final Map<String, IIniFileEntry> entryMap = new TreeMap<>();
 
-  @Override
-  public void add(IIniFileEntry value) {
-    entryMap.put(value.getKey(), value);
-  }
+    @Override
+    public Iterator<IIniFileEntry> iterator() {
+        return entryMap.values().iterator();
+    }
 
-  @Override
-  public void remove(IIniFileEntry value) {
-    entryMap.remove(value.getKey());
-  }
+    @Override
+    public void add(IIniFileEntry value) {
+        entryMap.put(value.getKey(), value);
+    }
 
-  @Override
-  public void remove(String value) {
-    entryMap.remove(value);
-  }
+    @Override
+    public void remove(IIniFileEntry value) {
+        entryMap.remove(value.getKey());
+    }
 
-  @Override
-  public void clear() {
-    entryMap.clear();
-  }
+    @Override
+    public void remove(String value) {
+        entryMap.remove(value);
+    }
 
-  @Override
-  public boolean contains(IIniFileEntry value) {
-    return entryMap.containsKey(value.getKey());
-  }
+    @Override
+    public void clear() {
+        entryMap.clear();
+    }
 
-  @Override
-  public boolean contains(String value) {
-    return entryMap.containsKey(value);
-  }
-  
+    @Override
+    public boolean contains(IIniFileEntry value) {
+        return entryMap.containsKey(value.getKey());
+    }
+
+    @Override
+    public boolean contains(String value) {
+        return entryMap.containsKey(value);
+    }
 }

@@ -14,16 +14,15 @@ import java.util.regex.Pattern;
  */
 public class WildcardFileFilter implements FileFilter {
 
-  protected RegularExpressionFileFilter innerFileFilter;
-  
-  public WildcardFileFilter(String wildcardExpression) {
-    String regularExpressionPattern = wildcardExpression.replaceAll("\\?", ".").replaceAll("\\*|\\%", ".*").replaceAll("#", "[0-9]+");
-    this.innerFileFilter = new RegularExpressionFileFilter(Pattern.compile(regularExpressionPattern, Pattern.CASE_INSENSITIVE));
-  }
-  
-  @Override
-  public boolean accept(File pathname) {
-    return innerFileFilter.accept(pathname);
-  }
-  
+    protected RegularExpressionFileFilter innerFileFilter;
+
+    public WildcardFileFilter(String wildcardExpression) {
+        String regularExpressionPattern = wildcardExpression.replaceAll("\\?", ".").replaceAll("\\*|\\%", ".*").replaceAll("#", "[0-9]+");
+        this.innerFileFilter = new RegularExpressionFileFilter(Pattern.compile(regularExpressionPattern, Pattern.CASE_INSENSITIVE));
+    }
+
+    @Override
+    public boolean accept(File pathname) {
+        return innerFileFilter.accept(pathname);
+    }
 }

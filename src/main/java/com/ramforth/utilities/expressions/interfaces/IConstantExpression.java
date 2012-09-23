@@ -9,8 +9,8 @@ package com.ramforth.utilities.expressions.interfaces;
  * @author Tobias Ramforth <tobias.ramforth at tu-dortmund.de>
  */
 public interface IConstantExpression extends IExpression {
-  
-  Object getValue();
-  void setValue(Object value);
-  
+
+    Object getValue();
+
+    void setValue(Object value);
 }

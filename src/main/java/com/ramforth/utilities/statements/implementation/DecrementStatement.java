@@ -13,20 +13,19 @@ import com.ramforth.utilities.statements.interfaces.IDecrementStatement;
  */
 public class DecrementStatement extends AbstractStatement implements IDecrementStatement {
 
-  private IParameterExpression target;
-  
-  public DecrementStatement(IParameterExpression target) {
-    this.target = target;
-  }
+    private IParameterExpression target;
 
-  @Override
-  public IParameterExpression getTarget() {
-    return target;
-  }
+    public DecrementStatement(IParameterExpression target) {
+        this.target = target;
+    }
 
-  @Override
-  public void setTarget(IParameterExpression value) {
-    this.target = value;
-  }
-  
+    @Override
+    public IParameterExpression getTarget() {
+        return target;
+    }
+
+    @Override
+    public void setTarget(IParameterExpression value) {
+        this.target = value;
+    }
 }

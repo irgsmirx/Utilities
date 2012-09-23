@@ -13,32 +13,31 @@ import java.util.NoSuchElementException;
  */
 public class SingleElementIterator<T> implements Iterator<T> {
 
-	private T element;
-	private boolean iterated = false;
-	
-	public SingleElementIterator(T element) {
-		this.element = element;
-	}
-	
-	@Override
-	public boolean hasNext() {
-		return !iterated;
-	}
+    private T element;
+    private boolean iterated = false;
 
-	@Override
-	public T next() {
-		if (iterated) {
-			throw new NoSuchElementException();
-		}
-		
-		iterated = true;
-		
-		return element;
-	}
+    public SingleElementIterator(T element) {
+        this.element = element;
+    }
 
-	@Override
-	public void remove() {
-		throw new UnsupportedOperationException("Not supported.");
-	}
-	
+    @Override
+    public boolean hasNext() {
+        return !iterated;
+    }
+
+    @Override
+    public T next() {
+        if (iterated) {
+            throw new NoSuchElementException();
+        }
+
+        iterated = true;
+
+        return element;
+    }
+
+    @Override
+    public void remove() {
+        throw new UnsupportedOperationException("Not supported.");
+    }
 }

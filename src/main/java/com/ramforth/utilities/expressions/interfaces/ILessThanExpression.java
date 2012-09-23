@@ -8,6 +8,5 @@ package com.ramforth.utilities.expressions.interfaces;
  *
  * @author Tobias Ramforth <tobias.ramforth at tu-dortmund.de>
  */
-public interface ILessThanExpression extends IConditionalExpression { 
- 
+public interface ILessThanExpression extends IConditionalExpression {
 }

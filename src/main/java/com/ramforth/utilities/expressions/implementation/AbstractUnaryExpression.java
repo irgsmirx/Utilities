@@ -13,20 +13,19 @@ import com.ramforth.utilities.expressions.interfaces.IUnaryExpression;
  */
 public class AbstractUnaryExpression extends AbstractExpression implements IUnaryExpression {
 
-  protected IExpression child;
-  
-  public AbstractUnaryExpression(IExpression child) {
-    this.child = child;
-  }
-  
-  @Override
-  public IExpression getChild() {
-    return child;
-  }
+    protected IExpression child;
 
-  @Override
-  public void setChild(IExpression value) {
-    this.child = value;
-  }
-  
+    public AbstractUnaryExpression(IExpression child) {
+        this.child = child;
+    }
+
+    @Override
+    public IExpression getChild() {
+        return child;
+    }
+
+    @Override
+    public void setChild(IExpression value) {
+        this.child = value;
+    }
 }

@@ -9,7 +9,4 @@ package com.ramforth.utilities.measurement.interfaces;
  * @author tobias
  */
 public interface IWeight {
-	
-	
-	
 }

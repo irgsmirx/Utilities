@@ -13,8 +13,7 @@ import com.ramforth.utilities.expressions.interfaces.ILessThanExpression;
  */
 public class LessThanExpression extends AbstractConditionalExpression implements ILessThanExpression {
 
-  public LessThanExpression(IExpression leftChild, IExpression rightChild) {
-    super(leftChild, rightChild);
-  }
-  
+    public LessThanExpression(IExpression leftChild, IExpression rightChild) {
+        super(leftChild, rightChild);
+    }
 }

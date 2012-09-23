@@ -9,8 +9,8 @@ package com.ramforth.utilities.statements.interfaces;
  * @author Tobias Ramforth <tobias.ramforth at tu-dortmund.de>
  */
 public interface IVariableStatement extends IStatement {
-  
-  String getName();
-  void setName(String value);
-  
+
+    String getName();
+
+    void setName(String value);
 }

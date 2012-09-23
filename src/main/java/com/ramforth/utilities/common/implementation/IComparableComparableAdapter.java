@@ -13,23 +13,23 @@ import com.ramforth.utilities.common.interfaces.IComparable;
 public final class IComparableComparableAdapter implements Comparable {
 
     private IComparable adaptee;
-    
+
     public IComparableComparableAdapter(IComparable adaptee) {
         this.adaptee = adaptee;
     }
-    
+
     public final IComparable getAdaptee() {
         return adaptee;
     }
-    
+
     public void setAdaptee(IComparable value) {
         this.adaptee = value;
     }
-    
+
     @Override
     public int compareTo(Object o) {
         int result;
-        
+
         if (adaptee.isEqualTo(o)) {
             result = 0;
         } else if (adaptee.isGreaterThan(o)) {
@@ -37,8 +37,7 @@ public final class IComparableComparableAdapter implements Comparable {
         } else {
             result = -1;
         }
-        
+
         return result;
     }
-    
 }

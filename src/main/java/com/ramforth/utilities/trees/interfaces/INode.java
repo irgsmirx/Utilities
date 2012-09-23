@@ -9,5 +9,4 @@ package com.ramforth.utilities.trees.interfaces;
  * @author tobias
  */
 public interface INode {
-	
 }

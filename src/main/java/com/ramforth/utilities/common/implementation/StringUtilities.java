@@ -9,15 +9,14 @@ package com.ramforth.utilities.common.implementation;
  * @author tobias
  */
 public final class StringUtilities {
-	
-	public static final String EMPTY = "";
 
-  public static boolean isNullOrEmpty(String value) {
-    return value == null || value.isEmpty();
-  }
-  
-  public static boolean isNullOrWhitespace(String value) {
-    return value == null || value.trim().isEmpty();
-  }
-  
+    public static final String EMPTY = "";
+
+    public static boolean isNullOrEmpty(String value) {
+        return value == null || value.isEmpty();
+    }
+
+    public static boolean isNullOrWhitespace(String value) {
+        return value == null || value.trim().isEmpty();
+    }
 }

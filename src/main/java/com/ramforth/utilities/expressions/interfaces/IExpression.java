@@ -9,5 +9,4 @@ package com.ramforth.utilities.expressions.interfaces;
  * @author tobias
  */
 public interface IExpression {
-	
 }

@@ -11,11 +11,12 @@ import com.ramforth.utilities.trees.interfaces.INode;
  * @author tobias
  */
 public interface IBinaryNode extends INode {
-	
-	IBinaryNode getLeftChild();
-	void setLeftChild(IBinaryNode value);
-	
-	IBinaryNode getRightChild();
-	void setRightChild(IBinaryNode value);
-	
+
+    IBinaryNode getLeftChild();
+
+    void setLeftChild(IBinaryNode value);
+
+    IBinaryNode getRightChild();
+
+    void setRightChild(IBinaryNode value);
 }

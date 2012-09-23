@@ -19,20 +19,19 @@ public final class SimpleFraction extends AbstractFraction implements ISimpleFra
     public static ISimpleFraction TWO_THIRDS = new SimpleFraction(2, 3);
     public static ISimpleFraction QUARTER = new SimpleFraction(1, 4);
     public static ISimpleFraction THREE_QUARTERS = new SimpleFraction(3, 4);
-    
     protected int numerator;
     protected int denominator;
-    
+
     public SimpleFraction(int numerator, int denominator) {
         setNumerator(numerator);
         setDenominator(denominator);
     }
-    
+
     public SimpleFraction(int wholeIntegers, int numerator, int denominator) {
         setNumerator(wholeIntegers * denominator + numerator);
         setDenominator(denominator);
     }
-    
+
     @Override
     public int getNumerator() {
         return numerator;
@@ -53,7 +52,7 @@ public final class SimpleFraction extends AbstractFraction implements ISimpleFra
         if (value == 0) {
             throw new DivisionByZeroException();
         }
-        this.denominator = value;        
+        this.denominator = value;
     }
 
     @Override
@@ -65,45 +64,45 @@ public final class SimpleFraction extends AbstractFraction implements ISimpleFra
     public boolean isImproper() {
         return !isProper();
     }
-    
+
     @Override
     public IFraction reciprocal() {
         return new SimpleFraction(denominator, numerator);
     }
-    
+
     @Override
     public IFraction reduce() {
         int greatestCommonDivisor = greatestCommonDivisorEuclid(numerator, denominator);
 
         IFraction reduced = new SimpleFraction(numerator / greatestCommonDivisor, denominator / greatestCommonDivisor);
-       
+
         return reduced;
     }
-    
+
     @Override
     public float floatValue() {
-        return (float)numerator / (float)denominator;
+        return (float) numerator / (float) denominator;
     }
 
     @Override
     public double doubleValue() {
-        return (double)numerator / (double)denominator;
+        return (double) numerator / (double) denominator;
     }
-    
+
     @Override
     public String toString() {
         return numerator + "/" + denominator;
     }
 
     public String toMixedString() {
-        return (numerator / denominator) + " " + (numerator % denominator) + "/" + denominator;
+        return ( numerator / denominator ) + " " + ( numerator % denominator ) + "/" + denominator;
     }
-    
+
     @Override
     public IFraction add(IFraction value) {
         if (value instanceof ISimpleFraction) {
-            ISimpleFraction simpleFraction = (ISimpleFraction)value;
-            
+            ISimpleFraction simpleFraction = (ISimpleFraction) value;
+
             return new SimpleFraction(numerator * simpleFraction.getDenominator() + denominator * simpleFraction.getNumerator(), denominator * simpleFraction.getDenominator());
         } else {
             throw new UnsupportedOperationException("Not supported yet.");
@@ -113,8 +112,8 @@ public final class SimpleFraction extends AbstractFraction implements ISimpleFra
     @Override
     public IFraction subtract(IFraction value) {
         if (value instanceof ISimpleFraction) {
-            ISimpleFraction simpleFraction = (ISimpleFraction)value;
-           
+            ISimpleFraction simpleFraction = (ISimpleFraction) value;
+
             return new SimpleFraction(numerator * simpleFraction.getDenominator() - denominator * simpleFraction.getNumerator(), denominator * simpleFraction.getDenominator());
         } else {
             throw new UnsupportedOperationException("Not supported yet.");
@@ -124,13 +123,13 @@ public final class SimpleFraction extends AbstractFraction implements ISimpleFra
     @Override
     public IFraction multiply(IFraction value) {
         if (value instanceof ISimpleFraction) {
-            ISimpleFraction simpleFraction = (ISimpleFraction)value;
+            ISimpleFraction simpleFraction = (ISimpleFraction) value;
             return new SimpleFraction(numerator * simpleFraction.getNumerator(), denominator * simpleFraction.getDenominator());
         } else {
             throw new UnsupportedOperationException("Not supported yet.");
         }
     }
-    
+
     @Override
     public IFraction multiply(int value) {
         return new SimpleFraction(numerator * value, denominator);
@@ -139,8 +138,8 @@ public final class SimpleFraction extends AbstractFraction implements ISimpleFra
     @Override
     public int compareTo(IFraction o) {
         if (o instanceof ISimpleFraction) {
-            ISimpleFraction simpleFraction = (ISimpleFraction)o;
-            
+            ISimpleFraction simpleFraction = (ISimpleFraction) o;
+
             if (denominator == simpleFraction.getDenominator()) {
                 return numerator - simpleFraction.getNumerator();
             } else {
@@ -160,7 +159,7 @@ public final class SimpleFraction extends AbstractFraction implements ISimpleFra
             return false;
         }
         final SimpleFraction other = (SimpleFraction) obj;
-        
+
         return compareTo(other) == 0;
     }
 
@@ -169,5 +168,4 @@ public final class SimpleFraction extends AbstractFraction implements ISimpleFra
         int hash = 7;
         return hash;
     }
-    
 }
