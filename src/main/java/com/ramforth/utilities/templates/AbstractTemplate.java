@@ -63,4 +63,5 @@ public abstract class AbstractTemplate implements ITemplate {
                 || characterCode == '\n' || characterCode == '\f'
                 || characterCode == '\r' || characterCode == '\r';
     }
+    
 }

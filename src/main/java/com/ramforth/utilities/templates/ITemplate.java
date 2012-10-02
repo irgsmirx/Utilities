@@ -5,6 +5,7 @@
 package com.ramforth.utilities.templates;
 
 import java.io.OutputStream;
+import java.io.Reader;
 
 /**
  *
@@ -29,4 +30,5 @@ public interface ITemplate {
     String render();
 
     long getLength();
+    
 }

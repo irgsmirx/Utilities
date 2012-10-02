@@ -7,6 +7,7 @@ package com.ramforth.utilities.templates;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
@@ -46,6 +47,16 @@ public class FileTemplate extends AbstractTemplate {
         this.template = new File(filePath);
     }
 
+    private Reader tryCreateReader() {
+        try {
+            return new BufferedReader(new InputStreamReader(new FileInputStream(template)));
+        }
+        catch (FileNotFoundException fnfex) {
+            Logger.getLogger(FileTemplate.class.getName()).log(Level.SEVERE, null, fnfex);
+            throw new com.ramforth.utilities.exceptions.FileNotFoundException(fnfex);
+        }
+    }
+    
     private long renderTo(ICharRenderer renderer) {
         long length = 0;
         if (template != null) {
@@ -58,7 +69,7 @@ public class FileTemplate extends AbstractTemplate {
             String currentPlaceholderKey = null;
             Object currentValue = null;
 
-            try (Reader reader = new BufferedReader(new InputStreamReader(new FileInputStream(template)))) {
+            try (Reader reader = tryCreateReader()) {
                 int templateCharacter;
                 try {
                     while (( templateCharacter = reader.read() ) != -1) {
