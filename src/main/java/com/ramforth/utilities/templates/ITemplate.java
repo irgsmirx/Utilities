@@ -5,7 +5,6 @@
 package com.ramforth.utilities.templates;
 
 import java.io.OutputStream;
-import java.io.Reader;
 
 /**
  *
@@ -24,7 +23,7 @@ public interface ITemplate {
     void clear();
 
     int numberOfPlaceholders();
-
+    
     long renderTo(OutputStream outputStream);
 
     String render();
