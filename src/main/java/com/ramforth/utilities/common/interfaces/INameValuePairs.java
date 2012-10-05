@@ -31,4 +31,7 @@ public interface INameValuePairs extends Iterable<NameValuePair> {
     NameValuePair getAt(int index);
 
     String getValue(String name);
+    
+    void set(String name, String value);
+    
 }

@@ -4,10 +4,10 @@
  */
 package com.ramforth.utilities.common.implementation;
 
+import com.ramforth.utilities.common.interfaces.INameValuePairs;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import com.ramforth.utilities.common.interfaces.INameValuePairs;
 
 /**
  *
@@ -86,4 +86,20 @@ public class NameValuePairs implements INameValuePairs {
     public Iterator<NameValuePair> iterator() {
         return pairs.iterator();
     }
+    
+    @Override
+    public void set(String name, String value) {
+        boolean found = false;
+        for (NameValuePair nameValuePair : pairs) {
+            if (nameValuePair.getName().equals(name)) {
+                nameValuePair.setValue(value);
+                found = true;
+                break;
+            }
+        }
+        if (!found) {
+            throw new RuntimeException("Name not found!");
+        }
+    }
+    
 }
