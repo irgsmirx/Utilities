@@ -5,6 +5,7 @@
 package com.ramforth.utilities.common.implementation;
 
 import com.ramforth.utilities.common.interfaces.INameValuePairs;
+import com.ramforth.utilities.exceptions.NoSuchElementException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -68,6 +69,16 @@ public class NameValuePairs implements INameValuePairs {
     }
 
     @Override
+    public NameValuePair get(String name) {
+        for (NameValuePair pair : pairs) {
+            if (pair.getName().equals(name)) {
+                return pair;
+            }
+        }
+        throw new NoSuchElementException("Name not found!");
+    }
+    
+    @Override
     public NameValuePair getAt(int index) {
         return pairs.get(index);
     }
@@ -79,7 +90,7 @@ public class NameValuePairs implements INameValuePairs {
                 return pair.getValue();
             }
         }
-        throw new RuntimeException("Name not found!");
+        throw new NoSuchElementException("Name not found!");
     }
 
     @Override
@@ -98,7 +109,7 @@ public class NameValuePairs implements INameValuePairs {
             }
         }
         if (!found) {
-            throw new RuntimeException("Name not found!");
+            throw new NoSuchElementException("Name not found!");
         }
     }
     

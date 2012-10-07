@@ -28,6 +28,8 @@ public interface INameValuePairs extends Iterable<NameValuePair> {
 
     boolean contains(String name);
 
+    NameValuePair get(String name);
+    
     NameValuePair getAt(int index);
 
     String getValue(String name);

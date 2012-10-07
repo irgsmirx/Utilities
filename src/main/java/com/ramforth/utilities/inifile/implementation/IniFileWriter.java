@@ -30,7 +30,7 @@ public class IniFileWriter implements IIniFileWriter {
 
     @Override
     public void write(IIniFile iniFile) {
-        PrintWriter printWriter = new PrintWriter(outputStream);
+        PrintWriter printWriter = new PrintWriter(outputStream, true);
 
         writeSection(printWriter, iniFile.getRootSection());
         writeSections(printWriter, iniFile.getSections());
@@ -62,8 +62,10 @@ public class IniFileWriter implements IIniFileWriter {
     }
 
     private void writeSection(PrintWriter printWriter, IIniFileSection section) {
-        writeSectionName(printWriter, section.getName());
-        writeSectionEntries(printWriter, section.getEntries());
+        if (section.getName() != null) {
+            writeSectionName(printWriter, section.getName());
+            writeSectionEntries(printWriter, section.getEntries());
+        }
     }
 
     private void writeSectionName(PrintWriter printWriter, String name) {

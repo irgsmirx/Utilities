@@ -1,0 +1,110 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.ramforth.utilities.inifile.implementation;
+
+import com.ramforth.utilities.inifile.interfaces.IIniFile;
+import com.ramforth.utilities.inifile.interfaces.IIniFileEntry;
+import com.ramforth.utilities.inifile.interfaces.IIniFileSection;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import static org.junit.Assert.*;
+
+/**
+ *
+ * @author Tobias Ramforth <tobias.ramforth at tu-dortmund.de>
+ */
+public class IniFileWriterTest {
+    
+    public IniFileWriterTest() {
+    }
+    
+    @BeforeClass
+    public static void setUpClass() {
+    }
+    
+    @AfterClass
+    public static void tearDownClass() {
+    }
+    
+    @Before
+    public void setUp() {
+    }
+    
+    @After
+    public void tearDown() {
+    }
+
+    /**
+     * Test of write method, of class IniFileWriter.
+     */
+    @Test
+    public void testWrite() {
+        try {
+            File f = File.createTempFile("Test", "Test");
+            
+            System.out.println("write");
+            IIniFile iniFile = new IniFile();
+            IIniFileSection testSection = new IniFileSection("Test");
+            
+            IIniFileEntry testEntry = new IniFileEntry("TestName", "TestValue");
+            testSection.getEntries().add(testEntry);
+            
+            iniFile.getSections().add(testSection);
+            IniFileWriter instance = new IniFileWriter(new FileOutputStream(f));
+            instance.write(iniFile);
+            
+            
+            IniFileReader iniFileReader = new IniFileReader();
+            
+            IIniFile iniFile2 = iniFileReader.parse(new FileInputStream(f));
+            
+            assertTrue(iniFile2.getSections().contains("Test"));            
+        }
+        catch (FileNotFoundException ex) {
+            Logger.getLogger(IniFileWriterTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        catch (IOException ex) {
+            Logger.getLogger(IniFileWriterTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+
+    /**
+     * Test of setCloseStreamWhenDone method, of class IniFileWriter.
+     */
+    @Test
+    public void testSetCloseStreamWhenDone() {
+        System.out.println("setCloseStreamWhenDone");
+        boolean value = false;
+        IniFileWriter instance = null;
+        instance.setCloseStreamWhenDone(value);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of isCloseStreamWhenDone method, of class IniFileWriter.
+     */
+    @Test
+    public void testIsCloseStreamWhenDone() {
+        System.out.println("isCloseStreamWhenDone");
+        IniFileWriter instance = null;
+        boolean expResult = false;
+        boolean result = instance.isCloseStreamWhenDone();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+}
