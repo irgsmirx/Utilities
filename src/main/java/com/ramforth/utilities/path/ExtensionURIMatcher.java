@@ -4,18 +4,19 @@
  */
 package com.ramforth.utilities.path;
 
-import java.io.File;
-import java.io.FileFilter;
+import java.net.URI;
+import java.nio.file.Files;
+import java.nio.file.PathMatcher;
 
 /**
  *
  * @author Tobias Ramforth <tobias.ramforth at tu-dortmund.de>
  */
-public class ExtensionFileFilter implements FileFilter {
+public class ExtensionURIMatcher implements IURIMatcher {
 
     private String extension;
 
-    public ExtensionFileFilter(String extension) {
+    public ExtensionURIMatcher(String extension) {
         if (extension.startsWith(".")) {
             this.extension = extension.substring(1).toLowerCase();
         } else {
@@ -24,7 +25,7 @@ public class ExtensionFileFilter implements FileFilter {
     }
 
     @Override
-    public boolean accept(File pathname) {
-        return pathname.isFile() && pathname.getName().toLowerCase().endsWith("." + extension);
+    public boolean matches(URI uri) {
+        return UriUtilities.getLastPathElementFromURI(uri).toLowerCase().endsWith("." + extension);
     }
 }

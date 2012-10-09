@@ -17,11 +17,7 @@ public class PathMatchers {
     public static final PathMatcher FILE = new FilePathMatcher();
 
     public static PathMatcher extension(String extension) {
-        if (extension.startsWith(".")) {
-            return glob(String.format("*.%s", extension.substring(1)));
-        } else {
-            return glob(String.format("*.%s", extension));
-        }
+        return new ExtensionPathMatcher(extension);
     }
 
     public static PathMatcher glob(String pattern) {

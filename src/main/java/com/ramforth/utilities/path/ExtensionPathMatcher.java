@@ -17,9 +17,9 @@ public class ExtensionPathMatcher implements PathMatcher {
 
     public ExtensionPathMatcher(String extension) {
         if (extension.startsWith(".")) {
-            this.extension = extension.substring(1);
+            this.extension = extension.substring(1).toLowerCase();
         } else {
-            this.extension = extension;
+            this.extension = extension.toLowerCase();
         }
     }
 
