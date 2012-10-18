@@ -161,21 +161,12 @@ public class Path {
     }
 
     public static String getNameWithoutExtensionFromFilename(String filename) {
-        int length = filename.length();
-
-        int num = length - 1;
-        int indexOfDot = -1;
-        while (num >= 0) {
-            int c = filename.codePointAt(num);
-            if (c == '.') {
-                indexOfDot = num;
-            }
-            if (c == SystemProperties.getFileSeparator().codePointAt(0)) {
-                return filename.substring(num + 1, indexOfDot);
-            }
-            num--;
+        int lastIndexOfDot = filename.lastIndexOf('.');
+        
+        if (lastIndexOfDot > 0) {
+            return filename.substring(0, lastIndexOfDot);
+        } else {
+            return filename;
         }
-
-        return StringUtilities.EMPTY;
     }
 }
