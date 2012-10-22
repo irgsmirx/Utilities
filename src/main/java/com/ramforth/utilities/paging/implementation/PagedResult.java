@@ -14,7 +14,7 @@ public class PagedResult<TItem> implements IPagedResult<TItem> {
 
     private int currentPage = 0;
     private Iterable<TItem> currentItems;
-    private int numberOfItemsPerPage = 0;
+    private int numberOfItemsPerPage = 10;
     private int totalNumberOfItems = 0;
     
     public PagedResult(int currentPage, Iterable<TItem> currentItems, int numberOfItemsPerPage, int totalNumberOfItems) {
