@@ -142,6 +142,13 @@ public class Path {
         }
     }
 
+	/**
+	 * @param filename
+	 * @return
+	 *
+	 * @deprecated Use FilenameUtils#getExtension from apache-commons-io instead
+	 */
+	@Deprecated
     public static String getFileExtensionFromFilename(String filename) {
         int length = filename.length();
 
