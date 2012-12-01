@@ -14,6 +14,8 @@ import java.io.OutputStream;
 import java.io.Reader;
 import java.lang.reflect.Array;
 import java.lang.reflect.Field;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
@@ -39,7 +41,18 @@ public class FileTemplate extends AbstractTemplate {
 
     public FileTemplate(String filePath) {
         super();
-        this.template = new File(filePath);
+	    URL url = this.getClass().getClassLoader().getResource(filePath);
+	    try {
+		    if (url != null) {
+			    this.template = new File(url.toURI());
+		    }
+		    else {
+			    throw new IllegalArgumentException("Unable to find file " + filePath);
+		    }
+	    }
+	    catch (URISyntaxException e) {
+		    throw new com.ramforth.utilities.exceptions.URISyntaxException(e);
+	    }
     }
 
     public FileTemplate(String filePath, char placeholderBeginTag, char placeholderEndTag, String escapeCharacter) {
