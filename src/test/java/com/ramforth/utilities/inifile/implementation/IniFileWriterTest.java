@@ -7,18 +7,12 @@ package com.ramforth.utilities.inifile.implementation;
 import com.ramforth.utilities.inifile.interfaces.IIniFile;
 import com.ramforth.utilities.inifile.interfaces.IIniFileEntry;
 import com.ramforth.utilities.inifile.interfaces.IIniFileSection;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.io.*;
+
 import static org.junit.Assert.*;
 
 /**
@@ -26,7 +20,9 @@ import static org.junit.Assert.*;
  * @author Tobias Ramforth <tobias.ramforth at tu-dortmund.de>
  */
 public class IniFileWriterTest {
-    
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(IniFileWriterTest.class);
+
     public IniFileWriterTest() {
     }
     
@@ -73,10 +69,10 @@ public class IniFileWriterTest {
             assertTrue(iniFile2.getSections().contains("Test"));            
         }
         catch (FileNotFoundException ex) {
-            Logger.getLogger(IniFileWriterTest.class.getName()).log(Level.SEVERE, null, ex);
+            LOGGER.warn("Error", ex); //TODO Enter precise error message
         }
         catch (IOException ex) {
-            Logger.getLogger(IniFileWriterTest.class.getName()).log(Level.SEVERE, null, ex);
+            LOGGER.warn("Error", ex); //TODO Enter precise error message
         }
         
     }

@@ -4,22 +4,16 @@
  */
 package com.ramforth.utilities.templates;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.Reader;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.io.*;
 import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -27,6 +21,7 @@ import java.util.logging.Logger;
  */
 public class FileTemplate extends AbstractTemplate {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(FileTemplate.class);
     private File template;
 
     public FileTemplate(File file) {
@@ -65,7 +60,7 @@ public class FileTemplate extends AbstractTemplate {
             return new BufferedReader(new InputStreamReader(new FileInputStream(template)));
         }
         catch (FileNotFoundException fnfex) {
-            Logger.getLogger(FileTemplate.class.getName()).log(Level.SEVERE, null, fnfex);
+            LOGGER.warn("Error", fnfex); //TODO Enter precise error message
             throw new com.ramforth.utilities.exceptions.FileNotFoundException(fnfex);
         }
     }
@@ -202,7 +197,7 @@ public class FileTemplate extends AbstractTemplate {
                     }
                 }
                 catch (IOException ioex) {
-                    Logger.getLogger(StringTemplate.class.getName()).log(Level.SEVERE, null, ioex);
+                    LOGGER.warn("Error", ioex); //TODO Enter precise error message
                     throw new com.ramforth.utilities.exceptions.IOException(ioex);
                 }
 
@@ -210,12 +205,12 @@ public class FileTemplate extends AbstractTemplate {
                     reader.close();
                 }
                 catch (IOException ioex) {
-                    Logger.getLogger(InputStreamTemplate.class.getName()).log(Level.SEVERE, null, ioex);
+                    LOGGER.warn("Error", ioex); //TODO Enter precise error message
                     throw new com.ramforth.utilities.exceptions.IOException(ioex);
                 }
             }
             catch (IOException ioex) {
-                Logger.getLogger(InputStreamTemplate.class.getName()).log(Level.SEVERE, null, ioex);
+                LOGGER.warn("Error", ioex); //TODO Enter precise error message
                 throw new com.ramforth.utilities.exceptions.IOException(ioex);
             }
         }

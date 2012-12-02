@@ -5,20 +5,23 @@
 package com.ramforth.utilities.templates;
 
 import com.ramforth.utilities.common.interfaces.IVisitor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
  * @author ramforth
  */
 public class ReflectionUtilities {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(ReflectionUtilities.class);
 
     public static void visitMethodsOf(Class<?> type, IVisitor<Method> visitor) {
         Class<?> currentClass = type;
@@ -205,11 +208,11 @@ public class ReflectionUtilities {
             return field.get(target);
         }
         catch (IllegalArgumentException iaex) {
-            Logger.getLogger(ReflectionUtilities.class.getName()).log(Level.SEVERE, null, iaex);
+            LOGGER.warn("Error", iaex); //TODO Enter precise error message
             throw new com.ramforth.utilities.exceptions.IllegalArgumentException(iaex);
         }
         catch (IllegalAccessException iaex) {
-            Logger.getLogger(ReflectionUtilities.class.getName()).log(Level.SEVERE, null, iaex);
+            LOGGER.warn("Error", iaex); //TODO Enter precise error message
             throw new com.ramforth.utilities.exceptions.IllegalAccessException(iaex);
         }
     }
@@ -219,11 +222,11 @@ public class ReflectionUtilities {
             field.set(target, value);
         }
         catch (IllegalArgumentException iaex) {
-            Logger.getLogger(ReflectionUtilities.class.getName()).log(Level.SEVERE, null, iaex);
+            LOGGER.warn("Error", iaex); //TODO Enter precise error message
             throw new com.ramforth.utilities.exceptions.IllegalArgumentException(iaex);
         }
         catch (IllegalAccessException iaex) {
-            Logger.getLogger(ReflectionUtilities.class.getName()).log(Level.SEVERE, null, iaex);
+            LOGGER.warn("Error", iaex); //TODO Enter precise error message
             throw new com.ramforth.utilities.exceptions.IllegalAccessException(iaex);
         }
     }
@@ -237,23 +240,23 @@ public class ReflectionUtilities {
             return method.invoke(target, arguments);
         }
         catch (IllegalAccessException iaex) {
-            Logger.getLogger(ReflectionUtilities.class.getName()).log(Level.SEVERE, null, iaex);
+            LOGGER.warn("Error", iaex); //TODO Enter precise error message
             throw new com.ramforth.utilities.exceptions.IllegalAccessException(iaex);
         }
         catch (IllegalArgumentException iaex) {
-            Logger.getLogger(ReflectionUtilities.class.getName()).log(Level.SEVERE, null, iaex);
+            LOGGER.warn("Error", iaex); //TODO Enter precise error message
             throw new com.ramforth.utilities.exceptions.IllegalArgumentException(iaex);
         }
         catch (InvocationTargetException itex) {
-            Logger.getLogger(ReflectionUtilities.class.getName()).log(Level.SEVERE, null, itex);
+            LOGGER.warn("Error", itex); //TODO Enter precise error message
             throw new com.ramforth.utilities.exceptions.InvocationTargetException(itex);
         }
         catch (NullPointerException npex) {
-            Logger.getLogger(ReflectionUtilities.class.getName()).log(Level.SEVERE, null, npex);
+            LOGGER.warn("Error", npex); //TODO Enter precise error message
             throw new com.ramforth.utilities.exceptions.NullPointerException(npex);
         }
         catch (ExceptionInInitializerError eiiex) {
-            Logger.getLogger(ReflectionUtilities.class.getName()).log(Level.SEVERE, null, eiiex);
+            LOGGER.warn("Error", eiiex); //TODO Enter precise error message
             throw new com.ramforth.utilities.exceptions.ExceptionInInitializerError(eiiex);
         }
     }

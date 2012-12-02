@@ -4,21 +4,15 @@
  */
 package com.ramforth.utilities.templates;
 
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.Reader;
-import java.io.StringReader;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.io.*;
 import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -26,6 +20,7 @@ import java.util.logging.Logger;
  */
 public class StringTemplate extends AbstractTemplate {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(StringTemplate.class);
     private String template;
 
     public StringTemplate(String template) {
@@ -169,7 +164,7 @@ public class StringTemplate extends AbstractTemplate {
                     }
                 }
                 catch (IOException ioex) {
-                    Logger.getLogger(StringTemplate.class.getName()).log(Level.SEVERE, null, ioex);
+                    LOGGER.warn("Error", ioex); //TODO Enter precise error message
                     throw new com.ramforth.utilities.exceptions.IOException(ioex);
                 }
 
@@ -177,12 +172,12 @@ public class StringTemplate extends AbstractTemplate {
                     reader.close();
                 }
                 catch (IOException ioex) {
-                    Logger.getLogger(InputStreamTemplate.class.getName()).log(Level.SEVERE, null, ioex);
+                    LOGGER.warn("Error", ioex); //TODO Enter precise error message
                     throw new com.ramforth.utilities.exceptions.IOException(ioex);
                 }
             }
             catch (IOException ioex) {
-                Logger.getLogger(InputStreamTemplate.class.getName()).log(Level.SEVERE, null, ioex);
+                LOGGER.warn("Error", ioex); //TODO Enter precise error message
                 throw new com.ramforth.utilities.exceptions.IOException(ioex);
             }
         } 

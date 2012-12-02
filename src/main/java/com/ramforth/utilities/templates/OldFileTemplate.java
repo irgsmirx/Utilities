@@ -4,12 +4,13 @@
  */
 package com.ramforth.utilities.templates;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.OutputStream;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -17,6 +18,7 @@ import java.util.logging.Logger;
  */
 public class OldFileTemplate extends AbstractTemplate {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(OldFileTemplate.class);
     private File template;
 
     public OldFileTemplate(File file) {
@@ -46,7 +48,7 @@ public class OldFileTemplate extends AbstractTemplate {
             return inputStreamTemplate;
         }
         catch (FileNotFoundException ex) {
-            Logger.getLogger(OldFileTemplate.class.getName()).log(Level.SEVERE, null, ex);
+            LOGGER.warn("Error", ex); //TODO Enter precise error message
             throw new RuntimeException(ex);
         }
     }

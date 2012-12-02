@@ -4,10 +4,11 @@
  */
 package com.ramforth.utilities.templates;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.IOException;
 import java.io.OutputStream;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -15,6 +16,7 @@ import java.util.logging.Logger;
  */
 public class OutputStreamRenderer implements ICharRenderer {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(OutputStreamRenderer.class);
     private OutputStream outputStream;
 
     public OutputStreamRenderer(OutputStream os) {
@@ -27,7 +29,7 @@ public class OutputStreamRenderer implements ICharRenderer {
             outputStream.write(c);
         }
         catch (IOException ioex) {
-            Logger.getLogger(OutputStreamRenderer.class.getName()).log(Level.SEVERE, null, ioex);
+            LOGGER.warn("Error", ioex); //TODO Enter precise error message
             throw new com.ramforth.utilities.exceptions.IOException(ioex);
         }
     }
@@ -38,7 +40,7 @@ public class OutputStreamRenderer implements ICharRenderer {
             outputStream.write(s.getBytes());
         }
         catch (IOException ioex) {
-            Logger.getLogger(OutputStreamRenderer.class.getName()).log(Level.SEVERE, null, ioex);
+            LOGGER.warn("Error", ioex); //TODO Enter precise error message
             throw new com.ramforth.utilities.exceptions.IOException(ioex);
         }
     }
