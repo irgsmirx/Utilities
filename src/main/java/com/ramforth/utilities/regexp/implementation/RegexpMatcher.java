@@ -13,12 +13,11 @@ import com.ramforth.utilities.regexp.interfaces.IRegexpMatcher;
 public class RegexpMatcher implements IRegexpMatcher {
 
     private String value;
-    private int valueLength;
     private int currentPosition = -1;
 
     public RegexpMatcher(String value) {
         this.value = value;
-        this.valueLength = value.length();
+        int valueLength = value.length();
     }
 
     private int nextCharacter() {

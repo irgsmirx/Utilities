@@ -4,8 +4,8 @@
  */
 package com.ramforth.utilities.path;
 
-import java.nio.file.PathMatcher;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -22,9 +22,7 @@ public abstract class AbstractMultiURIMatcher implements IURIMatcher {
 
     public AbstractMultiURIMatcher(IURIMatcher... matchers) {
         this();
-        for (IURIMatcher matcher : matchers) {
-            this.matchers.add(matcher);
-        }
+        Collections.addAll(this.matchers, matchers);
     }
 
     public void addMatcher(IURIMatcher value) {

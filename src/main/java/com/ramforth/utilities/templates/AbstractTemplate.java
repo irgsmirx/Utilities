@@ -61,7 +61,7 @@ public abstract class AbstractTemplate implements ITemplate {
     public boolean isControlCharacter(int characterCode) {
         return characterCode == '\b' || characterCode == '\t'
                 || characterCode == '\n' || characterCode == '\f'
-                || characterCode == '\r' || characterCode == '\r';
+                || characterCode == '\r';
     }
     
 }

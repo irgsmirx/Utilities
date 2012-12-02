@@ -7,6 +7,7 @@ package com.ramforth.utilities.path;
 import java.io.File;
 import java.io.FileFilter;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -38,8 +39,6 @@ public class RecursiveFileCollector {
             searchRecursively(subDirectory, searchParametersFileFilter);
         }
 
-        for (File mediaFile : rootDirectory.listFiles(searchParametersFileFilter)) {
-            files.add(mediaFile);
-        }
+        Collections.addAll(files, rootDirectory.listFiles(searchParametersFileFilter));
     }
 }

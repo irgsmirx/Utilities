@@ -6,6 +6,7 @@ package com.ramforth.utilities.path;
 
 import java.nio.file.PathMatcher;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -22,9 +23,7 @@ public abstract class AbstractMultiPathMatcher implements PathMatcher {
 
     public AbstractMultiPathMatcher(PathMatcher... matchers) {
         this();
-        for (PathMatcher matcher : matchers) {
-            this.matchers.add(matcher);
-        }
+        Collections.addAll(this.matchers, matchers);
     }
 
     public void addMatcher(PathMatcher value) {
