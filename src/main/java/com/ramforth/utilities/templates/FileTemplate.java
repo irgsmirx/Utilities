@@ -4,9 +4,6 @@
  */
 package com.ramforth.utilities.templates;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.io.*;
 import java.lang.reflect.Array;
 import java.lang.reflect.Field;
@@ -14,6 +11,8 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.List;
 import java.util.Map;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  *
