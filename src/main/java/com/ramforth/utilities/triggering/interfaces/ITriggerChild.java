@@ -8,10 +8,8 @@ package com.ramforth.utilities.triggering.interfaces;
  *
  * @author tobias
  */
-public interface ITriggerChild {
+public interface ITriggerChild extends IFormatStringProvider {
     
     ITrigger getParent();
-    
-    String getFormatString();
     
 }

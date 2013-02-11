@@ -19,5 +19,5 @@ public class NorEvent extends AbstractBinaryEvent {
     public String getFormatString() {
         return "NEITHER {leftChildEvent} NOR {rightChildEvent}";
     }
-    
+
 }

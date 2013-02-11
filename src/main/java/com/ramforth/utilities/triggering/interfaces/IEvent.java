@@ -11,5 +11,6 @@ package com.ramforth.utilities.triggering.interfaces;
 public interface IEvent extends ITriggerChild {
     
     boolean occurred();
+    void reset();
     
 }

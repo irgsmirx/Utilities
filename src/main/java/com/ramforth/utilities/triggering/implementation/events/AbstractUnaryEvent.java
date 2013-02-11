@@ -22,4 +22,9 @@ public abstract class AbstractUnaryEvent extends AbstractEvent {
         this.childEvent = value;
     }
     
+    @Override
+    public void reset() {
+        childEvent.reset();
+    }
+    
 }

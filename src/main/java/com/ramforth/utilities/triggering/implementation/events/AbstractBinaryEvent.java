@@ -31,4 +31,10 @@ public abstract class AbstractBinaryEvent extends AbstractEvent {
         this.rightChildEvent = value;
     }
     
+    @Override
+    public void reset() {
+        leftChildEvent.reset();
+        rightChildEvent.reset();
+    }
+    
 }

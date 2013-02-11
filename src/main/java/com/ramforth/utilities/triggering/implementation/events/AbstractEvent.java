@@ -16,4 +16,7 @@ public abstract class AbstractEvent extends AbstractTriggerChild  implements IEv
     @Override
     public abstract boolean occurred();
     
+    @Override
+    public abstract void reset();
+    
 }

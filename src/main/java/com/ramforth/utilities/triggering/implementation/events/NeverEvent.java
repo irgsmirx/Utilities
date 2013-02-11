@@ -19,5 +19,9 @@ public class NeverEvent extends AbstractEvent {
     public String getFormatString() {
         return "NEVER";
     }
+
+    @Override
+    public void reset() {
+    }    
     
 }
