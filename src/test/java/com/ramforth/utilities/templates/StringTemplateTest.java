@@ -86,9 +86,9 @@ public class StringTemplateTest {
         String templateString = "Dies ist ein {test[0]}.";
         StringTemplate instance = new StringTemplate(templateString);
 
-        instance.add("test", new String[]{"Test"});
+        instance.add("test", new String[]{ "Test" });
 
-        String expResult = "Dies ist ein wirklich ganz toller Test.";
+        String expResult = "Dies ist ein Test.";
         String result = instance.render();
         assertEquals(expResult, result);
     }

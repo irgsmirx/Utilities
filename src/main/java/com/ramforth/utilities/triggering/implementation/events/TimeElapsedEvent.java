@@ -49,6 +49,6 @@ public class TimeElapsedEvent extends AbstractEvent {
 
     @Override
     public String getFormatString() {
-        return "Nach {Time}";
+        return "Nach {time}";
     }
 }

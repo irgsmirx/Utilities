@@ -84,10 +84,9 @@ public class IniFileWriterTest {
     public void testSetCloseStreamWhenDone() {
         System.out.println("setCloseStreamWhenDone");
         boolean value = false;
-        IniFileWriter instance = null;
+        IniFileWriter instance = new IniFileWriter(null);
         instance.setCloseStreamWhenDone(value);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertFalse(instance.isCloseStreamWhenDone());
     }
 
     /**
@@ -96,11 +95,16 @@ public class IniFileWriterTest {
     @Test
     public void testIsCloseStreamWhenDone() {
         System.out.println("isCloseStreamWhenDone");
-        IniFileWriter instance = null;
+        IniFileWriter instance = new IniFileWriter(null);
+        instance.setCloseStreamWhenDone(false);
         boolean expResult = false;
         boolean result = instance.isCloseStreamWhenDone();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        
+        instance.setCloseStreamWhenDone(true);
+        expResult = true;
+        result = instance.isCloseStreamWhenDone();
+        assertEquals(expResult, result);
     }
 }

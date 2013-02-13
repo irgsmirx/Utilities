@@ -120,15 +120,20 @@ public class FileTemplate extends AbstractTemplate {
                         } else if (templateCharacter == '[') {
                             String propertyName = sb.toString();
                             if (inPlaceholder) {
-                                currentField = ReflectionUtilities.findFieldIn(currentValue.getClass(), propertyName);
-                                currentValue = ReflectionUtilities.getFieldValueFrom(currentField, currentValue);
+                                if (currentValue == null) {
+                                    currentValue = placeholderMap.get(propertyName);
+                                } else {
+                                    Field field = ReflectionUtilities.findFieldIn(currentValue.getClass(), propertyName);
+                                    currentValue = ReflectionUtilities.getFieldValueFrom(field, currentValue);
+                                    currentPlaceholderKey = propertyName;
+                                }
                                 sb.setLength(0);
 
                                 inIndexer = true;
                             } else {
                                 renderer.render((char) templateCharacter);
                                 length++;
-                            }
+                            }                                
                         } else if (templateCharacter == ']') {
                             if (inPlaceholder) {
                                 if (inIndexer) {

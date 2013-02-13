@@ -71,6 +71,7 @@ public class AbstractBinaryEventTest {
         System.out.println("getRightChildEvent");
         AbstractBinaryEvent instance = new AbstractBinaryEventImpl();
         IEvent rightChildEvent = new AbstractBinaryEventImpl();
+        instance.setRigthChildEvent(rightChildEvent);
         IEvent expResult = rightChildEvent;
         IEvent result = instance.getRightChildEvent();
         assertEquals(expResult, result);
