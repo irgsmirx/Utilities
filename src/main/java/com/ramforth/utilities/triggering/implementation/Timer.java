@@ -66,7 +66,9 @@ public class Timer implements ITimer {
 
   @Override
   public void tick(long time) {
-    throw new UnsupportedOperationException("Not supported yet.");
+    for (ITickable tickable : tickables) {
+        tickable.tick();
+    }
   }
 
   @Override

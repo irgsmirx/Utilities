@@ -7,5 +7,6 @@ package com.ramforth.utilities.triggering.interfaces;
 public interface ITickable {
   
   boolean tick();
+  boolean tick(long milliseconds);
   
 }
