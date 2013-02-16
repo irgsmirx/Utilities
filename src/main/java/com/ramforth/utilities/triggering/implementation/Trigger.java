@@ -30,6 +30,20 @@ public class Trigger implements ITrigger/*, IXmlSerializable*/ {
         addCondition(c);
         addAction(a);
     }
+    
+    public Trigger(String name, IEvent[] events, ICondition[] conditions, IAction[] actions) {
+        this(name);
+
+        for (IEvent e : events) {
+            addEvent(e);
+        }
+        for (ICondition c : conditions) {
+            addCondition(c);
+        }
+        for (IAction a : actions) {
+            addAction(a);
+        }
+    }
 
 //    #region ITrigger Members
     @Override
@@ -47,6 +61,7 @@ public class Trigger implements ITrigger/*, IXmlSerializable*/ {
         clearActions();
         clearConditions();
         clearEvents();
+        clearVariables();
     }
 
     @Override
@@ -65,7 +80,7 @@ public class Trigger implements ITrigger/*, IXmlSerializable*/ {
         }
 
         if (eventsOccurred) {
-            Boolean conditionsMet = true;
+            boolean conditionsMet = true;
             for (ICondition condition : conditions) {
                 try {
                     if (!condition.isMet()) {

@@ -302,7 +302,25 @@ public class IfThenElseActionTest {
         assertTrue(((AbstractActionImpl)instance.getThenActions().iterator().next()).performed);
         assertFalse(((AbstractActionImpl)instance.getElseActions().iterator().next()).performed);
     }
-
+    /**
+     * Test of perform method, of class IfThenElseAction.
+     */
+    @Test
+    public void testPerformIfOnlyOneConditionIsMet() {
+        System.out.println("perform (only one condition is met)");
+        IfThenElseAction instance = new IfThenElseAction();
+        
+        instance.addCondition(new AbstractConditionImpl(true));
+        instance.addCondition(new AbstractConditionImpl(false));
+        instance.addThenAction(new AbstractActionImpl());
+        instance.addElseAction(new AbstractActionImpl());
+        
+        instance.perform();
+        
+        assertFalse(((AbstractActionImpl)instance.getThenActions().iterator().next()).performed);
+        assertTrue(((AbstractActionImpl)instance.getElseActions().iterator().next()).performed);
+    }
+    
     /**
      * Test of perform method, of class IfThenElseAction.
      */
@@ -320,7 +338,6 @@ public class IfThenElseActionTest {
         assertFalse(((AbstractActionImpl)instance.getThenActions().iterator().next()).performed);
         assertTrue(((AbstractActionImpl)instance.getElseActions().iterator().next()).performed);
     }
-    
     
     /**
      * Test of getFormatString method, of class IfThenElseAction.

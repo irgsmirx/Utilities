@@ -4,10 +4,16 @@
  */
 package com.ramforth.utilities.triggering.implementation;
 
+import com.ramforth.utilities.triggering.implementation.actions.AbstractAction;
+import com.ramforth.utilities.triggering.implementation.actions.IfThenElseActionTest;
+import com.ramforth.utilities.triggering.implementation.conditions.AbstractCondition;
+import com.ramforth.utilities.triggering.implementation.events.AbstractEvent;
+import com.ramforth.utilities.triggering.implementation.variables.AbstractVariable;
 import com.ramforth.utilities.triggering.interfaces.IAction;
 import com.ramforth.utilities.triggering.interfaces.ICondition;
 import com.ramforth.utilities.triggering.interfaces.IEvent;
 import com.ramforth.utilities.triggering.interfaces.IVariable;
+import java.util.Iterator;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -72,23 +78,145 @@ public class TriggerTest {
     public void testClear() {
         System.out.println("clear");
         Trigger instance = new Trigger();
+        
+        instance.addAction(new AbstractActionImpl());
+        instance.addCondition(new AbstractConditionImpl(true));
+        instance.addEvent(new AbstractEventImpl(true));
+        instance.addVariable(new AbstractVariableImpl());
+        
         instance.clear();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        assertFalse(instance.getActions().iterator().hasNext());
+        assertFalse(instance.getConditions().iterator().hasNext());
+        assertFalse(instance.getEvents().iterator().hasNext());
+        assertFalse(instance.getVariables().iterator().hasNext());
     }
 
     /**
      * Test of evaluate method, of class Trigger.
      */
     @Test
-    public void testEvaluate() {
-        System.out.println("evaluate");
+    public void testEvaluatePerformed() {
+        System.out.println("evaluate performed");
         Trigger instance = new Trigger();
+        
+        AbstractActionImpl action = new AbstractActionImpl();
+        
+        instance.addEvent(new AbstractEventImpl(true));
+        instance.addCondition(new AbstractConditionImpl(true));
+        instance.addAction(action);
+        
         instance.evaluate();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        assertTrue(action.performed);
     }
 
+    /**
+     * Test of evaluate method, of class Trigger.
+     */
+    @Test
+    public void testEvaluatePerformedMultipleEvents() {
+        System.out.println("evaluate performed");
+        Trigger instance = new Trigger();
+        
+        AbstractActionImpl action = new AbstractActionImpl();
+        
+        instance.addEvent(new AbstractEventImpl(true));
+        instance.addEvent(new AbstractEventImpl(false));
+        instance.addEvent(new AbstractEventImpl(true));
+        instance.addEvent(new AbstractEventImpl(false));
+        instance.addCondition(new AbstractConditionImpl(true));
+        instance.addAction(action);
+        
+        instance.evaluate();
+        
+        assertTrue(action.performed);
+    }
+
+    /**
+     * Test of evaluate method, of class Trigger.
+     */
+    @Test
+    public void testEvaluatePerformedMultipleConditions() {
+        System.out.println("evaluate performed");
+        Trigger instance = new Trigger();
+        
+        AbstractActionImpl action = new AbstractActionImpl();
+        
+        instance.addEvent(new AbstractEventImpl(true));
+        instance.addCondition(new AbstractConditionImpl(true));
+        instance.addCondition(new AbstractConditionImpl(true));
+        instance.addCondition(new AbstractConditionImpl(true));
+        instance.addCondition(new AbstractConditionImpl(true));
+        instance.addAction(action);
+        
+        instance.evaluate();
+        
+        assertTrue(action.performed);
+    }
+    
+    
+    /**
+     * Test of evaluate method, of class Trigger.
+     */
+    @Test
+    public void testEvaluateNotPerformed() {
+        System.out.println("evaluate not performed");
+        Trigger instance = new Trigger();
+        
+        AbstractActionImpl action = new AbstractActionImpl();
+        
+        instance.addEvent(new AbstractEventImpl(false));
+        instance.addCondition(new AbstractConditionImpl(true));
+        instance.addAction(action);
+        
+        instance.evaluate();
+        
+        assertFalse(action.performed);
+    }
+    
+    /**
+     * Test of evaluate method, of class Trigger.
+     */
+    @Test
+    public void testEvaluateNotPerformedMultipleEvents() {
+        System.out.println("evaluate not performed");
+        Trigger instance = new Trigger();
+        
+        AbstractActionImpl action = new AbstractActionImpl();
+        
+        instance.addEvent(new AbstractEventImpl(false));
+        instance.addEvent(new AbstractEventImpl(false));
+        instance.addEvent(new AbstractEventImpl(false));
+        instance.addEvent(new AbstractEventImpl(false));
+        instance.addCondition(new AbstractConditionImpl(true));
+        instance.addAction(action);
+        
+        instance.evaluate();
+        
+        assertFalse(action.performed);
+    }    
+    
+    /**
+     * Test of evaluate method, of class Trigger.
+     */
+    @Test
+    public void testEvaluateNotPerformedMultipleConditions() {
+        System.out.println("evaluate not performed");
+        Trigger instance = new Trigger();
+        
+        AbstractActionImpl action = new AbstractActionImpl();
+        
+        instance.addEvent(new AbstractEventImpl(true));
+        instance.addCondition(new AbstractConditionImpl(false));
+        instance.addAction(action);
+        
+        instance.evaluate();
+        
+        assertFalse(action.performed);
+    }     
+    
+    
     /**
      * Test of getEvents method, of class Trigger.
      */
@@ -96,11 +224,20 @@ public class TriggerTest {
     public void testGetEvents() {
         System.out.println("getEvents");
         Trigger instance = new Trigger();
-        Iterable expResult = null;
+        AbstractEventImpl a = new AbstractEventImpl(true);
+        AbstractEventImpl b = new AbstractEventImpl(true);
+        AbstractEventImpl c = new AbstractEventImpl(true);
+
+        instance.addEvent(a);
+        instance.addEvent(b);
+        instance.addEvent(c);
+        
         Iterable result = instance.getEvents();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Iterator iterator = result.iterator();
+        
+        assertEquals(a, iterator.next());
+        assertEquals(b, iterator.next());
+        assertEquals(c, iterator.next()); 
     }
 
     /**
@@ -110,9 +247,12 @@ public class TriggerTest {
     public void testClearEvents() {
         System.out.println("clearEvents");
         Trigger instance = new Trigger();
+        
+        instance.addEvent(new AbstractEventImpl(true));
+        
         instance.clearEvents();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        assertFalse(instance.getEvents().iterator().hasNext());
     }
 
     /**
@@ -121,11 +261,10 @@ public class TriggerTest {
     @Test
     public void testAddEvent() {
         System.out.println("addEvent");
-        IEvent value = null;
+        IEvent value = new AbstractEventImpl(true);
         Trigger instance = new Trigger();
         instance.addEvent(value);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(value, instance.getEvents().iterator().next());
     }
 
     /**
@@ -134,11 +273,11 @@ public class TriggerTest {
     @Test
     public void testRemoveEvent() {
         System.out.println("removeEvent");
-        IEvent value = null;
+        IEvent value = new AbstractEventImpl(true);
         Trigger instance = new Trigger();
+        instance.addEvent(value);
         instance.removeEvent(value);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertFalse(instance.getEvents().iterator().hasNext());
     }
 
     /**
@@ -149,9 +288,9 @@ public class TriggerTest {
         System.out.println("removeEventAt");
         int index = 0;
         Trigger instance = new Trigger();
+        instance.addEvent(new AbstractEventImpl(true));
         instance.removeEventAt(index);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertFalse(instance.getEvents().iterator().hasNext());
     }
 
     /**
@@ -161,11 +300,21 @@ public class TriggerTest {
     public void testGetVariables() {
         System.out.println("getVariables");
         Trigger instance = new Trigger();
-        Iterable expResult = null;
+        
+        AbstractVariableImpl a = new AbstractVariableImpl();
+        AbstractVariableImpl b = new AbstractVariableImpl();
+        AbstractVariableImpl c = new AbstractVariableImpl();
+
+        instance.addVariable(a);
+        instance.addVariable(b);
+        instance.addVariable(c);
+        
         Iterable result = instance.getVariables();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Iterator iterator = result.iterator();
+        
+        assertEquals(a, iterator.next());
+        assertEquals(b, iterator.next());
+        assertEquals(c, iterator.next());
     }
 
     /**
@@ -175,9 +324,12 @@ public class TriggerTest {
     public void testClearVariables() {
         System.out.println("clearVariables");
         Trigger instance = new Trigger();
+        
+        instance.addVariable(new AbstractVariableImpl());
+        
         instance.clearVariables();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        assertFalse(instance.getVariables().iterator().hasNext());
     }
 
     /**
@@ -186,11 +338,10 @@ public class TriggerTest {
     @Test
     public void testAddVariable() {
         System.out.println("addVariable");
-        IVariable value = null;
+        IVariable value = new AbstractVariableImpl();
         Trigger instance = new Trigger();
         instance.addVariable(value);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(value, instance.getVariables().iterator().next());
     }
 
     /**
@@ -199,11 +350,11 @@ public class TriggerTest {
     @Test
     public void testRemoveVariable() {
         System.out.println("removeVariable");
-        IVariable value = null;
+        IVariable value = new AbstractVariableImpl();
         Trigger instance = new Trigger();
+        instance.addVariable(value);
         instance.removeVariable(value);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertFalse(instance.getVariables().iterator().hasNext());
     }
 
     /**
@@ -214,9 +365,9 @@ public class TriggerTest {
         System.out.println("removeVariableAt");
         int index = 0;
         Trigger instance = new Trigger();
+        instance.addVariable(new AbstractVariableImpl());
         instance.removeVariableAt(index);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertFalse(instance.getVariables().iterator().hasNext());
     }
 
     /**
@@ -226,11 +377,21 @@ public class TriggerTest {
     public void testGetConditions() {
         System.out.println("getConditions");
         Trigger instance = new Trigger();
-        Iterable expResult = null;
+    
+        AbstractConditionImpl a = new AbstractConditionImpl(true);
+        AbstractConditionImpl b = new AbstractConditionImpl(true);
+        AbstractConditionImpl c = new AbstractConditionImpl(true);
+
+        instance.addCondition(a);
+        instance.addCondition(b);
+        instance.addCondition(c);
+        
         Iterable result = instance.getConditions();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Iterator iterator = result.iterator();
+        
+        assertEquals(a, iterator.next());
+        assertEquals(b, iterator.next());
+        assertEquals(c, iterator.next());    
     }
 
     /**
@@ -240,9 +401,12 @@ public class TriggerTest {
     public void testClearConditions() {
         System.out.println("clearConditions");
         Trigger instance = new Trigger();
+        
+        instance.addCondition(new AbstractConditionImpl(true));
+                
         instance.clearConditions();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        assertFalse(instance.getConditions().iterator().hasNext());
     }
 
     /**
@@ -251,11 +415,10 @@ public class TriggerTest {
     @Test
     public void testAddCondition() {
         System.out.println("addCondition");
-        ICondition value = null;
+        ICondition value = new AbstractConditionImpl(true);
         Trigger instance = new Trigger();
         instance.addCondition(value);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(value, instance.getConditions().iterator().next());
     }
 
     /**
@@ -264,11 +427,11 @@ public class TriggerTest {
     @Test
     public void testRemoveCondition() {
         System.out.println("removeCondition");
-        ICondition value = null;
+        ICondition value = new AbstractConditionImpl(true);
         Trigger instance = new Trigger();
+        instance.addCondition(value);
         instance.removeCondition(value);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertFalse(instance.getConditions().iterator().hasNext());
     }
 
     /**
@@ -279,9 +442,9 @@ public class TriggerTest {
         System.out.println("removeConditionAt");
         int index = 0;
         Trigger instance = new Trigger();
+        instance.addCondition(new AbstractConditionImpl(true));
         instance.removeConditionAt(index);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertFalse(instance.getConditions().iterator().hasNext());
     }
 
     /**
@@ -291,11 +454,20 @@ public class TriggerTest {
     public void testGetActions() {
         System.out.println("getActions");
         Trigger instance = new Trigger();
-        Iterable expResult = null;
+        AbstractActionImpl a = new AbstractActionImpl();
+        AbstractActionImpl b = new AbstractActionImpl();
+        AbstractActionImpl c = new AbstractActionImpl();
+
+        instance.addAction(a);
+        instance.addAction(b);
+        instance.addAction(c);
+        
         Iterable result = instance.getActions();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Iterator iterator = result.iterator();
+        
+        assertEquals(a, iterator.next());
+        assertEquals(b, iterator.next());
+        assertEquals(c, iterator.next()); 
     }
 
     /**
@@ -305,9 +477,12 @@ public class TriggerTest {
     public void testClearActions() {
         System.out.println("clearActions");
         Trigger instance = new Trigger();
+        
+        instance.addAction(new AbstractActionImpl());
+        
         instance.clearActions();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
+        assertFalse(instance.getActions().iterator().hasNext());
     }
 
     /**
@@ -316,11 +491,10 @@ public class TriggerTest {
     @Test
     public void testAddAction() {
         System.out.println("addAction");
-        IAction value = null;
+        IAction value = new AbstractActionImpl();
         Trigger instance = new Trigger();
         instance.addAction(value);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(value, instance.getActions().iterator().next());
     }
 
     /**
@@ -329,11 +503,11 @@ public class TriggerTest {
     @Test
     public void testRemoveAction() {
         System.out.println("removeAction");
-        IAction value = null;
+        IAction value = new AbstractActionImpl();
         Trigger instance = new Trigger();
+        instance.addAction(value);
         instance.removeAction(value);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertFalse(instance.getActions().iterator().hasNext());
     }
 
     /**
@@ -344,22 +518,104 @@ public class TriggerTest {
         System.out.println("removeActionAt");
         int index = 0;
         Trigger instance = new Trigger();
+        instance.addAction(new AbstractActionImpl());
         instance.removeActionAt(index);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertFalse(instance.getActions().iterator().hasNext());
     }
 
     /**
      * Test of toString method, of class Trigger.
      */
     @Test
-    public void testToString() {
+    public void testToStringNoName() {
         System.out.println("toString");
         Trigger instance = new Trigger();
-        String expResult = "";
+        String expResult = "?TRIGGER?";
         String result = instance.toString();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
+
+    /**
+     * Test of toString method, of class Trigger.
+     */
+    @Test
+    public void testToStringWithName() {
+        System.out.println("toString");
+        Trigger instance = new Trigger("MyTrigger");
+        String expResult = "MyTrigger";
+        String result = instance.toString();
+        assertEquals(expResult, result);
+    }
+    
+    
+    public class AbstractActionImpl extends AbstractAction {
+
+        public boolean performed = false;
+        
+        @Override
+        public void perform() {
+            this.performed = true;
+        }
+
+        @Override
+        public String getFormatString() {
+            throw new UnsupportedOperationException("Not supported yet.");
+        }
+        
+    }
+    
+    public class AbstractEventImpl extends AbstractEvent {
+
+        private boolean occurred;
+        
+        public AbstractEventImpl(boolean occurred) {
+            this.occurred = occurred;
+        }
+        
+        @Override
+        public boolean occurred() {
+            return occurred;
+        }
+
+        @Override
+        public void reset() {
+            throw new UnsupportedOperationException("Not supported yet.");
+        }
+
+        @Override
+        public String getFormatString() {
+            throw new UnsupportedOperationException("Not supported yet.");
+        }
+        
+    }
+    
+    public class AbstractVariableImpl extends AbstractVariable {
+
+        @Override
+        public String getFormatString() {
+            throw new UnsupportedOperationException("Not supported yet.");
+        }
+        
+    }
+    
+    public class AbstractConditionImpl extends AbstractCondition {
+
+        private boolean met;
+        
+        public AbstractConditionImpl(boolean met) {
+            this.met = met;
+        }
+        
+        @Override
+        public boolean isMet() {
+            return met;
+        }
+
+        @Override
+        public String getFormatString() {
+            throw new UnsupportedOperationException("Not supported yet.");
+        }
+        
+    }
+    
 }
