@@ -6,16 +6,16 @@ import java.io.PrintStream;
 
 //[Category("Console")]
 //[Serializable]
-public final class SystemOutAction extends TextWriterAction {
+public final class SystemOutAction extends PrintStreamAction {
 
     public SystemOutAction() {
         super();
-        this.textWriter = System.out;
+        this.printStream = System.out;
     }
 
     @Override
-    public PrintStream getTextWriter() {
-        return textWriter;
+    public PrintStream getPrintStream() {
+        return printStream;
     }
 
     public String getOutMessage() {

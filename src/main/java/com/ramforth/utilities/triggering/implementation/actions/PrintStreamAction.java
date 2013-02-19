@@ -6,17 +6,17 @@ import java.io.PrintStream;
 //[Description("Aktion, die den angegebenen Text als Zeile in einen TextWriter schreibt.")]
 //[Category("I/O")]
 //[Serializable]
-public class TextWriterAction extends AbstractAction {
+public class PrintStreamAction extends AbstractAction {
 
-    protected PrintStream textWriter = null;
+    protected PrintStream printStream = null;
     protected String text = StringUtilities.EMPTY;
 
-    public PrintStream getTextWriter() {
-        return textWriter;
+    public PrintStream getPrintStream() {
+        return printStream;
     }
 
-    public void setTextWriter(PrintStream value) {
-        this.textWriter = value;
+    public void setPrintStream(PrintStream value) {
+        this.printStream = value;
     }
 
     public String getText() {
@@ -29,16 +29,16 @@ public class TextWriterAction extends AbstractAction {
 
     @Override
     public void perform() {
-        textWriter.println(text);
+        printStream.print(text);
     }
 
     @Override
     public String toString() {
-        return String.format("Schreibe den Text \"{0}\" als Zeile in den TextWriter \"{1}\".", ( text == null ? StringUtilities.EMPTY : text ), textWriter);
+        return String.format("Schreibe den Text \"%s\" als Zeile in den PrintStream \"%s\".", ( text == null ? StringUtilities.EMPTY : text ), printStream);
     }
 
     @Override
     public String getFormatString() {
-        return "Schreibe den Text {Text} als Zeile in den TextWriter {TextWriter}.";
+        return "Schreibe den Text {text} als Zeile in den PrintStream {textWriter}.";
     }
 }

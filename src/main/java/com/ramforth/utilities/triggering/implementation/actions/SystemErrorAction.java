@@ -6,16 +6,16 @@ import java.io.PrintStream;
 //[Description("Aktion, die die angegebene outMessage nach Console.Error schreibt.")]
 //[Category("Console")]
 //[Serializable]
-public final class SystemErrorAction extends TextWriterAction {
+public final class SystemErrorAction extends PrintStreamAction {
 
     public SystemErrorAction() {
         super();
-        this.textWriter = System.err;
+        this.printStream = System.err;
     }
 
     @Override
-    public PrintStream getTextWriter() {
-        return textWriter;
+    public PrintStream getPrintStream() {
+        return printStream;
     }
 
     public String getErrorMessage() {
