@@ -28,6 +28,6 @@ public final class SystemOutAction extends PrintStreamAction {
 
     @Override
     public String toString() {
-        return String.format("Schreibe \"{0}\" nach Console.Error.", ( getOutMessage() == null ? StringUtilities.EMPTY : getOutMessage() ));
+        return String.format("Schreibe \"%s\" nach System.out.", ( getOutMessage() == null ? StringUtilities.EMPTY : getOutMessage() ));
     }
 }

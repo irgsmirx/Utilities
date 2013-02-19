@@ -28,6 +28,6 @@ public final class SystemErrorAction extends PrintStreamAction {
 
     @Override
     public String toString() {
-        return String.format("Schreibe \"{0}\" nach Console.Error.", ( getErrorMessage() == null ? StringUtilities.EMPTY : getErrorMessage() ));
+        return String.format("Schreibe \"%s\" nach System.err.", ( getErrorMessage() == null ? StringUtilities.EMPTY : getErrorMessage() ));
     }
 }
