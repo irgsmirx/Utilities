@@ -8,9 +8,8 @@ package com.ramforth.utilities.triggering.implementation.actions;
  *
  * @author tobias
  */
-public class RunNTimesAction extends AbstractUnaryAction {
+public class RepeatNTimesAction extends AbstractUnaryAction {
 
-    protected int ranNTimesAlready = 0;
     protected int n = 0;
 
     public int getN() {
@@ -23,20 +22,19 @@ public class RunNTimesAction extends AbstractUnaryAction {
 
     @Override
     public void perform() {
-        if (ranNTimesAlready < n) {
+        for (int i = 0; i < n; i++) {
             childAction.perform();
-            ranNTimesAlready++;
         }
     }
 
     @Override
     public String toString() {
-        return String.format("Run %s times: %s.", n, childAction.toString());
+        return String.format("Repeat %s times: %s.", n, childAction.toString());
     }
     
     @Override
     public String getFormatString() {
-        return "Run {n} times: {childAction}.";
+        return "Repeat {n} times: {childAction}.";
     }
 
 }

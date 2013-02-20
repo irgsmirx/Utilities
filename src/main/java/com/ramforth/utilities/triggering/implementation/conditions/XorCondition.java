@@ -12,12 +12,17 @@ public class XorCondition extends AbstractBinaryCondition {
 
     @Override
     public boolean isMet() {
-        return !(leftChildCondition.isMet() && rightChildCondition.isMet());
+        return (!leftChildCondition.isMet() && rightChildCondition.isMet()) || (leftChildCondition.isMet() && !rightChildCondition.isMet());
     }
 
     @Override
+    public String toString() {
+        return String.format("(%s XOR %s)", leftChildCondition, rightChildCondition);
+    }
+    
+    @Override
     public String getFormatString() {
-        return "{leftChildCondition} XOR {rightChildCondition}";
+        return "({leftChildCondition} XOR {rightChildCondition})";
     }
     
 }

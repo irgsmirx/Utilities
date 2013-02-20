@@ -16,6 +16,11 @@ public class OrEvent extends AbstractBinaryEvent {
     }
 
     @Override
+    public String toString() {
+        return String.format("(%s OR %s)", leftChildEvent, rightChildEvent);
+    }
+    
+    @Override
     public String getFormatString() {
         return "{leftChildEvent} OR {rightChildEvent}";
     }

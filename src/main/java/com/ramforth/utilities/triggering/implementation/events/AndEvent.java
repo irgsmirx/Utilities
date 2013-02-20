@@ -16,8 +16,14 @@ public class AndEvent extends AbstractBinaryEvent {
     }
 
     @Override
+    public String toString() {
+        return String.format("(%s AND %s)", leftChildEvent, rightChildEvent);
+    }
+
+    
+    @Override
     public String getFormatString() {
-        return "{leftChildEvent} AND {rightChildEvent}";
+        return "({leftChildEvent} AND {rightChildEvent})";
     }
     
 }

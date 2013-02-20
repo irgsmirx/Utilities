@@ -16,8 +16,13 @@ public class OrCondition extends AbstractBinaryCondition {
     }
 
     @Override
+    public String toString() {
+        return String.format("(%s OR %s)", leftChildCondition, rightChildCondition);
+    }
+    
+    @Override
     public String getFormatString() {
-        return "{leftChildCondition} OR {rightChildCondition}";
+        return "({leftChildCondition} OR {rightChildCondition})";
     }
     
 }

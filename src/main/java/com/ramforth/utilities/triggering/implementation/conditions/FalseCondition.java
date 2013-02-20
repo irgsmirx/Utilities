@@ -16,6 +16,11 @@ public class FalseCondition extends AbstractCondition {
     }
 
     @Override
+    public String toString() {
+        return "FALSE";
+    }
+    
+    @Override
     public String getFormatString() {
         return "FALSE";
     }

@@ -16,8 +16,13 @@ public class NorEvent extends AbstractBinaryEvent {
     }
 
     @Override
+    public String toString() {
+        return String.format("(NEITHER %s NOR %s)", leftChildEvent, rightChildEvent);
+    }
+    
+    @Override
     public String getFormatString() {
-        return "NEITHER {leftChildEvent} NOR {rightChildEvent}";
+        return "(NEITHER {leftChildEvent} NOR {rightChildEvent})";
     }
 
 }

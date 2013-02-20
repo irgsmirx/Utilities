@@ -12,12 +12,17 @@ public class XorEvent extends AbstractBinaryEvent {
     
     @Override
     public boolean occurred() {
-        return !(leftChildEvent.occurred() && rightChildEvent.occurred());
+        return (!leftChildEvent.occurred() && rightChildEvent.occurred()) || (leftChildEvent.occurred() && rightChildEvent.occurred());
     }
 
     @Override
+    public String toString() {
+        return String.format("(%s XOR %s)", leftChildEvent, rightChildEvent);
+    }
+    
+    @Override
     public String getFormatString() {
-        return "{leftChildEvent} XOR {rightChildEvent}";
+        return "({leftChildEvent} XOR {rightChildEvent})";
     }
     
 }

@@ -18,6 +18,6 @@ public final class DirectoryExistsCondition extends AbstractPathCondition {
 
     @Override
     public String getFormatString() {
-        return "Das Verzeichnis {path} existiert.";
+        return "Das Verzeichnis {path} existiert";
     }
 }

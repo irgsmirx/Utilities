@@ -16,8 +16,13 @@ public class NotEvent extends AbstractUnaryEvent {
     }
 
     @Override
+    public String toString() {
+        return String.format("NOT (%s)", childEvent);
+    }
+    
+    @Override
     public String getFormatString() {
-        return "NOT {childEvent}";
+        return "NOT ({childEvent})";
     }
    
 }

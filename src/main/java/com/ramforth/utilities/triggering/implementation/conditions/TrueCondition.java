@@ -16,6 +16,11 @@ public class TrueCondition extends AbstractCondition {
     }
 
     @Override
+    public String toString() {
+        return "TRUE";
+    }
+    
+    @Override
     public String getFormatString() {
         return "TRUE";
     }

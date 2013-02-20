@@ -16,8 +16,13 @@ public class NorCondition extends AbstractBinaryCondition {
     }
 
     @Override
+    public String toString() {
+        return String.format("(NEITHER %s NOR %s)", leftChildCondition, rightChildCondition);
+    }    
+    
+    @Override
     public String getFormatString() {
-        return "NEITHER {leftChildCondition} NOR {rightChildCondition}";
+        return "(NEITHER {leftChildCondition} NOR {rightChildCondition})";
     }
     
 }

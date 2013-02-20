@@ -18,6 +18,6 @@ public final class FileExistsCondition extends AbstractPathCondition {
 
     @Override
     public String getFormatString() {
-        return "Die Datei {path} existiert.";
+        return "Die Datei {path} existiert";
     }
 }

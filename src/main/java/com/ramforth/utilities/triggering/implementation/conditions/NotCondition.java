@@ -16,10 +16,13 @@ public class NotCondition extends AbstractUnaryCondition {
     }
 
     @Override
-    public String getFormatString() {
-        return "NOT {childCondition}";
+    public String toString() {
+        return String.format("NOT(%s)", childCondition.toString());
     }
     
-    
+    @Override
+    public String getFormatString() {
+        return "NOT({childCondition})";
+    }
     
 }

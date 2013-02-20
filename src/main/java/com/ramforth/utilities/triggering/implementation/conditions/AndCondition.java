@@ -16,8 +16,13 @@ public class AndCondition extends AbstractBinaryCondition {
     }
 
     @Override
+    public String toString() {
+        return String.format("(%s AND %s)", leftChildCondition, rightChildCondition);
+    }
+    
+    @Override
     public String getFormatString() {
-        return "{leftChildCondition} AND {rightChildCondition}";
+        return "({leftChildCondition} AND {rightChildCondition})";
     }
     
 }
