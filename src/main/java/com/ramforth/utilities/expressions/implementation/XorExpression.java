@@ -16,4 +16,10 @@ public class XorExpression extends AbstractConditionalExpression implements IXor
     public XorExpression(IExpression leftChild, IExpression rightChild) {
         super(leftChild, rightChild);
     }
+    
+    @Override
+    public String toString() {
+        return String.format("(%s XOR %s)", leftChild, rightChild);
+    }
+    
 }

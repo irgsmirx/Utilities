@@ -16,4 +16,10 @@ public class LessThanExpression extends AbstractConditionalExpression implements
     public LessThanExpression(IExpression leftChild, IExpression rightChild) {
         super(leftChild, rightChild);
     }
+    
+    @Override
+    public String toString() {
+        return String.format("%s < %s", leftChild, rightChild);
+    }
+    
 }

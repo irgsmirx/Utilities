@@ -16,4 +16,10 @@ public class ParenthesizedExpression extends AbstractUnaryExpression implements 
     public ParenthesizedExpression(IExpression child) {
         super(child);
     }
+    
+    @Override
+    public String toString() {
+        return String.format("(%s)", child);
+    }
+    
 }

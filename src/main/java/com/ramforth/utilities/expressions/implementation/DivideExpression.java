@@ -16,4 +16,10 @@ public class DivideExpression extends AbstractBinaryExpression implements IDivid
     public DivideExpression(IExpression leftChild, IExpression rightChild) {
         super(leftChild, rightChild);
     }
+    
+    @Override
+    public String toString() {
+        return String.format("%s / %s", leftChild, rightChild);
+    }
+    
 }

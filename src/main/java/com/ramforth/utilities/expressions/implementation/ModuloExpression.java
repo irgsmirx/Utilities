@@ -16,4 +16,10 @@ public class ModuloExpression extends AbstractBinaryExpression implements IModul
     public ModuloExpression(IExpression leftChild, IExpression rightChild) {
         super(leftChild, rightChild);
     }
+    
+    @Override
+    public String toString() {
+        return String.format("%s %% %s", leftChild, rightChild);
+    }    
+    
 }

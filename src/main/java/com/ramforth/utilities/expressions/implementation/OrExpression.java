@@ -16,4 +16,10 @@ public class OrExpression extends AbstractConditionalExpression implements IOrEx
     public OrExpression(IExpression leftChild, IExpression rightChild) {
         super(leftChild, rightChild);
     }
+    
+    @Override
+    public String toString() {
+        return String.format("(%s OR %s)", leftChild, rightChild);
+    }
+    
 }

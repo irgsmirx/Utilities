@@ -16,4 +16,10 @@ public class GreaterOrEqualExpression extends AbstractConditionalExpression impl
     public GreaterOrEqualExpression(IExpression leftChild, IExpression rightChild) {
         super(leftChild, rightChild);
     }
+    
+    @Override
+    public String toString() {
+        return String.format("%s >= %s", leftChild, rightChild);
+    }
+    
 }

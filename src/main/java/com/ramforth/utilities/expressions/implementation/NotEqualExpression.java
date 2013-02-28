@@ -16,4 +16,10 @@ public class NotEqualExpression extends AbstractConditionalExpression implements
     public NotEqualExpression(IExpression leftChild, IExpression rightChild) {
         super(leftChild, rightChild);
     }
+    
+    @Override
+    public String toString() {
+        return String.format("%s != %s", leftChild, rightChild);
+    }
+    
 }

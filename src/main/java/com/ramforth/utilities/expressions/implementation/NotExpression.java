@@ -16,4 +16,10 @@ public class NotExpression extends AbstractUnaryExpression implements INotExpres
     public NotExpression(IExpression child) {
         super(child);
     }
+    
+    @Override
+    public String toString() {
+        return String.format("NOT(%s)", child);
+    }
+    
 }

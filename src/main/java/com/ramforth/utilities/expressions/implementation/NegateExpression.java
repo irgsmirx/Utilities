@@ -16,4 +16,10 @@ public class NegateExpression extends AbstractUnaryExpression implements INegate
     public NegateExpression(IExpression child) {
         super(child);
     }
+    
+    @Override
+    public String toString() {
+        return String.format("(-%s)", child);
+    }
+    
 }

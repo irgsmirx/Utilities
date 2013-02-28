@@ -16,4 +16,10 @@ public class EqualExpression extends AbstractConditionalExpression implements IE
     public EqualExpression(IExpression leftChild, IExpression rightChild) {
         super(leftChild, rightChild);
     }
+    
+    @Override
+    public String toString() {
+        return String.format("%s = %s", leftChild, rightChild);
+    }
+    
 }

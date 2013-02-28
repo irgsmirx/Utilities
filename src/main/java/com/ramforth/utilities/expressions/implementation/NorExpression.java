@@ -16,4 +16,10 @@ public class NorExpression extends AbstractConditionalExpression implements INor
     public NorExpression(IExpression leftChild, IExpression rightChild) {
         super(leftChild, rightChild);
     }
+    
+    @Override
+    public String toString() {
+        return String.format("(%s NOR %s)", leftChild, rightChild);
+    }
+    
 }

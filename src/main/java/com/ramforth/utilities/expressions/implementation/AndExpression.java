@@ -16,4 +16,10 @@ public class AndExpression extends AbstractConditionalExpression implements IAnd
     public AndExpression(IExpression leftChild, IExpression rightChild) {
         super(leftChild, rightChild);
     }
+    
+    @Override
+    public String toString() {
+        return String.format("(%s AND %s)", leftChild, rightChild);
+    }
+    
 }
