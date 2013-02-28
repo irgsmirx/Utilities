@@ -44,6 +44,51 @@ public class ExpressionWriter implements IExpressionWriter {
         sb = new StringBuilder();
     }
     
+        @Override
+    public void write(IExpression expression) {
+        if (expression instanceof IConstantExpression) {
+            write((IConstantExpression) expression);
+        } else if (expression instanceof IEqualExpression) {
+            write((IEqualExpression) expression);
+        } else if (expression instanceof INotEqualExpression) {
+            write((INotEqualExpression) expression);
+        } else if (expression instanceof INotExpression) {
+            write((INotExpression) expression);
+        } else if (expression instanceof ILessThanExpression) {
+            write((ILessThanExpression) expression);
+        } else if (expression instanceof IGreaterThanExpression) {
+            write((IGreaterThanExpression) expression);
+        } else if (expression instanceof ILessOrEqualExpression) {
+            write((ILessOrEqualExpression) expression);
+        } else if (expression instanceof IGreaterOrEqualExpression) {
+            write((IGreaterOrEqualExpression) expression);
+        } else if (expression instanceof IAndExpression) {
+            write((IAndExpression) expression);
+        } else if (expression instanceof IOrExpression) {
+            write((IOrExpression) expression);
+        } else if (expression instanceof INorExpression) {
+            write((INorExpression) expression);
+        } else if (expression instanceof IXorExpression) {
+            write((IXorExpression) expression);
+        } else if (expression instanceof INotExpression) {
+            write((INotExpression) expression);
+        } else if (expression instanceof IConstantExpression) {
+            write((IConstantExpression)expression);
+        } else if (expression instanceof INegateExpression) {
+            write((INegateExpression)expression);
+        } else if (expression instanceof IAddExpression) {
+            write((IAddExpression)expression);
+        } else if (expression instanceof ISubtractExpression) {
+            write((ISubtractExpression)expression);
+        } else if (expression instanceof IMultiplyExpression) {
+            write((IMultiplyExpression)expression);
+        } else if (expression instanceof IDivideExpression) {
+            write((IDivideExpression)expression);
+        } else if (expression instanceof IModuloExpression) {
+            write((IModuloExpression)expression);
+        }
+    }
+    
     @Override
     public void write(IAddExpression expression) {
         write(expression.getLeftChild());
@@ -53,9 +98,11 @@ public class ExpressionWriter implements IExpressionWriter {
 
     @Override
     public void write(IAndExpression expression) {
+        sb.append("(");
         write(expression.getLeftChild());
         sb.append(" AND ");
         write(expression.getRightChild());
+        sb.append(")");
     }
 
     @Override
@@ -80,37 +127,6 @@ public class ExpressionWriter implements IExpressionWriter {
         write(expression.getLeftChild());
         sb.append(" = ");
         write(expression.getRightChild());
-    }
-
-    @Override
-    public void write(IExpression expression) {
-        if (expression instanceof IConstantExpression) {
-            write((IConstantExpression) expression);
-        } else if (expression instanceof IEqualExpression) {
-            write((IEqualExpression) expression);
-        } else if (expression instanceof INotEqualExpression) {
-            write((INotEqualExpression) expression);
-        } else if (expression instanceof ILessThanExpression) {
-            write((ILessThanExpression) expression);
-        } else if (expression instanceof IGreaterThanExpression) {
-            write((IGreaterThanExpression) expression);
-        } else if (expression instanceof ILessOrEqualExpression) {
-            write((ILessOrEqualExpression) expression);
-        } else if (expression instanceof IGreaterOrEqualExpression) {
-            write((IGreaterOrEqualExpression) expression);
-        } else if (expression instanceof IAndExpression) {
-            write((IAndExpression) expression);
-        } else if (expression instanceof IOrExpression) {
-            write((IOrExpression) expression);
-        } else if (expression instanceof INorExpression) {
-            write((INorExpression) expression);
-        } else if (expression instanceof IXorExpression) {
-            write((IXorExpression) expression);
-        } else if (expression instanceof INotExpression) {
-            write((INotExpression) expression);
-        } else if (expression instanceof IConstantExpression) {
-            write((IConstantExpression)expression);
-        }
     }
 
     @Override
@@ -157,15 +173,19 @@ public class ExpressionWriter implements IExpressionWriter {
 
     @Override
     public void write(INegateExpression expression) {
+        sb.append("(");
         sb.append("-");
         write(expression.getChild());
+        sb.append(")");
     }
 
     @Override
     public void write(INorExpression expression) {
+        sb.append("(");
         write(expression.getLeftChild());
         sb.append(" NOR ");
         write(expression.getRightChild());
+        sb.append(")");
     }
 
     @Override
@@ -184,9 +204,11 @@ public class ExpressionWriter implements IExpressionWriter {
     
     @Override
     public void write(IOrExpression expression) {
+        sb.append("(");
         write(expression.getLeftChild());
         sb.append(" OR ");
         write(expression.getRightChild());    
+        sb.append(")");
     }
 
     @Override
@@ -226,9 +248,11 @@ public class ExpressionWriter implements IExpressionWriter {
 
     @Override
     public void write(IXorExpression expression) {
+        sb.append("(");
         write(expression.getLeftChild());
         sb.append(" XOR ");
         write(expression.getRightChild());
+        sb.append(")");
     }
     
     @Override

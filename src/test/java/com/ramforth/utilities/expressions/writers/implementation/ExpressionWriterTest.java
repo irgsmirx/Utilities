@@ -21,6 +21,7 @@ import com.ramforth.utilities.expressions.implementation.NotEqualExpression;
 import com.ramforth.utilities.expressions.implementation.NotExpression;
 import com.ramforth.utilities.expressions.implementation.OrExpression;
 import com.ramforth.utilities.expressions.implementation.ParenthesizedExpression;
+import com.ramforth.utilities.expressions.implementation.PowerExpression;
 import com.ramforth.utilities.expressions.implementation.PropertyExpression;
 import com.ramforth.utilities.expressions.implementation.SubtractExpression;
 import com.ramforth.utilities.expressions.implementation.XorExpression;
@@ -110,7 +111,7 @@ public class ExpressionWriterTest {
         System.out.println("write");
         IAndExpression expression = new AndExpression(new ConstantExpression(true), new ConstantExpression(false));
         expressionWriter.write(expression);
-        String expected = "true AND false";
+        String expected = "(true AND false)";
         assertEquals(expected, expressionWriter.toString());
     }
 
@@ -257,7 +258,7 @@ public class ExpressionWriterTest {
         System.out.println("write");
         INegateExpression expression = new NegateExpression(constantExpressionA);
         expressionWriter.write(expression);
-        String expected = "-" + constantExpressionA.getValue().toString();
+        String expected = "(-" + constantExpressionA.getValue().toString() + ")";
         assertEquals(expected, expressionWriter.toString());
     }
 
@@ -269,7 +270,7 @@ public class ExpressionWriterTest {
         System.out.println("write");
         INorExpression expression = new NorExpression(new ConstantExpression(true), new ConstantExpression(false));
         expressionWriter.write(expression);
-        String expected = "true NOR false";
+        String expected = "(true NOR false)";
         assertEquals(expected, expressionWriter.toString());
     }
 
@@ -305,7 +306,7 @@ public class ExpressionWriterTest {
         System.out.println("write");
         IOrExpression expression = new OrExpression(new ConstantExpression(true), new ConstantExpression(false));
         expressionWriter.write(expression);
-        String expected = "true OR false";
+        String expected = "(true OR false)";
         assertEquals(expected, expressionWriter.toString());
     }
 
@@ -340,7 +341,7 @@ public class ExpressionWriterTest {
     @Test
     public void testWrite_IPowerExpression() {
         System.out.println("write");
-        IPowerExpression expression = null;
+        IPowerExpression expression = new PowerExpression(constantExpressionA, constantExpressionB);
         String expected = constantExpressionA.getValue().toString() + "^" + constantExpressionB.getValue().toString();
         expressionWriter.write(expression);
         assertEquals(expected, expressionWriter.toString());
@@ -392,7 +393,7 @@ public class ExpressionWriterTest {
         System.out.println("write");
         IXorExpression expression = new XorExpression(new ConstantExpression(true), new ConstantExpression(false));
         expressionWriter.write(expression);
-        String expected = "true XOR false";
+        String expected = "(true XOR false)";
         assertEquals(expected, expressionWriter.toString());
     }
     
