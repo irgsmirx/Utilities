@@ -4,6 +4,26 @@
  */
 package com.ramforth.utilities.expressions.writers.implementation;
 
+import com.ramforth.utilities.expressions.implementation.AddExpression;
+import com.ramforth.utilities.expressions.implementation.AndExpression;
+import com.ramforth.utilities.expressions.implementation.ConstantExpression;
+import com.ramforth.utilities.expressions.implementation.DivideExpression;
+import com.ramforth.utilities.expressions.implementation.EqualExpression;
+import com.ramforth.utilities.expressions.implementation.GreaterOrEqualExpression;
+import com.ramforth.utilities.expressions.implementation.GreaterThanExpression;
+import com.ramforth.utilities.expressions.implementation.LessOrEqualExpression;
+import com.ramforth.utilities.expressions.implementation.LessThanExpression;
+import com.ramforth.utilities.expressions.implementation.ModuloExpression;
+import com.ramforth.utilities.expressions.implementation.MultiplyExpression;
+import com.ramforth.utilities.expressions.implementation.NegateExpression;
+import com.ramforth.utilities.expressions.implementation.NorExpression;
+import com.ramforth.utilities.expressions.implementation.NotEqualExpression;
+import com.ramforth.utilities.expressions.implementation.NotExpression;
+import com.ramforth.utilities.expressions.implementation.OrExpression;
+import com.ramforth.utilities.expressions.implementation.ParenthesizedExpression;
+import com.ramforth.utilities.expressions.implementation.PropertyExpression;
+import com.ramforth.utilities.expressions.implementation.SubtractExpression;
+import com.ramforth.utilities.expressions.implementation.XorExpression;
 import com.ramforth.utilities.expressions.interfaces.IAddExpression;
 import com.ramforth.utilities.expressions.interfaces.IAndExpression;
 import com.ramforth.utilities.expressions.interfaces.IBinaryExpression;
@@ -21,6 +41,7 @@ import com.ramforth.utilities.expressions.interfaces.IMultiplyExpression;
 import com.ramforth.utilities.expressions.interfaces.INegateExpression;
 import com.ramforth.utilities.expressions.interfaces.INorExpression;
 import com.ramforth.utilities.expressions.interfaces.INotEqualExpression;
+import com.ramforth.utilities.expressions.interfaces.INotExpression;
 import com.ramforth.utilities.expressions.interfaces.IOrExpression;
 import com.ramforth.utilities.expressions.interfaces.IParameterExpression;
 import com.ramforth.utilities.expressions.interfaces.IParenthesizedExpression;
@@ -44,6 +65,8 @@ import static org.junit.Assert.*;
 public class ExpressionWriterTest {
 
     protected IExpressionWriter expressionWriter;
+    protected IConstantExpression constantExpressionA;
+    protected IConstantExpression constantExpressionB;
     
     public ExpressionWriterTest() {
     }
@@ -59,6 +82,8 @@ public class ExpressionWriterTest {
     @Before
     public void setUp() {
         expressionWriter = new ExpressionWriter();
+        constantExpressionA = new ConstantExpression(12);
+        constantExpressionB = new ConstantExpression(23);
     }
     
     @After
@@ -71,10 +96,10 @@ public class ExpressionWriterTest {
     @Test
     public void testWrite_IAddExpression() {
         System.out.println("write");
-        IAddExpression expression = null;
+        IAddExpression expression = new AddExpression(constantExpressionA, constantExpressionB);
         expressionWriter.write(expression);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        String expected = constantExpressionA.getValue().toString() + " + " + constantExpressionB.getValue().toString();
+        assertEquals(expected, expressionWriter.toString());
     }
 
     /**
@@ -83,11 +108,10 @@ public class ExpressionWriterTest {
     @Test
     public void testWrite_IAndExpression() {
         System.out.println("write");
-        IAndExpression expression = null;
-        
+        IAndExpression expression = new AndExpression(new ConstantExpression(true), new ConstantExpression(false));
         expressionWriter.write(expression);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        String expected = "true AND false";
+        assertEquals(expected, expressionWriter.toString());
     }
 
     /**
@@ -122,11 +146,10 @@ public class ExpressionWriterTest {
     @Test
     public void testWrite_IDivideExpression() {
         System.out.println("write");
-        IDivideExpression expression = null;
-        
+        IDivideExpression expression = new DivideExpression(constantExpressionA, constantExpressionB);
         expressionWriter.write(expression);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        String expected = constantExpressionA.getValue().toString() + " / " + constantExpressionB.getValue().toString();
+        assertEquals(expected, expressionWriter.toString());
     }
 
     /**
@@ -135,11 +158,10 @@ public class ExpressionWriterTest {
     @Test
     public void testWrite_IEqualExpression() {
         System.out.println("write");
-        IEqualExpression expression = null;
-        
+        IEqualExpression expression = new EqualExpression(constantExpressionA, constantExpressionB);
         expressionWriter.write(expression);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        String expected = constantExpressionA.getValue().toString() + " = " + constantExpressionB.getValue().toString();
+        assertEquals(expected, expressionWriter.toString());
     }
 
     /**
@@ -161,11 +183,10 @@ public class ExpressionWriterTest {
     @Test
     public void testWrite_IGreaterOrEqualExpression() {
         System.out.println("write");
-        IGreaterOrEqualExpression expression = null;
-        
+        IGreaterOrEqualExpression expression = new GreaterOrEqualExpression(constantExpressionA, constantExpressionB);
         expressionWriter.write(expression);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        String expected = constantExpressionA.getValue().toString() + " >= " + constantExpressionB.getValue().toString();
+        assertEquals(expected, expressionWriter.toString());
     }
 
     /**
@@ -174,11 +195,10 @@ public class ExpressionWriterTest {
     @Test
     public void testWrite_IGreaterThanExpression() {
         System.out.println("write");
-        IGreaterThanExpression expression = null;
-        
+        IGreaterThanExpression expression = new GreaterThanExpression(constantExpressionA, constantExpressionB);
         expressionWriter.write(expression);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        String expected = constantExpressionA.getValue().toString() + " > " + constantExpressionB.getValue().toString();
+        assertEquals(expected, expressionWriter.toString());
     }
 
     /**
@@ -187,11 +207,10 @@ public class ExpressionWriterTest {
     @Test
     public void testWrite_ILessOrEqualExpression() {
         System.out.println("write");
-        ILessOrEqualExpression expression = null;
-        
+        ILessOrEqualExpression expression = new LessOrEqualExpression(constantExpressionA, constantExpressionB);
         expressionWriter.write(expression);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        String expected = constantExpressionA.getValue().toString() + " <= " + constantExpressionB.getValue().toString();
+        assertEquals(expected, expressionWriter.toString());
     }
 
     /**
@@ -200,11 +219,10 @@ public class ExpressionWriterTest {
     @Test
     public void testWrite_ILessThanExpression() {
         System.out.println("write");
-        ILessThanExpression expression = null;
-        
+        ILessThanExpression expression = new LessThanExpression(constantExpressionA, constantExpressionB);
         expressionWriter.write(expression);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        String expected = constantExpressionA.getValue().toString() + " < " + constantExpressionB.getValue().toString();
+        assertEquals(expected, expressionWriter.toString());
     }
 
     /**
@@ -213,11 +231,10 @@ public class ExpressionWriterTest {
     @Test
     public void testWrite_IModuloExpression() {
         System.out.println("write");
-        IModuloExpression expression = null;
-        
+        IModuloExpression expression = new ModuloExpression(constantExpressionA, constantExpressionB);
         expressionWriter.write(expression);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        String expected = constantExpressionA.getValue().toString() + " % " + constantExpressionB.getValue().toString();
+        assertEquals(expected, expressionWriter.toString());
     }
 
     /**
@@ -226,11 +243,10 @@ public class ExpressionWriterTest {
     @Test
     public void testWrite_IMultiplyExpression() {
         System.out.println("write");
-        IMultiplyExpression expression = null;
-        
+        IMultiplyExpression expression = new MultiplyExpression(constantExpressionA, constantExpressionB);
         expressionWriter.write(expression);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        String expected = constantExpressionA.getValue().toString() + " * " + constantExpressionB.getValue().toString();
+        assertEquals(expected, expressionWriter.toString());
     }
 
     /**
@@ -239,11 +255,10 @@ public class ExpressionWriterTest {
     @Test
     public void testWrite_INegateExpression() {
         System.out.println("write");
-        INegateExpression expression = null;
-        
+        INegateExpression expression = new NegateExpression(constantExpressionA);
         expressionWriter.write(expression);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        String expected = "-" + constantExpressionA.getValue().toString();
+        assertEquals(expected, expressionWriter.toString());
     }
 
     /**
@@ -252,11 +267,10 @@ public class ExpressionWriterTest {
     @Test
     public void testWrite_INorExpression() {
         System.out.println("write");
-        INorExpression expression = null;
-        
+        INorExpression expression = new NorExpression(new ConstantExpression(true), new ConstantExpression(false));
         expressionWriter.write(expression);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        String expected = "true NOR false";
+        assertEquals(expected, expressionWriter.toString());
     }
 
     /**
@@ -265,24 +279,34 @@ public class ExpressionWriterTest {
     @Test
     public void testWrite_INotEqualExpression() {
         System.out.println("write");
-        INotEqualExpression expression = null;
-        
+        INotEqualExpression expression = new NotEqualExpression(constantExpressionA, constantExpressionB);
         expressionWriter.write(expression);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        String expected = constantExpressionA.getValue().toString() + " != " + constantExpressionB.getValue().toString();
+        assertEquals(expected, expressionWriter.toString());
     }
 
     /**
      * Test of write method, of class ExpressionWriter.
      */
     @Test
+    public void testWrite_INotExpression() {
+        System.out.println("write");
+        INotExpression expression = new NotExpression(new ConstantExpression(true));
+        expressionWriter.write(expression);
+        String expected = "NOT(true)";
+        assertEquals(expected, expressionWriter.toString());
+    }    
+    
+    /**
+     * Test of write method, of class ExpressionWriter.
+     */
+    @Test
     public void testWrite_IOrExpression() {
         System.out.println("write");
-        IOrExpression expression = null;
-        
+        IOrExpression expression = new OrExpression(new ConstantExpression(true), new ConstantExpression(false));
         expressionWriter.write(expression);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        String expected = "true OR false";
+        assertEquals(expected, expressionWriter.toString());
     }
 
     /**
@@ -304,11 +328,10 @@ public class ExpressionWriterTest {
     @Test
     public void testWrite_IParenthesizedExpression() {
         System.out.println("write");
-        IParenthesizedExpression expression = null;
-        
+        IParenthesizedExpression expression = new ParenthesizedExpression(constantExpressionA);
+        String expected = "(" + constantExpressionA.getValue().toString() + ")";
         expressionWriter.write(expression);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(expected, expressionWriter.toString());
     }
 
     /**
@@ -318,10 +341,9 @@ public class ExpressionWriterTest {
     public void testWrite_IPowerExpression() {
         System.out.println("write");
         IPowerExpression expression = null;
-        
+        String expected = constantExpressionA.getValue().toString() + "^" + constantExpressionB.getValue().toString();
         expressionWriter.write(expression);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(expected, expressionWriter.toString());
     }
 
     /**
@@ -330,7 +352,7 @@ public class ExpressionWriterTest {
     @Test
     public void testWrite_IPropertyExpression() {
         System.out.println("write");
-        IPropertyExpression expression = null;
+        IPropertyExpression expression = new PropertyExpression(constantExpressionA, "propertyName");
         
         expressionWriter.write(expression);
         // TODO review the generated test code and remove the default call to fail.
@@ -343,11 +365,10 @@ public class ExpressionWriterTest {
     @Test
     public void testWrite_ISubtractExpression() {
         System.out.println("write");
-        ISubtractExpression expression = null;
-        
+        ISubtractExpression expression = new SubtractExpression(constantExpressionA, constantExpressionB);
+        String expected = constantExpressionA.getValue().toString() + " - " + constantExpressionB.getValue().toString();
         expressionWriter.write(expression);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(expected, expressionWriter.toString());
     }
 
     /**
@@ -369,11 +390,10 @@ public class ExpressionWriterTest {
     @Test
     public void testWrite_IXorExpression() {
         System.out.println("write");
-        IXorExpression expression = null;
-        
+        IXorExpression expression = new XorExpression(new ConstantExpression(true), new ConstantExpression(false));
         expressionWriter.write(expression);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        String expected = "true XOR false";
+        assertEquals(expected, expressionWriter.toString());
     }
     
     /**
@@ -382,10 +402,7 @@ public class ExpressionWriterTest {
     @Test
     public void testWrite_IConstantExpression() {
         System.out.println("write");
-        IConstantExpression expression = null;
-        
-        expressionWriter.write(expression);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        expressionWriter.write(constantExpressionA);
+        assertEquals(constantExpressionA.getValue().toString(), expressionWriter.toString());
     }
 }

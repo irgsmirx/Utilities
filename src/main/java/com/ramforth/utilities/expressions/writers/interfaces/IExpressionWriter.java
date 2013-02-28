@@ -21,6 +21,7 @@ import com.ramforth.utilities.expressions.interfaces.IMultiplyExpression;
 import com.ramforth.utilities.expressions.interfaces.INegateExpression;
 import com.ramforth.utilities.expressions.interfaces.INorExpression;
 import com.ramforth.utilities.expressions.interfaces.INotEqualExpression;
+import com.ramforth.utilities.expressions.interfaces.INotExpression;
 import com.ramforth.utilities.expressions.interfaces.IOrExpression;
 import com.ramforth.utilities.expressions.interfaces.IParameterExpression;
 import com.ramforth.utilities.expressions.interfaces.IParenthesizedExpression;
@@ -52,6 +53,7 @@ public interface IExpressionWriter {
     void write(INegateExpression expression);
     void write(INorExpression expression);
     void write(INotEqualExpression expression);
+    void write(INotExpression expression);
     void write(IOrExpression expression);
     void write(IParameterExpression expression);
     void write(IParenthesizedExpression expression);
@@ -62,4 +64,7 @@ public interface IExpressionWriter {
     void write(IXorExpression expression);
     void write(IConstantExpression expression);
     
+    @Override
+    String toString();
+        
 }

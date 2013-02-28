@@ -38,18 +38,24 @@ import com.ramforth.utilities.expressions.interfaces.IXorExpression;
  */
 public class ExpressionWriter implements IExpressionWriter {
 
+    protected StringBuilder sb;
+    
     public ExpressionWriter() {
-        
+        sb = new StringBuilder();
     }
     
     @Override
     public void write(IAddExpression expression) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        write(expression.getLeftChild());
+        sb.append(" + ");
+        write(expression.getRightChild());
     }
 
     @Override
     public void write(IAndExpression expression) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        write(expression.getLeftChild());
+        sb.append(" AND ");
+        write(expression.getRightChild());
     }
 
     @Override
@@ -64,12 +70,16 @@ public class ExpressionWriter implements IExpressionWriter {
 
     @Override
     public void write(IDivideExpression expression) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        write(expression.getLeftChild());
+        sb.append(" / ");
+        write(expression.getRightChild());        
     }
 
     @Override
     public void write(IEqualExpression expression) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        write(expression.getLeftChild());
+        sb.append(" = ");
+        write(expression.getRightChild());
     }
 
     @Override
@@ -105,52 +115,78 @@ public class ExpressionWriter implements IExpressionWriter {
 
     @Override
     public void write(IGreaterOrEqualExpression expression) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        write(expression.getLeftChild());
+        sb.append(" >= ");
+        write(expression.getRightChild());
     }
 
     @Override
     public void write(IGreaterThanExpression expression) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        write(expression.getLeftChild());
+        sb.append(" > ");
+        write(expression.getRightChild());
     }
 
     @Override
     public void write(ILessOrEqualExpression expression) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        write(expression.getLeftChild());
+        sb.append(" <= ");
+        write(expression.getRightChild());
     }
 
     @Override
     public void write(ILessThanExpression expression) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        write(expression.getLeftChild());
+        sb.append(" < ");
+        write(expression.getRightChild());
     }
 
     @Override
     public void write(IModuloExpression expression) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        write(expression.getLeftChild());
+        sb.append(" % ");
+        write(expression.getRightChild());
     }
 
     @Override
     public void write(IMultiplyExpression expression) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        write(expression.getLeftChild());
+        sb.append(" * ");
+        write(expression.getRightChild());    
     }
 
     @Override
     public void write(INegateExpression expression) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        sb.append("-");
+        write(expression.getChild());
     }
 
     @Override
     public void write(INorExpression expression) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        write(expression.getLeftChild());
+        sb.append(" NOR ");
+        write(expression.getRightChild());
     }
 
     @Override
     public void write(INotEqualExpression expression) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        write(expression.getLeftChild());
+        sb.append(" != ");
+        write(expression.getRightChild());
     }
 
     @Override
+    public void write(INotExpression expression) {
+        sb.append("NOT(");
+        write(expression.getChild());
+        sb.append(")");
+    }
+    
+    @Override
     public void write(IOrExpression expression) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        write(expression.getLeftChild());
+        sb.append(" OR ");
+        write(expression.getRightChild());    
     }
 
     @Override
@@ -160,12 +196,16 @@ public class ExpressionWriter implements IExpressionWriter {
 
     @Override
     public void write(IParenthesizedExpression expression) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        sb.append("(");
+        write(expression.getChild());
+        sb.append(")");
     }
 
     @Override
     public void write(IPowerExpression expression) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        write(expression.getLeftChild());
+        sb.append("^");
+        write(expression.getRightChild());
     }
 
     @Override
@@ -175,8 +215,9 @@ public class ExpressionWriter implements IExpressionWriter {
 
     @Override
     public void write(ISubtractExpression expression) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+        write(expression.getLeftChild());
+        sb.append(" - ");
+        write(expression.getRightChild());    }
 
     @Override
     public void write(IUnaryExpression expression) {
@@ -185,12 +226,19 @@ public class ExpressionWriter implements IExpressionWriter {
 
     @Override
     public void write(IXorExpression expression) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        write(expression.getLeftChild());
+        sb.append(" XOR ");
+        write(expression.getRightChild());
     }
     
     @Override
     public void write(IConstantExpression constantExpression) {
-        //sb.append(constantExpression.getValue());
+        sb.append(constantExpression.getValue().toString());
+    }
+    
+    @Override
+    public String toString() {
+        return sb.toString();
     }
     
 }
