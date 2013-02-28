@@ -112,7 +112,9 @@ public class ExpressionWriter implements IExpressionWriter {
 
     @Override
     public void write(IConditionalExpression expression) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (expression instanceof IEqualExpression) {
+            write((IEqualExpression)expression);
+        }
     }
 
     @Override
