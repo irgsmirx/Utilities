@@ -8,5 +8,5 @@ package com.ramforth.utilities.expressions.interfaces;
  *
  * @author Tobias Ramforth <tobias.ramforth at tu-dortmund.de>
  */
-public interface INotExpression extends IUnaryExpression {
+public interface INotExpression extends IUnaryExpression, ILogicalExpression {
 }

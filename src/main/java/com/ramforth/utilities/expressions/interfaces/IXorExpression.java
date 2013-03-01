@@ -8,5 +8,5 @@ package com.ramforth.utilities.expressions.interfaces;
  *
  * @author Tobias Ramforth <tobias.ramforth at tu-dortmund.de>
  */
-public interface IXorExpression extends IBinaryExpression {
+public interface IXorExpression extends IBinaryExpression, ILogicalExpression {
 }

@@ -8,5 +8,5 @@ package com.ramforth.utilities.expressions.interfaces;
  *
  * @author Tobias Ramforth <tobias.ramforth at tu-dortmund.de>
  */
-public interface IConditionalExpression extends IBinaryExpression {
+public interface IConditionalExpression extends IBinaryExpression, ILogicalExpression {
 }

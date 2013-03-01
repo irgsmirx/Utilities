@@ -6,7 +6,8 @@ package com.ramforth.utilities.expressions.interfaces;
 
 /**
  *
- * @author Tobias Ramforth <tobias.ramforth at tu-dortmund.de>
+ * @author tobias
  */
-public interface IAndExpression extends IBinaryExpression, ILogicalExpression {
+public interface ILogicalExpression {
+    
 }
