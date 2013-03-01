@@ -114,6 +114,16 @@ public class ExpressionWriter implements IExpressionWriter {
     public void write(IConditionalExpression expression) {
         if (expression instanceof IEqualExpression) {
             write((IEqualExpression)expression);
+        } else if (expression instanceof INotEqualExpression) {
+            write((INotEqualExpression)expression);
+        } else if (expression instanceof ILessThanExpression) {
+            write((ILessThanExpression)expression);
+        } else if (expression instanceof ILessOrEqualExpression) {
+            write((ILessOrEqualExpression)expression);
+        } else if (expression instanceof IGreaterThanExpression) {
+            write((IGreaterThanExpression)expression);
+        } else if (expression instanceof IGreaterOrEqualExpression) {
+            write((IGreaterOrEqualExpression)expression);
         }
     }
 
