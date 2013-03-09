@@ -45,7 +45,7 @@ public class RegularExpressionStringConstraintTests {
         
         String input = "abcdefghijklmnopqrstuvwxyz";
         
-        RegularExpressionStringConstraint lowercaseAToZ = new RegularExpressionStringConstraint("[a-z]*");
+        RegularExpressionStringConstraint lowercaseAToZ = new RegularExpressionStringConstraint("[a-z]+");
         boolean expectedResult = true;
         
         boolean result = lowercaseAToZ.isSatisfied(input);
@@ -61,7 +61,7 @@ public class RegularExpressionStringConstraintTests {
         
         String input = "";
         
-        RegularExpressionStringConstraint lowercaseAToZ = new RegularExpressionStringConstraint("[a-z]*");
+        RegularExpressionStringConstraint lowercaseAToZ = new RegularExpressionStringConstraint("[a-z]+");
         boolean expectedResult = false;
         
         boolean result = lowercaseAToZ.isSatisfied(input);
