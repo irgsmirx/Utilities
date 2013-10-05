@@ -244,7 +244,9 @@ public class ExpressionWriter implements IExpressionWriter {
 
     @Override
     public void write(IPropertyExpression expression) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        write(expression.getTarget());
+        sb.append(".");
+        sb.append(expression.getPropertyName());
     }
 
     @Override
