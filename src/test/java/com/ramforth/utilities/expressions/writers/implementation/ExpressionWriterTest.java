@@ -119,32 +119,6 @@ public class ExpressionWriterTest {
      * Test of write method, of class ExpressionWriter.
      */
     @Test
-    public void testWrite_IBinaryExpression() {
-        System.out.println("write");
-        IBinaryExpression expression = null;
-        
-        expressionWriter.write(expression);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of write method, of class ExpressionWriter.
-     */
-    @Test
-    public void testWrite_IConditionalExpression() {
-        System.out.println("write");
-        IConditionalExpression expression = null;
-        
-        expressionWriter.write(expression);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of write method, of class ExpressionWriter.
-     */
-    @Test
     public void testWrite_IDivideExpression() {
         System.out.println("write");
         IDivideExpression expression = new DivideExpression(constantExpressionA, constantExpressionB);
@@ -163,19 +137,6 @@ public class ExpressionWriterTest {
         expressionWriter.write(expression);
         String expected = constantExpressionA.getValue().toString() + " = " + constantExpressionB.getValue().toString();
         assertEquals(expected, expressionWriter.toString());
-    }
-
-    /**
-     * Test of write method, of class ExpressionWriter.
-     */
-    @Test
-    public void testWrite_IExpression() {
-        System.out.println("write");
-        IExpression expression = null;
-        
-        expressionWriter.write(expression);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -314,19 +275,6 @@ public class ExpressionWriterTest {
      * Test of write method, of class ExpressionWriter.
      */
     @Test
-    public void testWrite_IParameterExpression() {
-        System.out.println("write");
-        IParameterExpression expression = null;
-        
-        expressionWriter.write(expression);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of write method, of class ExpressionWriter.
-     */
-    @Test
     public void testWrite_IParenthesizedExpression() {
         System.out.println("write");
         IParenthesizedExpression expression = new ParenthesizedExpression(constantExpressionA);
@@ -353,11 +301,11 @@ public class ExpressionWriterTest {
     @Test
     public void testWrite_IPropertyExpression() {
         System.out.println("write");
-        IPropertyExpression expression = new PropertyExpression(constantExpressionA, "propertyName");
-        
+        String propertyName = "propertyName";
+        IPropertyExpression expression = new PropertyExpression(constantExpressionA, propertyName);
+        String expected = constantExpressionA.getValue().toString() + "." + propertyName;
         expressionWriter.write(expression);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(expected, expressionWriter.toString());
     }
 
     /**
@@ -370,19 +318,6 @@ public class ExpressionWriterTest {
         String expected = constantExpressionA.getValue().toString() + " - " + constantExpressionB.getValue().toString();
         expressionWriter.write(expression);
         assertEquals(expected, expressionWriter.toString());
-    }
-
-    /**
-     * Test of write method, of class ExpressionWriter.
-     */
-    @Test
-    public void testWrite_IUnaryExpression() {
-        System.out.println("write");
-        IUnaryExpression expression = null;
-        
-        expressionWriter.write(expression);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
