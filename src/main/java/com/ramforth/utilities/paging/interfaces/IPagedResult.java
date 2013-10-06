@@ -10,10 +10,10 @@ package com.ramforth.utilities.paging.interfaces;
  */
 public interface IPagedResult<TItem> {
  
-    int getCurrentPage();
-    int getTotalNumberOfPages();
+    long getCurrentPage();
+    long getTotalNumberOfPages();
     Iterable<TItem> getCurrentItems();
-    int getNumberOfItemsPerPage();
-    int getTotalNumberOfItems();
+    long getNumberOfItemsPerPage();
+    long getTotalNumberOfItems();
     
 }
