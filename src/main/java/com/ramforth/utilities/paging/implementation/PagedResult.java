@@ -12,12 +12,12 @@ import com.ramforth.utilities.paging.interfaces.IPagedResult;
  */
 public class PagedResult<TItem> implements IPagedResult<TItem> {
 
-    private long currentPage = 0;
+    private int currentPage = 0;
     private Iterable<TItem> currentItems;
-    private long numberOfItemsPerPage = 10;
-    private long totalNumberOfItems = 0;
+    private int numberOfItemsPerPage = 10;
+    private int totalNumberOfItems = 0;
     
-    public PagedResult(long currentPage, Iterable<TItem> currentItems, long numberOfItemsPerPage, long totalNumberOfItems) {
+    public PagedResult(int currentPage, Iterable<TItem> currentItems, int numberOfItemsPerPage, int totalNumberOfItems) {
         this.currentPage = currentPage;
         this.currentItems = currentItems;
         this.numberOfItemsPerPage = numberOfItemsPerPage;
@@ -25,14 +25,14 @@ public class PagedResult<TItem> implements IPagedResult<TItem> {
     }
     
     @Override
-    public long getCurrentPage() {
+    public int getCurrentPage() {
         return currentPage;
     }
 
     @Override
-    public long getTotalNumberOfPages() {
-        long basicNumberOfPages = totalNumberOfItems / numberOfItemsPerPage;
-        long rest = (totalNumberOfItems - (basicNumberOfPages * numberOfItemsPerPage));
+    public int getTotalNumberOfPages() {
+        int basicNumberOfPages = totalNumberOfItems / numberOfItemsPerPage;
+        int rest = (totalNumberOfItems - (basicNumberOfPages * numberOfItemsPerPage));
         return basicNumberOfPages + (rest == 0 ? 0 : 1);
     }
 
@@ -42,12 +42,12 @@ public class PagedResult<TItem> implements IPagedResult<TItem> {
     }
 
     @Override
-    public long getNumberOfItemsPerPage() {
+    public int getNumberOfItemsPerPage() {
         return numberOfItemsPerPage;
     }
 
     @Override
-    public long getTotalNumberOfItems() {
+    public int getTotalNumberOfItems() {
         return totalNumberOfItems;
     }
     
