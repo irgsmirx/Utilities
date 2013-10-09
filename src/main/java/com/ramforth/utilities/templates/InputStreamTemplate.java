@@ -220,6 +220,7 @@ public class InputStreamTemplate extends AbstractTemplate {
 
         for (Entry<String, Object> entry : placeholderMap.entrySet()) {
             templateLength -= entry.getKey().getBytes().length;
+            templateLength -= "{}".getBytes().length;
             if (entry.getValue() == null) {
                 templateLength += "null".getBytes().length;
             } else if (entry.getValue() instanceof String) {
