@@ -12,7 +12,7 @@ import java.util.TreeMap;
  * @author ramforth
  */
 public abstract class AbstractTemplate implements ITemplate {
-
+   
     protected char placeholderBeginTag = '{';
     protected char placeholderEndTag = '}';
     protected String escapeCharacter = "\\";
@@ -62,6 +62,30 @@ public abstract class AbstractTemplate implements ITemplate {
         return characterCode == '\b' || characterCode == '\t'
                 || characterCode == '\n' || characterCode == '\f'
                 || characterCode == '\r';
+    }
+    
+    private long getBeginAndEndTagBytesLength() {
+        return new String(new char[] { placeholderBeginTag, placeholderEndTag }).getBytes().length;
+    }
+        
+    protected long correctTemplateLength(long templateLength) {
+        long beginAndEndTagBytesLength = getBeginAndEndTagBytesLength();
+        
+        for (Map.Entry<String, Object> entry : placeholderMap.entrySet()) {
+            templateLength -= entry.getKey().getBytes().length;
+            templateLength -= beginAndEndTagBytesLength;
+            
+            Object value = entry.getValue();
+            if (value == null) {
+                templateLength += "null".getBytes().length;
+            } else if (value instanceof String) {
+                templateLength += ( (String) value ).getBytes().length;
+            } else if (value instanceof ITemplate) {
+                templateLength += ( (ITemplate) value ).getLength();
+            }
+        }
+
+        return templateLength;
     }
     
 }

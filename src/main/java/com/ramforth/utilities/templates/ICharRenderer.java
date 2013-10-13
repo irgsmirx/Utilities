@@ -15,4 +15,5 @@ public interface ICharRenderer {
     void render(String s);
 
     void render(Object o);
+    
 }

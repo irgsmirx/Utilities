@@ -217,18 +217,7 @@ public class InputStreamTemplate extends AbstractTemplate {
         catch (Exception ex) {
             return -1;
         }
-
-        for (Entry<String, Object> entry : placeholderMap.entrySet()) {
-            templateLength -= entry.getKey().getBytes().length;
-            templateLength -= "{}".getBytes().length;
-            if (entry.getValue() == null) {
-                templateLength += "null".getBytes().length;
-            } else if (entry.getValue() instanceof String) {
-                templateLength += ( (String) entry.getValue() ).getBytes().length;
-            } else if (entry.getValue() instanceof ITemplate) {
-                templateLength += ( (ITemplate) entry.getValue() ).getLength();
-            }
-        }
-        return templateLength;
+        
+        return correctTemplateLength(templateLength);
     }
 }
