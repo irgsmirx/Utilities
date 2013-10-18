@@ -50,7 +50,7 @@ public class StringTemplate extends AbstractTemplate {
     }
 
     @Override
-    protected String getTemplate() {
+    public String getTemplate() {
         return template;
     }
 

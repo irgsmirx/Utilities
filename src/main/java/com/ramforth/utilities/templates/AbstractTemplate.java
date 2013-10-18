@@ -264,12 +264,13 @@ public abstract class AbstractTemplate implements ITemplate {
         return length;
     }
     
+    @Override
     public long renderTo(OutputStream outputStream) {
         ICharRenderer renderer = new OutputStreamRenderer(outputStream);
         return renderTo(renderer);
     }
     
-    protected abstract Object getTemplate();
+    public abstract Object getTemplate();
     
     protected abstract Reader tryCreateReader();
     

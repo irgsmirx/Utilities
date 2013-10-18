@@ -58,7 +58,7 @@ public class InputStreamTemplate extends AbstractTemplate {
     }
     
     @Override
-    protected Object getTemplate() {
+    public Object getTemplate() {
         return template;
     }
     
