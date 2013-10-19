@@ -9,6 +9,7 @@ import java.io.OutputStream;
 import java.io.Reader;
 import java.lang.reflect.Array;
 import java.lang.reflect.Field;
+import java.nio.charset.Charset;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -78,6 +79,10 @@ public abstract class AbstractTemplate implements ITemplate {
         return new String(new char[] { placeholderBeginTag, placeholderEndTag }).getBytes().length;
     }
     
+    private long getBeginAndEndTagBytesLength(Charset charset) {
+        return new String(new char[] { placeholderBeginTag, placeholderEndTag }).getBytes(charset).length;
+    }
+    
     protected long correctTemplateLength(long templateLength) {
         long beginAndEndTagBytesLength = getBeginAndEndTagBytesLength();
         
@@ -92,6 +97,26 @@ public abstract class AbstractTemplate implements ITemplate {
                 templateLength += ( (String) value ).getBytes().length;
             } else if (value instanceof ITemplate) {
                 templateLength += ( (ITemplate) value ).getLength();
+            }
+        }
+
+        return templateLength;
+    }
+    
+    protected long correctTemplateLength(long templateLength, Charset charset) {
+        long beginAndEndTagBytesLength = getBeginAndEndTagBytesLength(charset);
+        
+        for (Map.Entry<String, Object> entry : placeholderMap.entrySet()) {
+            templateLength -= entry.getKey().getBytes(charset).length;
+            templateLength -= beginAndEndTagBytesLength;
+            
+            Object value = entry.getValue();
+            if (value == null) {
+                templateLength += "null".getBytes(charset).length;
+            } else if (value instanceof String) {
+                templateLength += ( (String) value ).getBytes(charset).length;
+            } else if (value instanceof ITemplate) {
+                templateLength += ( (ITemplate) value ).getLength(charset);
             }
         }
 

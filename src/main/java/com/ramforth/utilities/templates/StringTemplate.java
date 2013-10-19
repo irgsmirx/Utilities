@@ -4,14 +4,9 @@
  */
 package com.ramforth.utilities.templates;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.*;
-import java.lang.reflect.Array;
-import java.lang.reflect.Field;
-import java.util.List;
-import java.util.Map;
+import java.nio.charset.Charset;
 
 /**
  *
@@ -19,7 +14,6 @@ import java.util.Map;
  */
 public class StringTemplate extends AbstractTemplate {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(StringTemplate.class);
     private String template;
 
     public StringTemplate(String template) {
@@ -49,6 +43,13 @@ public class StringTemplate extends AbstractTemplate {
         return correctTemplateLength(templateLength);
     }
 
+    @Override
+    public long getLength(Charset charset) {
+        long templateLength = template.getBytes(charset).length;
+
+        return correctTemplateLength(templateLength);
+    }
+    
     @Override
     public String getTemplate() {
         return template;

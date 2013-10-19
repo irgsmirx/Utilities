@@ -5,6 +5,7 @@
 package com.ramforth.utilities.templates;
 
 import java.io.OutputStream;
+import java.nio.charset.Charset;
 
 /**
  *
@@ -29,5 +30,7 @@ public interface ITemplate {
     String render();
 
     long getLength();
+    
+    long getLength(Charset charset);
     
 }

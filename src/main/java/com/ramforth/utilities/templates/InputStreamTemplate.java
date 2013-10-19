@@ -5,6 +5,7 @@
 package com.ramforth.utilities.templates;
 
 import java.io.*;
+import java.nio.charset.Charset;
 
 /**
  *
@@ -55,6 +56,19 @@ public class InputStreamTemplate extends AbstractTemplate {
         }
         
         return correctTemplateLength(templateLength);
+    }
+    
+    @Override
+    public long getLength(Charset charset) {
+        long templateLength = 0;
+        try {
+            templateLength = template.available();
+        }
+        catch (Exception ex) {
+            return -1;
+        }
+        
+        return correctTemplateLength(templateLength, charset);
     }
     
     @Override

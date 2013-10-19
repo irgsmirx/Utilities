@@ -5,14 +5,9 @@
 package com.ramforth.utilities.templates;
 
 import java.io.*;
-import java.lang.reflect.Array;
-import java.lang.reflect.Field;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.util.List;
-import java.util.Map;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.nio.charset.Charset;
 
 /**
  *
@@ -20,7 +15,6 @@ import org.slf4j.LoggerFactory;
  */
 public class FileTemplate extends AbstractTemplate {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(FileTemplate.class);
     private File template;
 
     public FileTemplate(File file) {
@@ -86,6 +80,12 @@ public class FileTemplate extends AbstractTemplate {
         return correctTemplateLength(templateLength);
     }
 
+    @Override
+    public long getLength(Charset charset) {
+        long templateLength = template.length();
+        return correctTemplateLength(templateLength, charset);
+    }
+    
     @Override
     protected void tryClose() {
         // nothing to do here
