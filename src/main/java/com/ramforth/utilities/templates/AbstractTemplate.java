@@ -131,7 +131,11 @@ public abstract class AbstractTemplate implements ITemplate {
                                         length += subTemplate.length();
                                     } else {
                                         renderer.render(currentValue);
-                                        length += 0; // FIXME
+                                        try {
+                                            length += currentValue.toString().getBytes().length;// 0; // FIXME
+                                        } catch (Exception ex) {
+                                            LOGGER.warn("Could not determine byte length of currentValue.", ex);
+                                        }
                                     }
                                     currentValue = null;
                                 } else {
