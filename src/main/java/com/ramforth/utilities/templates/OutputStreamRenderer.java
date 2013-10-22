@@ -14,7 +14,7 @@ import java.io.OutputStream;
  *
  * @author tobias
  */
-public class OutputStreamRenderer implements ICharRenderer {
+public class OutputStreamRenderer extends AbstractCharRenderer {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(OutputStreamRenderer.class);
     private OutputStream outputStream;
@@ -29,7 +29,7 @@ public class OutputStreamRenderer implements ICharRenderer {
             outputStream.write(c);
         }
         catch (IOException ioex) {
-            LOGGER.warn("Error", ioex); //TODO Enter precise error message
+            LOGGER.warn("Error rendering character to outputstream", ioex);
             throw new com.ramforth.utilities.exceptions.IOException(ioex);
         }
     }
@@ -37,10 +37,10 @@ public class OutputStreamRenderer implements ICharRenderer {
     @Override
     public void render(String s) {
         try {
-            outputStream.write(s.getBytes());
+            outputStream.write(s.getBytes(charset));
         }
         catch (IOException ioex) {
-            LOGGER.warn("Error", ioex); //TODO Enter precise error message
+            LOGGER.warn("Error rendering string to outputstream", ioex);
             throw new com.ramforth.utilities.exceptions.IOException(ioex);
         }
     }

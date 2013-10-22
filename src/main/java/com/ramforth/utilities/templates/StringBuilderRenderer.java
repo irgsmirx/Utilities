@@ -8,7 +8,7 @@ package com.ramforth.utilities.templates;
  *
  * @author tobias
  */
-public class StringBuilderRenderer implements ICharRenderer {
+public class StringBuilderRenderer extends AbstractCharRenderer {
 
     private StringBuilder stringBuilder;
 
