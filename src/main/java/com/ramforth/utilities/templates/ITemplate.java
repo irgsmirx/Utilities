@@ -33,4 +33,8 @@ public interface ITemplate {
     
     long getLength(Charset charset);
     
+    Charset getCharset();
+    
+    void setCharset(Charset charset);
+    
 }

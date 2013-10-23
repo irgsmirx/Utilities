@@ -24,19 +24,30 @@ public abstract class AbstractTemplate implements ITemplate {
    
     protected static final Logger LOGGER = LoggerFactory.getLogger(AbstractTemplate.class);
 
-    protected char placeholderBeginTag = '{';
-    protected char placeholderEndTag = '}';
-    protected String escapeCharacter = "\\";
+    protected static final char DEFAULT_PLACEHOLDER_BEGIN_TAG = '{';
+    protected static final char DEFAULT_PLACEHOLDER_END_TAG = '}';
+    protected static final String DEFAULT_ESCAPE_CHARARCTER = "\\";
+    
+    protected char placeholderBeginTag;
+    protected char placeholderEndTag;
+    protected String escapeCharacter;
     protected Map<String, Object> placeholderMap = new TreeMap<>();
     protected Map<Class<?>, ICustomRenderer> customRenderers = new TreeMap<>();
 
+    protected Charset charset;
+    
     public AbstractTemplate() {
+        placeholderBeginTag = DEFAULT_PLACEHOLDER_BEGIN_TAG;
+        placeholderEndTag = DEFAULT_PLACEHOLDER_END_TAG;
+        escapeCharacter = DEFAULT_ESCAPE_CHARARCTER;
+        charset = Charset.defaultCharset();
     }
 
     public AbstractTemplate(char placeholderBeginTag, char placeholderEndTag, String escapeCharacter) {
         this.placeholderBeginTag = placeholderBeginTag;
         this.placeholderEndTag = placeholderEndTag;
         this.escapeCharacter = escapeCharacter;
+        charset = Charset.defaultCharset();
     }
 
     @Override
@@ -297,6 +308,16 @@ public abstract class AbstractTemplate implements ITemplate {
     public long renderTo(OutputStream outputStream) {
         ICharRenderer renderer = new OutputStreamRenderer(outputStream);
         return renderTo(renderer);
+    }
+
+    @Override
+    public void setCharset(Charset charset) {
+        this.charset = charset;
+    }
+
+    @Override
+    public final Charset getCharset() {
+        return charset;
     }
     
     public abstract Object getTemplate();

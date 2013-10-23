@@ -14,7 +14,7 @@ import java.nio.charset.Charset;
  */
 public class StringTemplate extends AbstractTemplate {
 
-    private String template;
+    private final String template;
 
     public StringTemplate(String template) {
         super();
