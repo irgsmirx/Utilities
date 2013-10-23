@@ -98,14 +98,14 @@ public abstract class AbstractTemplate implements ITemplate {
         long beginAndEndTagBytesLength = getBeginAndEndTagBytesLength();
         
         for (Map.Entry<String, Object> entry : placeholderMap.entrySet()) {
-            templateLength -= entry.getKey().getBytes().length;
+            templateLength -= entry.getKey().getBytes(charset).length;
             templateLength -= beginAndEndTagBytesLength;
             
             Object value = entry.getValue();
             if (value == null) {
-                templateLength += "null".getBytes().length;
+                templateLength += "null".getBytes(charset).length;
             } else if (value instanceof String) {
-                templateLength += ( (String) value ).getBytes().length;
+                templateLength += ( (String) value ).getBytes(charset).length;
             } else if (value instanceof ITemplate) {
                 templateLength += ( (ITemplate) value ).getLength();
             }
@@ -307,11 +307,15 @@ public abstract class AbstractTemplate implements ITemplate {
     @Override
     public long renderTo(OutputStream outputStream) {
         ICharRenderer renderer = new OutputStreamRenderer(outputStream);
+        renderer.setCharset(charset);
         return renderTo(renderer);
     }
 
     @Override
     public void setCharset(Charset charset) {
+        if (charset == null) {
+            LOGGER.warn("Charset set to null. This is going to cause trouble.");
+        }
         this.charset = charset;
     }
 

@@ -16,8 +16,7 @@ import java.io.OutputStream;
  */
 public class OutputStreamRenderer extends AbstractCharRenderer {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(OutputStreamRenderer.class);
-    private OutputStream outputStream;
+    private final OutputStream outputStream;
 
     public OutputStreamRenderer(OutputStream os) {
         this.outputStream = os;

@@ -64,6 +64,7 @@ public class FileTemplate extends AbstractTemplate {
         StringBuilder renderBuilder = new StringBuilder();
 
         ICharRenderer renderer = new StringBuilderRenderer(renderBuilder);
+        renderer.setCharset(charset);
         renderTo(renderer);
 
         return renderBuilder.toString();
@@ -77,7 +78,7 @@ public class FileTemplate extends AbstractTemplate {
     @Override
     public long getLength() {
         long templateLength = template.length();
-        return correctTemplateLength(templateLength);
+        return correctTemplateLength(templateLength, charset);
     }
 
     @Override

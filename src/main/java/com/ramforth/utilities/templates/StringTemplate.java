@@ -31,6 +31,7 @@ public class StringTemplate extends AbstractTemplate {
         StringBuilder renderBuilder = new StringBuilder();
 
         ICharRenderer renderer = new StringBuilderRenderer(renderBuilder);
+        renderer.setCharset(this.charset);
         renderTo(renderer);
 
         return renderBuilder.toString();
@@ -38,7 +39,7 @@ public class StringTemplate extends AbstractTemplate {
 
     @Override
     public long getLength() {
-        long templateLength = template.getBytes().length;
+        long templateLength = template.getBytes(charset).length;
 
         return correctTemplateLength(templateLength);
     }

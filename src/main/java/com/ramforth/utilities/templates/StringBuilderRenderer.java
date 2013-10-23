@@ -10,7 +10,7 @@ package com.ramforth.utilities.templates;
  */
 public class StringBuilderRenderer extends AbstractCharRenderer {
 
-    private StringBuilder stringBuilder;
+    private final StringBuilder stringBuilder;
 
     public StringBuilderRenderer(StringBuilder sb) {
         this.stringBuilder = sb;

@@ -22,7 +22,7 @@ public class InputStreamTemplate extends AbstractTemplate {
 
     @Override
     protected Reader tryCreateReader() {
-        return new BufferedReader(new InputStreamReader(template));
+        return new BufferedReader(new InputStreamReader(template, charset));
     }
     
     @Override
@@ -51,7 +51,7 @@ public class InputStreamTemplate extends AbstractTemplate {
         try {
             templateLength = template.available();
         }
-        catch (Exception ex) {
+        catch (IOException ex) {
             return -1;
         }
         
@@ -64,7 +64,7 @@ public class InputStreamTemplate extends AbstractTemplate {
         try {
             templateLength = template.available();
         }
-        catch (Exception ex) {
+        catch (IOException ex) {
             return -1;
         }
         
