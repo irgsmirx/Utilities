@@ -46,7 +46,7 @@ public class InputStreamTemplate extends AbstractTemplate {
     }
 
     @Override
-    public long getLength() {
+    public long getLengthInBytes() {
         long templateLength = 0;
         try {
             templateLength = template.available();
@@ -56,19 +56,6 @@ public class InputStreamTemplate extends AbstractTemplate {
         }
         
         return correctTemplateLength(templateLength);
-    }
-    
-    @Override
-    public long getLength(Charset charset) {
-        long templateLength = 0;
-        try {
-            templateLength = template.available();
-        }
-        catch (IOException ex) {
-            return -1;
-        }
-        
-        return correctTemplateLength(templateLength, charset);
     }
     
     @Override

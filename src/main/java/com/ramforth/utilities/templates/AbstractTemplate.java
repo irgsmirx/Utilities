@@ -107,27 +107,7 @@ public abstract class AbstractTemplate implements ITemplate {
             } else if (value instanceof String) {
                 templateLength += ( (String) value ).getBytes(charset).length;
             } else if (value instanceof ITemplate) {
-                templateLength += ( (ITemplate) value ).getLength();
-            }
-        }
-
-        return templateLength;
-    }
-    
-    protected long correctTemplateLength(long templateLength, Charset charset) {
-        long beginAndEndTagBytesLength = getBeginAndEndTagBytesLength(charset);
-        
-        for (Map.Entry<String, Object> entry : placeholderMap.entrySet()) {
-            templateLength -= entry.getKey().getBytes(charset).length;
-            templateLength -= beginAndEndTagBytesLength;
-            
-            Object value = entry.getValue();
-            if (value == null) {
-                templateLength += "null".getBytes(charset).length;
-            } else if (value instanceof String) {
-                templateLength += ( (String) value ).getBytes(charset).length;
-            } else if (value instanceof ITemplate) {
-                templateLength += ( (ITemplate) value ).getLength(charset);
+                templateLength += ( (ITemplate) value ).getLengthInBytes();
             }
         }
 

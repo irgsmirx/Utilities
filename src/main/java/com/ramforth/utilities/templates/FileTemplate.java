@@ -76,15 +76,9 @@ public class FileTemplate extends AbstractTemplate {
     }
 
     @Override
-    public long getLength() {
+    public long getLengthInBytes() {
         long templateLength = template.length();
-        return correctTemplateLength(templateLength, charset);
-    }
-
-    @Override
-    public long getLength(Charset charset) {
-        long templateLength = template.length();
-        return correctTemplateLength(templateLength, charset);
+        return correctTemplateLength(templateLength);
     }
     
     @Override

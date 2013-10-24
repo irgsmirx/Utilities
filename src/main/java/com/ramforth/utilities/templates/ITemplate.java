@@ -29,9 +29,7 @@ public interface ITemplate {
 
     String render();
 
-    long getLength();
-    
-    long getLength(Charset charset);
+    long getLengthInBytes();
     
     Charset getCharset();
     

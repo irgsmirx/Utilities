@@ -6,7 +6,6 @@ package com.ramforth.utilities.templates;
 
 
 import java.io.*;
-import java.nio.charset.Charset;
 
 /**
  *
@@ -38,14 +37,7 @@ public class StringTemplate extends AbstractTemplate {
     }
 
     @Override
-    public long getLength() {
-        long templateLength = template.getBytes(charset).length;
-
-        return correctTemplateLength(templateLength);
-    }
-
-    @Override
-    public long getLength(Charset charset) {
+    public long getLengthInBytes() {
         long templateLength = template.getBytes(charset).length;
 
         return correctTemplateLength(templateLength);
