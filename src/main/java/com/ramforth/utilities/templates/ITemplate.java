@@ -24,7 +24,9 @@ public interface ITemplate {
     void clear();
 
     int numberOfPlaceholders();
-    
+
+    Iterable<String> usedPlaceholders();
+
     long renderTo(OutputStream outputStream);
 
     String render();
