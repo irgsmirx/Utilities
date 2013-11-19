@@ -22,7 +22,7 @@ public class FileTemplate extends AbstractTemplate {
         this.template = file;
     }
 
-    public FileTemplate(File file, char placeholderBeginTag, char placeholderEndTag, String escapeCharacter) {
+    public FileTemplate(File file, String placeholderBeginTag, String placeholderEndTag, String escapeCharacter) {
         super(placeholderBeginTag, placeholderEndTag, escapeCharacter);
         this.template = file;
     }
@@ -43,7 +43,7 @@ public class FileTemplate extends AbstractTemplate {
         }
     }
 
-    public FileTemplate(String filePath, char placeholderBeginTag, char placeholderEndTag, String escapeCharacter) {
+    public FileTemplate(String filePath, String placeholderBeginTag, String placeholderEndTag, String escapeCharacter) {
         super(placeholderBeginTag, placeholderEndTag, escapeCharacter);
         this.template = new File(filePath);
     }

@@ -25,12 +25,15 @@ public abstract class AbstractTemplate implements ITemplate {
    
     protected static final Logger LOGGER = LoggerFactory.getLogger(AbstractTemplate.class);
 
-    protected static final char DEFAULT_PLACEHOLDER_BEGIN_TAG = '{';
-    protected static final char DEFAULT_PLACEHOLDER_END_TAG = '}';
+    protected static final String DEFAULT_PLACEHOLDER_BEGIN_TAG = "{";
+    protected static final String DEFAULT_PLACEHOLDER_END_TAG = "}";
     protected static final String DEFAULT_ESCAPE_CHARARCTER = "\\";
+    protected static final int INDEXER_BEGIN_CHARACTER = '[';
+    protected static final int INDEXER_END_CHARACTER = ']';
+    protected static final int FIELD_SEPARATOR_CHARACTER = '.';
     
-    protected char placeholderBeginTag;
-    protected char placeholderEndTag;
+    protected String placeholderBeginTag;
+    protected String placeholderEndTag;
     protected String escapeCharacter;
     protected Map<String, Object> placeholderMap = new TreeMap<>();
     protected Map<Class<?>, ICustomRenderer> customRenderers = new TreeMap<>();
@@ -44,7 +47,7 @@ public abstract class AbstractTemplate implements ITemplate {
         charset = Charset.defaultCharset();
     }
 
-    public AbstractTemplate(char placeholderBeginTag, char placeholderEndTag, String escapeCharacter) {
+    public AbstractTemplate(String placeholderBeginTag, String placeholderEndTag, String escapeCharacter) {
         this.placeholderBeginTag = placeholderBeginTag;
         this.placeholderEndTag = placeholderEndTag;
         this.escapeCharacter = escapeCharacter;
@@ -73,130 +76,150 @@ public abstract class AbstractTemplate implements ITemplate {
 
     @Override
     public Iterable<String> usedPlaceholders() {
-        List<String> usedPlaceholders = new ArrayList<String>();
+        List<String> usedPlaceholders = new ArrayList<>();
 
         if (getTemplate() != null) {
             StringBuilder sb = new StringBuilder();
-
+            StringBuilder temp = new StringBuilder();
+            
             boolean inPlaceholder = false;
             boolean inIndexer = false;
 
             String currentPlaceholderKey = null;
             Object currentValue = null;
 
+            int lastMatchedBeginTagPosition = 0;
+            int lastMatchedEndTagPosition = 0;
+            
             try (Reader reader = tryCreateReader()) {
                 int templateCharacter = -1;
                 try {
                     while (( templateCharacter = reader.read() ) != -1) {
-                        if (templateCharacter == placeholderBeginTag) {
-                            if (inPlaceholder) {
-                                sb.append((char) templateCharacter);
-                            } else {
-                                inPlaceholder = true;
-                            }
-                        } else if (templateCharacter == placeholderEndTag) {
-                            if (sb.length() > 0) {
-                                String propertyName = sb.toString();
-                                if (currentValue == null) {
-                                    currentValue = placeholderMap.get(propertyName);
-                                    if (placeholderMap.containsKey(propertyName)) {
-                                        usedPlaceholders.add(propertyName);
-                                    }
-                                    currentValue = null;
+                        if (templateCharacter == placeholderBeginTag.codePointAt(lastMatchedBeginTagPosition)) {
+                            lastMatchedBeginTagPosition++;
+                            if (lastMatchedBeginTagPosition == placeholderBeginTag.length()) {
+                                lastMatchedBeginTagPosition = 0;
+                                if (inPlaceholder) {
+                                    sb.append((char) templateCharacter);
                                 } else {
-                                    Field field = ReflectionUtilities.findFieldIn(currentValue.getClass(), propertyName);
-                                    Object fieldValue = ReflectionUtilities.getFieldValueFrom(field, currentValue);
-                                    currentPlaceholderKey = null;
-                                    currentValue = null;
-                                    if (fieldValue == null) {
-                                        sb.append("NULL");
+                                    inPlaceholder = true;
+                                }
+                            }
+                        } else {
+                            lastMatchedBeginTagPosition = 0;
+                            
+                            if (templateCharacter == placeholderEndTag.codePointAt(lastMatchedEndTagPosition)) {
+                                lastMatchedEndTagPosition++;
+                                if (lastMatchedEndTagPosition == placeholderEndTag.length()) {
+                                    lastMatchedEndTagPosition = 0;
+                                    if (sb.length() > 0) {
+                                        String propertyName = sb.toString();
+                                        if (currentValue == null) {
+                                            currentValue = placeholderMap.get(propertyName);
+                                            if (placeholderMap.containsKey(propertyName)) {
+                                                usedPlaceholders.add(propertyName);
+                                            }
+                                            currentValue = null;
+                                        } else {
+                                            Field field = ReflectionUtilities.findFieldIn(currentValue.getClass(), propertyName);
+                                            Object fieldValue = ReflectionUtilities.getFieldValueFrom(field, currentValue);
+                                            currentPlaceholderKey = null;
+                                            currentValue = null;
+                                            if (fieldValue == null) {
+                                                sb.append("NULL");
+                                            } else {
+                                                sb.append(fieldValue);
+                                            }
+                                        }
+
+                                        sb.setLength(0);
                                     } else {
-                                        sb.append(fieldValue);
-                                    }
-                                }
-
-                                sb.setLength(0);
-                            } else {
-                                if (currentValue != null) {
-                                    sb.append(currentValue);
-                                    sb.setLength(0);
-                                }
-                            }
-                            inPlaceholder = false;
-                            inIndexer = false;
-                        } else if (templateCharacter == '[') {
-                            String propertyName = sb.toString();
-                            if (inPlaceholder) {
-                                if (currentValue == null) {
-                                    if (placeholderMap.containsKey(propertyName)) {
-                                        usedPlaceholders.add(propertyName);
-                                    }
-                                    currentValue = placeholderMap.get(propertyName);
-                                } else {
-                                    Field field = ReflectionUtilities.findFieldIn(currentValue.getClass(), propertyName);
-                                    currentValue = ReflectionUtilities.getFieldValueFrom(field, currentValue);
-                                    currentPlaceholderKey = propertyName;
-                                }
-                                sb.setLength(0);
-
-                                inIndexer = true;
-                            } else {
-                            }
-                        } else if (templateCharacter == ']') {
-                            if (inPlaceholder) {
-                                if (inIndexer) {
-                                    String propertyName = sb.toString();
-                                    try {
-                                        int indexValue = Integer.parseInt(propertyName);
-
-                                        if (currentValue.getClass().isArray()) {
-                                            currentValue = Array.get(currentValue, indexValue);
-                                        } else if (currentValue instanceof List<?>) {
-                                            currentValue = ( (List<?>) currentValue ).get(indexValue);
-                                        } else if (currentValue instanceof Map<?, ?>) {
-                                            currentValue = ( (Map<?, ?>) currentValue ).get(indexValue);
+                                        if (currentValue != null) {
+                                            sb.append(currentValue);
+                                            sb.setLength(0);
                                         }
                                     }
-                                    catch (NumberFormatException nfex) {
-                                        if (currentValue instanceof Map<?, ?>) {
-                                            currentValue = ( (Map<?, ?>) currentValue ).get(propertyName);
-                                        }
-                                    }
-
-                                    sb.setLength(0);
-
+                                    inPlaceholder = false;
                                     inIndexer = false;
                                 }
                             } else {
-                            }
-                        } else if (templateCharacter == '.') {
-                            if (inPlaceholder) {
-                                if (sb.length() > 0) {
+                                lastMatchedEndTagPosition = 0;
+                                
+                                if (templateCharacter == INDEXER_BEGIN_CHARACTER) {
                                     String propertyName = sb.toString();
-                                    if (currentValue == null) {
-                                        currentValue = placeholderMap.get(propertyName);
-                                        if (placeholderMap.containsKey(propertyName)) {
-                                            usedPlaceholders.add(propertyName);
+                                    if (inPlaceholder) {
+                                        if (currentValue == null) {
+                                            if (placeholderMap.containsKey(propertyName)) {
+                                                usedPlaceholders.add(propertyName);
+                                            }
+                                            currentValue = placeholderMap.get(propertyName);
+                                        } else {
+                                            Field field = ReflectionUtilities.findFieldIn(currentValue.getClass(), propertyName);
+                                            currentValue = ReflectionUtilities.getFieldValueFrom(field, currentValue);
+                                            currentPlaceholderKey = propertyName;
                                         }
-                                        currentPlaceholderKey = propertyName;
+                                        sb.setLength(0);
+
+                                        inIndexer = true;
                                     } else {
-                                        Field field = ReflectionUtilities.findFieldIn(currentValue.getClass(), propertyName);
-                                        currentValue = ReflectionUtilities.getFieldValueFrom(field, currentValue);
-                                        currentPlaceholderKey = propertyName;
                                     }
-                                    sb.setLength(0);
-                                }
-                            } else {
-                            }
-                        } else {
-                            if (inPlaceholder) {
-                                if (isControlCharacter(templateCharacter)) {
-                                    inPlaceholder = false;
-                                    sb.setLength(0);
+                                } else if (templateCharacter == INDEXER_END_CHARACTER) {
+                                    if (inPlaceholder) {
+                                        if (inIndexer) {
+                                            String propertyName = sb.toString();
+                                            try {
+                                                int indexValue = Integer.parseInt(propertyName);
+
+                                                if (currentValue.getClass().isArray()) {
+                                                    currentValue = Array.get(currentValue, indexValue);
+                                                } else if (currentValue instanceof List<?>) {
+                                                    currentValue = ( (List<?>) currentValue ).get(indexValue);
+                                                } else if (currentValue instanceof Map<?, ?>) {
+                                                    currentValue = ( (Map<?, ?>) currentValue ).get(indexValue);
+                                                }
+                                            }
+                                            catch (NumberFormatException nfex) {
+                                                if (currentValue instanceof Map<?, ?>) {
+                                                    currentValue = ( (Map<?, ?>) currentValue ).get(propertyName);
+                                                }
+                                            }
+
+                                            sb.setLength(0);
+
+                                            inIndexer = false;
+                                        }
+                                    } else {
+                                    }
+                                } else if (templateCharacter == FIELD_SEPARATOR_CHARACTER) {
+                                    if (inPlaceholder) {
+                                        if (sb.length() > 0) {
+                                            String propertyName = sb.toString();
+                                            if (currentValue == null) {
+                                                currentValue = placeholderMap.get(propertyName);
+                                                if (placeholderMap.containsKey(propertyName)) {
+                                                    usedPlaceholders.add(propertyName);
+                                                }
+                                                currentPlaceholderKey = propertyName;
+                                            } else {
+                                                Field field = ReflectionUtilities.findFieldIn(currentValue.getClass(), propertyName);
+                                                currentValue = ReflectionUtilities.getFieldValueFrom(field, currentValue);
+                                                currentPlaceholderKey = propertyName;
+                                            }
+                                            sb.setLength(0);
+                                        }
+                                    } else {
+                                    }
                                 } else {
-                                    sb.append((char) templateCharacter);
+                                    if (inPlaceholder) {
+                                        if (isControlCharacter(templateCharacter)) {
+                                            inPlaceholder = false;
+                                            sb.setLength(0);
+                                        } else {
+                                            sb.append((char) templateCharacter);
+                                        }
+                                    } else {
+                                    }
                                 }
-                            } else {
                             }
                         }
                     }
@@ -242,11 +265,11 @@ public abstract class AbstractTemplate implements ITemplate {
     }
     
     private long getBeginAndEndTagBytesLength() {
-        return new String(new char[] { placeholderBeginTag, placeholderEndTag }).getBytes().length;
+        return getBeginAndEndTagBytesLength(this.charset);
     }
     
     private long getBeginAndEndTagBytesLength(Charset charset) {
-        return new String(new char[] { placeholderBeginTag, placeholderEndTag }).getBytes(charset).length;
+        return placeholderBeginTag.getBytes(charset).length + placeholderEndTag.getBytes(charset).length;
     }
     
     protected long correctTemplateLength(long templateLength) {
@@ -333,7 +356,7 @@ public abstract class AbstractTemplate implements ITemplate {
                             }
                             inPlaceholder = false;
                             inIndexer = false;
-                        } else if (templateCharacter == '[') {
+                        } else if (templateCharacter == INDEXER_BEGIN_CHARACTER) {
                             String propertyName = sb.toString();
                             if (inPlaceholder) {
                                 if (currentValue == null) {
@@ -351,7 +374,7 @@ public abstract class AbstractTemplate implements ITemplate {
                                 renderer.render((char) templateCharacter);
                                 length++;
                             }
-                        } else if (templateCharacter == ']') {
+                        } else if (templateCharacter == INDEXER_END_CHARACTER) {
                             if (inPlaceholder) {
                                 if (inIndexer) {
                                     String propertyName = sb.toString();
@@ -379,7 +402,7 @@ public abstract class AbstractTemplate implements ITemplate {
                                 renderer.render((char) templateCharacter);
                                 length++;
                             }
-                        } else if (templateCharacter == '.') {
+                        } else if (templateCharacter == FIELD_SEPARATOR_CHARACTER) {
                             if (inPlaceholder) {
                                 if (sb.length() > 0) {
                                     String propertyName = sb.toString();
