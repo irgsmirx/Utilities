@@ -16,7 +16,7 @@ public interface ICharRenderer {
     
     void setCharset(Charset charset);
     
-    void render(char c);
+    void render(int codePoint);
 
     void render(String s);
 

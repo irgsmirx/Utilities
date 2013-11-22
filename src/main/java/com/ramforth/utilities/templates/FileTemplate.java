@@ -7,7 +7,6 @@ package com.ramforth.utilities.templates;
 import java.io.*;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.nio.charset.Charset;
 
 /**
  *

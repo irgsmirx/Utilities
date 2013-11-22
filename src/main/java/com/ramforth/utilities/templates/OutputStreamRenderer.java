@@ -20,9 +20,11 @@ public class OutputStreamRenderer extends AbstractCharRenderer {
     }
 
     @Override
-    public void render(char c) {
+    public void render(int codePoint) {
         try {
-            outputStream.write(c);
+            for (char c : Character.toChars(codePoint)) {
+                outputStream.write(c);
+            }
         }
         catch (IOException ioex) {
             LOGGER.warn("Error rendering character to outputstream", ioex);

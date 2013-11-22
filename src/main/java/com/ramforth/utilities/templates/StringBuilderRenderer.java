@@ -17,8 +17,8 @@ public class StringBuilderRenderer extends AbstractCharRenderer {
     }
 
     @Override
-    public void render(char c) {
-        stringBuilder.append(c);
+    public void render(int codePoint) {
+        stringBuilder.appendCodePoint(codePoint);
     }
 
     @Override
