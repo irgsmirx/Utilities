@@ -5,7 +5,6 @@
 package com.ramforth.utilities.templates;
 
 import java.io.*;
-import java.nio.charset.Charset;
 
 /**
  *
