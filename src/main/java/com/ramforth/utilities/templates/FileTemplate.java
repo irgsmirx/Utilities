@@ -84,4 +84,5 @@ public class FileTemplate extends AbstractTemplate {
     protected void tryClose() {
         // nothing to do here
     }
+    
 }
