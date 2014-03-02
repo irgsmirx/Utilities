@@ -9,11 +9,12 @@ import com.ramforth.utilities.paging.interfaces.IPagedResult;
 /**
  *
  * @author Tobias Ramforth <tobias.ramforth at tu-dortmund.de>
+ * @param <TItem> The type of the encapsulated items.
  */
 public class PagedResult<TItem> implements IPagedResult<TItem> {
 
     private int currentPage = 0;
-    private Iterable<TItem> currentItems;
+    private final Iterable<TItem> currentItems;
     private int numberOfItemsPerPage = 10;
     private int totalNumberOfItems = 0;
     
@@ -31,13 +32,16 @@ public class PagedResult<TItem> implements IPagedResult<TItem> {
 
     @Override
     public int getTotalNumberOfPages() {
+        if (numberOfItemsPerPage == 0) {
+            return 0;
+        }
         int basicNumberOfPages = totalNumberOfItems / numberOfItemsPerPage;
         int rest = (totalNumberOfItems - (basicNumberOfPages * numberOfItemsPerPage));
         return basicNumberOfPages + (rest == 0 ? 0 : 1);
     }
 
     @Override
-    public Iterable<TItem> getCurrentItems() {
+    public final Iterable<TItem> getCurrentItems() {
         return currentItems;
     }
 
