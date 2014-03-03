@@ -16,12 +16,11 @@
  */
 package com.ramforth.utilities.triggering.implementation.conditions;
 
-import com.ramforth.utilities.time.implementation.DateTime;
+import org.joda.time.DateTime;
 
-//[Serializable]
 public abstract class AbstractDateTimeCondition extends AbstractCondition {
 
-    protected DateTime dateTime = DateTime.today();
+    protected DateTime dateTime = DateTime.now();
 
     public DateTime getDateTime() {
         return dateTime;

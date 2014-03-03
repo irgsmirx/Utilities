@@ -16,12 +16,8 @@
  */
 package com.ramforth.utilities.triggering.implementation.events;
 
-import com.ramforth.utilities.time.implementation.DateTime;
+import org.joda.time.DateTime;
 
-//[Description("Ereignis, das eintritt, wenn eine gewisse Zeit vergangen ist.")]
-//[Category("Timer")]
-//[Serializable]
-//[UserEditable]
 public class TimeElapsedEvent extends AbstractEvent {
 
     private boolean eventOccurred = false;
@@ -42,7 +38,7 @@ public class TimeElapsedEvent extends AbstractEvent {
             DateTime now = DateTime.now();
             if (TimeSpan.ZERO.compareTo(time) < 0) {
                 if (lastOccurrance != null) {
-                    if (now.getTicks() >= lastOccurrance.getTicks() + time.getTicks()) {
+                    if (now.isAfter(lastOccurrance.plus(time.getTicks()))) {
                         eventOccurred = true;
                         lastOccurrance = now;
                     }

@@ -16,12 +16,8 @@
  */
 package com.ramforth.utilities.triggering.implementation.events;
 
-import com.ramforth.utilities.time.implementation.DateTime;
+import org.joda.time.DateTime;
 
-//[Description("Ereignis, das periodisch eintritt.")]
-//[Category("Timer")]
-//[Serializable]
-//[UserEditable]
 public class PeriodicEvent extends AbstractEvent {
 
     private DateTime lastOccurrance = null;
@@ -41,7 +37,7 @@ public class PeriodicEvent extends AbstractEvent {
         DateTime now = DateTime.now();
         if (TimeSpan.ZERO.compareTo(period) < 0) {
             if (lastOccurrance != null) {
-                if (now.getTicks() >= lastOccurrance.getTicks() + period.getTicks()) {
+                if (now.isAfter(lastOccurrance.plus(period.getTicks()))) {
                     eventOccurred = true;
                     lastOccurrance = now;
                 }
