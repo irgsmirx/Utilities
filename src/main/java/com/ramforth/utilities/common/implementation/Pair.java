@@ -16,11 +16,15 @@
  */
 package com.ramforth.utilities.common.implementation;
 
+import com.ramforth.utilities.common.interfaces.IPair;
+
 /**
  *
  * @author Tobias Ramforth <tobias.ramforth at tu-dortmund.de>
+ * @param <LEFT>
+ * @param <RIGHT>
  */
-public class Pair<LEFT, RIGHT> {
+public class Pair<LEFT, RIGHT> implements IPair<LEFT, RIGHT> {
 
     private LEFT left;
     private RIGHT right;
@@ -30,19 +34,24 @@ public class Pair<LEFT, RIGHT> {
         this.right = right;
     }
 
+    @Override
     public LEFT getLeft() {
         return left;
     }
 
+    @Override
     public void setLeft(LEFT value) {
         this.left = value;
     }
 
+    @Override
     public RIGHT getRight() {
         return right;
     }
 
+    @Override
     public void setRight(RIGHT value) {
         this.right = value;
     }
+    
 }

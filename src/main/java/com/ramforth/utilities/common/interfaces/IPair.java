@@ -9,12 +9,17 @@ package com.ramforth.utilities.common.interfaces;
 /**
  *
  * @author Tobias Ramforth
+ * @param <LEFT>
+ * @param <RIGHT>
  */
-public interface IVersion extends Comparable<IVersion>{
-    
-    int getMajor();
-    int getMinor();
-    int getBuild();
-    int getRevision();
+public interface IPair<LEFT, RIGHT> {
+
+    LEFT getLeft();
+
+    void setLeft(LEFT value);
+
+    RIGHT getRight();
+
+    public void setRight(RIGHT value);
     
 }
