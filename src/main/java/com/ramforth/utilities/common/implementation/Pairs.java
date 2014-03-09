@@ -16,7 +16,7 @@
  */
 package com.ramforth.utilities.common.implementation;
 
-import com.ramforth.utilities.common.interfaces.INameValuePairs;
+import com.ramforth.utilities.common.interfaces.IPair;
 import com.ramforth.utilities.common.interfaces.IPairs;
 import com.ramforth.utilities.exceptions.NoSuchElementException;
 import java.util.ArrayList;
@@ -26,29 +26,42 @@ import java.util.List;
 /**
  *
  * @author Tobias Ramforth <tobias.ramforth at tu-dortmund.de>
+ * @param <LEFT>
+ * @param <RIGHT>
  */
 public class Pairs<LEFT, RIGHT> implements IPairs<LEFT, RIGHT> {
 
-    protected List<Pair<LEFT, RIGHT>> pairs = new ArrayList<>();
+    protected List<IPair<LEFT, RIGHT>> pairs = new ArrayList<>();
 
     @Override
-    public void add(Pair<LEFT, RIGHT> value) {
-        pairs.add(value);
+    public boolean add(IPair<LEFT, RIGHT> value) {
+        return pairs.add(value);
     }
 
     @Override
-    public void add(LEFT left, RIGHT right) {
-        pairs.add(new Pair(left, right));
+    public boolean add(LEFT left, RIGHT right) {
+        return pairs.add(new Pair(left, right));
     }
 
     @Override
-    public void remove(Pair<LEFT, RIGHT> value) {
+    public boolean addAll(Iterable<IPair<LEFT, RIGHT>> value) {
+        boolean changed = false;
+        for (IPair<LEFT, RIGHT> pair : value) {
+            if (add(pair)) {
+                changed = true;
+            }
+        }
+        return changed;
+    }
+    
+    @Override
+    public void remove(IPair<LEFT, RIGHT> value) {
         pairs.remove(value);
     }
 
     @Override
     public void remove(LEFT left) {
-        Iterator<Pair<LEFT, RIGHT>> iterator = pairs.iterator();
+        Iterator<IPair<LEFT, RIGHT>> iterator = pairs.iterator();
         while (iterator.hasNext()) {
             if (iterator.next().getLeft().equals(left)) {
                 iterator.remove();
@@ -67,13 +80,13 @@ public class Pairs<LEFT, RIGHT> implements IPairs<LEFT, RIGHT> {
     }
 
     @Override
-    public boolean contains(Pair<LEFT, RIGHT> value) {
+    public boolean contains(IPair<LEFT, RIGHT> value) {
         return pairs.contains(value);
     }
 
     @Override
     public boolean contains(LEFT left) {
-        for (Pair<LEFT, RIGHT> pair : pairs) {
+        for (IPair<LEFT, RIGHT> pair : pairs) {
             if (pair.getLeft().equals(left)) {
                 return true;
             }
@@ -82,8 +95,8 @@ public class Pairs<LEFT, RIGHT> implements IPairs<LEFT, RIGHT> {
     }
 
     @Override
-    public Pair<LEFT, RIGHT> get(LEFT left) {
-        for (Pair<LEFT, RIGHT> pair : pairs) {
+    public IPair<LEFT, RIGHT> get(LEFT left) {
+        for (IPair<LEFT, RIGHT> pair : pairs) {
             if (pair.getLeft().equals(left)) {
                 return pair;
             }
@@ -92,13 +105,13 @@ public class Pairs<LEFT, RIGHT> implements IPairs<LEFT, RIGHT> {
     }
     
     @Override
-    public Pair<LEFT, RIGHT> getAt(int index) {
+    public IPair<LEFT, RIGHT> getAt(int index) {
         return pairs.get(index);
     }
 
     @Override
     public RIGHT getRight(LEFT left) {
-        for (Pair<LEFT, RIGHT> pair : pairs) {
+        for (IPair<LEFT, RIGHT> pair : pairs) {
             if (pair.getLeft().equals(left)) {
                 return pair.getRight();
             }
@@ -107,14 +120,14 @@ public class Pairs<LEFT, RIGHT> implements IPairs<LEFT, RIGHT> {
     }
 
     @Override
-    public Iterator<Pair<LEFT, RIGHT>> iterator() {
+    public Iterator<IPair<LEFT, RIGHT>> iterator() {
         return pairs.iterator();
     }
     
     @Override
     public void set(LEFT left, RIGHT right) {
         boolean found = false;
-        for (Pair<LEFT, RIGHT> pair : pairs) {
+        for (IPair<LEFT, RIGHT> pair : pairs) {
             if (pair.getLeft().equals(left)) {
                 pair.setRight(right);
                 found = true;

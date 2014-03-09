@@ -24,13 +24,15 @@ import com.ramforth.utilities.common.implementation.Pair;
  * @param <LEFT>
  * @param <RIGHT>
  */
-public interface IPairs<LEFT, RIGHT> extends Iterable<Pair<LEFT, RIGHT>> {
+public interface IPairs<LEFT, RIGHT> extends Iterable<IPair<LEFT, RIGHT>> {
 
-    void add(Pair<LEFT, RIGHT> value);
+    boolean add(IPair<LEFT, RIGHT> value);
 
-    void add(LEFT left, RIGHT right);
+    boolean add(LEFT left, RIGHT right);
 
-    void remove(Pair<LEFT, RIGHT> value);
+    boolean addAll(Iterable<IPair<LEFT, RIGHT>> value);
+    
+    void remove(IPair<LEFT, RIGHT> value);
 
     void remove(LEFT left);
 
@@ -38,13 +40,13 @@ public interface IPairs<LEFT, RIGHT> extends Iterable<Pair<LEFT, RIGHT>> {
 
     void clear();
 
-    boolean contains(Pair<LEFT, RIGHT> value);
+    boolean contains(IPair<LEFT, RIGHT> value);
 
     boolean contains(LEFT left);
 
-    Pair<LEFT, RIGHT> get(LEFT left);
+    IPair<LEFT, RIGHT> get(LEFT left);
     
-    Pair<LEFT, RIGHT> getAt(int index);
+    IPair<LEFT, RIGHT> getAt(int index);
 
     RIGHT getRight(LEFT left);
     
