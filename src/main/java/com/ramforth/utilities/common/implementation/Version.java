@@ -39,23 +39,23 @@ public class Version implements IVersion {
     }
 
     @Override
-    public int getMajor() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public final int getMajor() {
+        return major;
     }
 
     @Override
-    public int getMinor() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public final int getMinor() {
+        return minor;
     }
 
     @Override
-    public int getBuild() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public final int getBuild() {
+        return build;
     }
 
     @Override
-    public int getRevision() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public final int getRevision() {
+        return revision;
     }
 
     @Override
