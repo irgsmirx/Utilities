@@ -17,8 +17,11 @@
 package com.ramforth.utilities.triggering.implementation;
 
 import com.ramforth.utilities.triggering.interfaces.IAction;
+import com.ramforth.utilities.triggering.interfaces.IActions;
 import com.ramforth.utilities.triggering.interfaces.ICondition;
+import com.ramforth.utilities.triggering.interfaces.IConditions;
 import com.ramforth.utilities.triggering.interfaces.IEvent;
+import com.ramforth.utilities.triggering.interfaces.IEvents;
 import com.ramforth.utilities.triggering.interfaces.ITrigger;
 import com.ramforth.utilities.triggering.interfaces.IVariable;
 import java.util.ArrayList;
@@ -27,10 +30,10 @@ import java.util.List;
 public class Trigger implements ITrigger/*, IXmlSerializable*/ {
 
     private String name;
-    private List<IEvent> events = new ArrayList<>();
-    private List<IVariable> variables = new ArrayList<>();
-    private List<ICondition> conditions = new ArrayList<>();
-    private List<IAction> actions = new ArrayList<>();
+    private final IEvents events = new Events();
+    private final List<IVariable> variables = new ArrayList<>();
+    private final IConditions conditions = new Conditions();
+    private final IActions actions = new Actions();
 
     public Trigger() {
     }
@@ -82,44 +85,13 @@ public class Trigger implements ITrigger/*, IXmlSerializable*/ {
 
     @Override
     public void evaluate() {
-        boolean eventsOccurred = false;
-        for (IEvent event : events) {
-            try {
-                if (event.occurred()) {
-                    eventsOccurred = true;
-                    event.reset();
-                    break;
-                }
-            }
-            catch (Exception eventException) {
-            }
-        }
-
-        if (eventsOccurred) {
-            boolean conditionsMet = true;
-            for (ICondition condition : conditions) {
-                try {
-                    if (!condition.isMet()) {
-                        conditionsMet = false;
-                        break;
-                    }
-                }
-                catch (Exception conditionException) {
-                }
-            }
-            if (conditionsMet) {
-                for (IAction action : actions) {
-                    try {
-                        action.perform();
-                    }
-                    catch (Exception actionException) {
-                    }
-                }
+        if (events.occurred()) {
+            if (conditions.areMet()) {
+                actions.perform();
             }
         }
     }
 
-//    #region events
     @Override
     public Iterable<IEvent> getEvents() {
         return events;
@@ -132,7 +104,7 @@ public class Trigger implements ITrigger/*, IXmlSerializable*/ {
 
     @Override
     public final void addEvent(IEvent value) {
-        events.add(value);
+        events.append(value);
     }
 
     @Override
@@ -142,9 +114,8 @@ public class Trigger implements ITrigger/*, IXmlSerializable*/ {
 
     @Override
     public void removeEventAt(int index) {
-        events.remove(index);
+        events.removeAt(index);
     }
-//    #endregion
 
     @Override
     public Iterable<IVariable> getVariables() {
@@ -171,7 +142,6 @@ public class Trigger implements ITrigger/*, IXmlSerializable*/ {
         variables.remove(index);
     }
 
-//    #region conditions
     @Override
     public Iterable<ICondition> getConditions() {
         return conditions;
@@ -184,7 +154,7 @@ public class Trigger implements ITrigger/*, IXmlSerializable*/ {
 
     @Override
     public final void addCondition(ICondition value) {
-        conditions.add(value);
+        conditions.append(value);
     }
 
     @Override
@@ -194,11 +164,9 @@ public class Trigger implements ITrigger/*, IXmlSerializable*/ {
 
     @Override
     public void removeConditionAt(int index) {
-        conditions.remove(index);
+        conditions.removeAt(index);
     }
-//    #endregion
 
-//    #region actions
     @Override
     public Iterable<IAction> getActions() {
         return actions;
@@ -211,7 +179,7 @@ public class Trigger implements ITrigger/*, IXmlSerializable*/ {
 
     @Override
     public final void addAction(IAction value) {
-        actions.add(value);
+        actions.append(value);
     }
 
     @Override
@@ -221,14 +189,12 @@ public class Trigger implements ITrigger/*, IXmlSerializable*/ {
 
     @Override
     public void removeActionAt(int index) {
-        actions.remove(index);
+        actions.removeAt(index);
     }
-//    #endregion
-//    #endregion
 
     @Override
     public String toString() {
-        return name == null ? "?TRIGGER?" : name;
+        return name == null ? "?TRIGGER NAME?" : name;
     }
 //    #region IXmlSerializable Members
 //
